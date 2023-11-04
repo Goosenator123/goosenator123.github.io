@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>querySelectorAll Example</title>
+</head>
+<body>
+    <div class="example">Element 1</div>
+    <div class="example">Element 2</div>
+    <div class="example">Element 3</div>
+    <div class="other">Not selected</div>
+
+    <h1>Embedded MP4 Video</h1>
+    
+    <video width="640" height="360" controls>
+        <source src="HighBoi.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        // Select all elements with class "example"
+        const elements = document.querySelectorAll('.example');
+        console.log(elements)
+
+        // Loop through the NodeList and change the text content
+        elements.forEach((index, i) => {
+            element.textContent = `Modified Element ${index + 1}`;
+            console.log(index)
+        });
+
+        const nodeList = document.querySelectorAll('div'); // Selects all <div> elements on the page
+
+        console.log(nodeList); // Outputs the NodeList
+
+        // You can iterate through the NodeList using a loop
+        for (let i = 0; i < nodeList.length; i++) {
+            const element = nodeList[i];
+            console.log(element); // Outputs each <div> element
+        }
+
+        
+    </script>
+</body>
+</html>
+
+<style>
+    .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+</style>
