@@ -1,3 +1,3 @@
-# Purpose of this repo
+# Purpose of this repository
 
-This is purely for a school project
+This is a small web log in page that i made for a school project
