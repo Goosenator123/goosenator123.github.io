@@ -3,7 +3,7 @@
     --bg-color: white; /* Background color */
     --shadow-color: black; /* Shadow color */
     --word-color: black; /* Text color */
-    --bg-image: url("../../images-videos/Goose_Light.png"); /* Background image */
+    --bg-image: url("../images-videos/Goose_Light.png"); /* Background image */
     --input-color: rgba(0, 162, 255, 0.8); /* Input field color */
     --button-color: rgb(0, 200, 255); /* Button color */
     --button-focus: rgb(131, 255, 249); /* Button hover/focus color */
@@ -17,7 +17,7 @@
     --bg-color: black;
     --shadow-color: white;
     --word-color: white;
-    --bg-image: url("../../images-videos/Goose_Dark.png");
+    --bg-image: url("../images-videos/Goose_Dark.png");
     --input-color: rgba(0, 234, 255, 0.8);
     --button-color: rgb(0, 60, 255);
     --button-focus: rgb(131, 255, 249);

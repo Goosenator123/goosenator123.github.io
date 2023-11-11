@@ -3,7 +3,7 @@
     --bg-color: white; /* Background color */
     --shadow-color: black; /* Shadow color */
     --word-color: black; /* Text color */
-    --bg-image: url("../../images-videos/Goose_Light.png"); /* Background image */
+    --bg-image: url("../images-videos/Goose_Light.png"); /* Background image */
 
     /* Button colors */
     --w3school: rgb(0, 111, 0);
@@ -23,7 +23,7 @@
     --bg-color: black;
     --shadow-color: white;
     --word-color: white;
-    --bg-image: url("../../images-videos/Goose_Dark.png");
+    --bg-image: url("../images-videos/Goose_Dark.png");
 
     /* Button colors (dark mode) */
     --w3school: rgb(0, 255, 0);
