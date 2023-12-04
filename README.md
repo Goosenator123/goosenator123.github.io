@@ -36,8 +36,8 @@ If you wish to view the project online, you can type goosenator123.github.io/(fo
 
 ### PixelGuess
 
-PixelGuess is a simple number guesser game with an 8-bit style. It has a highscore system that stores and display scores on Javascript's localStorage. The game also has music that are not made by me.
+PixelGuess is a nostalgic 8-bit style number guessing game. Challenge yourself with a simple and fun gameplay experience as you try to guess the correct number. Keep track of your achievements with the built-in highscore system, utilizing JavaScript's localStorage to store and display scores. Immerse yourself in the retro vibes enhanced by accompanying music tracks, carefully curated to complement the game's 8-bit aesthetic.
 
 ### QuackIn
 
-QuackIn is a goose themed logIn / signUp page with a togglable dark mode and light mode. The web uses Javascript's localStorage to store users' info so that users can login after signing up. It also has multiple easter eggs and a single page after login in.
+QuackIn offers a whimsical and goose-themed login/signup page featuring a dynamic dark mode and light mode toggle. Experience a delightful user interface that utilizes JavaScript's localStorage to securely store user information, enabling seamless logins after signing up. Explore the web application's multiple easter eggs, adding a touch of fun and surprise. Once logged in, users are treated to a single-page environment designed for a seamless and enjoyable user experience.
