@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guesser Game</title>
+    <!-- Linked css files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/game_over.css">
+
+    <!-- Linked to google icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+</head>
+<body>
+
+    <!-- Background Image -->
+    <div id="bg-img"></div>
+    
+    <!-- Selection menu -->
+    <section id="menu-section">
+
+    <!-- Menu Header -->
+    <header>
+        
+        <!-- Title -->
+        <h1 id="title">Number Guesser Game</h1>
+
+        <!-- Instructions -->
+        <p id="sub-title">Pick a difficulty!</p>
+        
+    </header>
+
+        <!-- Menu main -->
+        <main id="menu-main">
+
+            <!-- Choosing difficulty section -->
+            <article id="difficulty-section">
+                <button id="easy" class="menu-buttons">Easy</button>
+                <button id="normal" class="menu-buttons">Normal</button>
+                <button id="hard" class="menu-buttons">Hard</button>
+
+            </article>
+
+            <!-- Highscore section -->
+            <article id="highscore-section">
+                <p id="highscore-label">
+                    HIGH <br>
+                    <span>SCORE</span></p>
+                <p id="highscore">0 points</p>
+
+            </article>
+
+        </main>
+
+    </section>
+
+    <!--! ---------------------------------------------------- -->
+
+    <!-- Word Guesser Game -->
+    <section id="game-section">
+
+        <!-- Game Header -->
+        <header>
+            
+            <!-- Title -->
+            <h1 id="title">Number Guesser Game</h1>
+
+            <!-- Instructions -->
+            <p id="sub-title">Pick a number from 1 to 100?</p>
+            
+        </header>
+        
+        <!-- Game Main -->
+        <main id="game-main">
+            
+            <!-- Main section -->
+            <article id="game-container">
+
+                <!-- User Guess -->
+                <div id="guess-container">
+                    <input type="number" id="guess" required>
+
+                    <div class="label-container">
+                        <label for="guess" id="guess-label">
+                            Enter a number
+                        </label>
+                        
+                    </div>
+        
+                    <!-- Hint -->
+                    <div id="hint-container">
+                        <p id="hint"></p>
+        
+                    </div>
+                    
+                </div>
+    
+                
+                <!-- Score area -->
+                <div id="score-container">
+                    <p id="score-label">
+                        SCORE <br>
+                    </p>
+
+                    <p id="score">
+                        0
+                    </p>
+                </div>
+                
+            </article>
+            
+            <!-- Submit button -->
+            <div id="button-container">
+                <button id="submit">Guess</button>
+
+            </div>
+            
+        </main>
+
+        <!-- HP Bar -->   
+        <div id="hp-bar-container">
+            <p id="hp-label">100%</p>
+            <div id="hp-bar"></div>
+        
+        </div>
+        
+    </section>
+
+    <!--! ---------------------------------------------------- -->
+
+    <!-- Game Over -->
+    <section id="game-over-screen">
+
+        <!-- Game over main -->
+        <main id="game-over-main">
+
+            <!-- Title -->
+            <h1 id="game-over-title">Game Over</h1>
+
+            <!-- Score -->
+            <div id="game-over-score-container">
+                <p id="game-over-score-label">
+                    Your score:
+                    <span id="game-over-score">0</span>
+                </p>
+
+            </div>
+
+            <!-- Restart/Menu buttons -->
+            <div id="game-over-buttons">
+                <button id="menu">
+                    <span class="material-symbols-outlined icon-button1">
+                        list
+                    </span>
+                </button>
+
+                <button id="try-again">
+                    <span class="material-symbols-outlined icon-button2">
+                        restart_alt
+                    </span>
+                </button>
+
+            </div>
+
+        </main>
+        
+    </section>
+
+    <!-- Linked JS file -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

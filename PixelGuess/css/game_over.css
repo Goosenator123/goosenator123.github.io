@@ -1,0 +1,70 @@
+/* Section styles */
+#game-over-screen {
+    z-index: var(--game-over);
+    bottom: 0;
+}
+
+/* Main styles */
+#game-over-main {
+    width: 70vw;
+    min-width: fit-content;
+    height: 100%;
+    padding: 20px;
+    border: 5px solid white;
+    margin:  5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.628);
+}
+
+#game-over-title {
+    font-size: 5rem;
+    text-align: center;
+    margin: 0;
+}
+
+#game-over-score-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#game-over-score-label {
+    font-size: 1.6rem;
+}
+
+#game-over-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#game-over-buttons button {
+    border: 5px solid white;
+    /* border-left: 5px solid var(--left-border); */
+    width: 20vw;
+    min-width: fit-content;
+    padding: 10px 20px;
+    background-color: black;
+}
+
+#game-over-buttons button:hover {
+    background-color: rgb(31, 31, 31);
+}
+
+/* Google icon styles */
+.material-symbols-outlined.icon-button1,
+.material-symbols-outlined.icon-button2 {
+    font-size: 100px;
+    /* font-weight: 500; */
+    transition: transform 0.3s, font-weight 0.3s;
+}
+
+#try-again:hover .material-symbols-outlined.icon-button2 {
+    transform: rotate(-45deg);
+}
+
+#menu:hover .material-symbols-outlined.icon-button1 {
+    font-weight: 600;
+}
