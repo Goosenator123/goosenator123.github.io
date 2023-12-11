@@ -2,6 +2,7 @@
 const guess = document.getElementById("guess");
 const hp_bar = document.getElementById("hp-bar");
 const hp_label = document.getElementById("hp-label");
+const hp_container = document.getElementById("hp-bar-container");
 const hint = document.getElementById("hint");
 const submit = document.getElementById("submit");
 const menu = document.getElementById("menu");
@@ -70,6 +71,10 @@ function decreaseHp() {
                 // Decrease hp_bar and hp_label gradually
                 hp_label.textContent = `${hp}%`;
                 hp_bar.style.width = `${hp}%`;
+                hp_bar.style.backgroundColor = `hsl(${hp}, 83%, 50%)`
+                hp_container.style.border = `5px solid hsl(${hp}, 100%, 40%)`;
+                hp_container.style.borderLeft = `5px solid hsl(${hp}, 100%, 31%)`;
+                // changeHpColor(hp);
             }    
         } else {
             clearInterval(decreaseLabel) // Stops the interval if hp is at targetHp
@@ -79,6 +84,23 @@ function decreaseHp() {
     // Check if dead
     checkDead();
 }
+
+// // Change HP color function
+// function changeHpColor(hp) {
+//     switch (true) {
+//         case hp <= 25:
+//             hp_bar.style.backgroundColor = "red";
+//             break;
+
+//         case hp <= 50:
+//             hp_bar.style.backgroundColor = "orange";
+//             break;
+
+//         case hp <= 75:
+//             hp_bar.style.backgroundColor = "yellow";
+//             break;
+//     }
+// }
 
 // When dead function
 function checkDead() {
@@ -262,6 +284,9 @@ function reset() {
     hint.textContent = ""; // Reset hint
     hp_bar.style.width = "100%"; // Reset hp_bar
     hp_label.textContent = "100%"; // Reset hp_label
+    hp_bar.style.backgroundColor = `hsl(${hp}, 83%, 50%)`
+    hp_container.style.border = `5px solid hsl(${hp}, 100%, 40%)`;
+    hp_container.style.borderLeft = `5px solid hsl(${hp}, 100%, 31%)`;
 }
 
 // Reset score funciton
