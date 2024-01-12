@@ -36,8 +36,12 @@ If you wish to view the project online, you can type goosenator123.github.io/(fo
 
 ### PixelGuess
 
-PixelGuess is a nostalgic 8-bit style number guessing game. Challenge yourself with a simple and fun gameplay experience as you try to guess the correct number. Keep track of your achievements with the built-in highscore system, utilizing JavaScript's localStorage to store and display scores. Immerse yourself in the retro vibes enhanced by accompanying music tracks, carefully curated to complement the game's 8-bit aesthetic.
+PixelGuess is a nostalgic 8-bit style number guessing game. Challenge yourself with a simple and fun gameplay experience as you try to guess the correct number. Keep track of your achievements with the built-in highscore system, utilizing JavaScript's localStorage to store and display scores.
 
 ### QuackIn
 
-QuackIn offers a whimsical and goose-themed login/signup page featuring a dynamic dark mode and light mode toggle. Experience a delightful user interface that utilizes JavaScript's localStorage to securely store user information, enabling seamless logins after signing up. Explore the web application's multiple easter eggs, adding a touch of fun and surprise. Once logged in, users are treated to a single-page environment designed for a seamless and enjoyable user experience.
+QuackIn offers a whimsical and goose-themed login/signup page featuring a dynamic dark mode and light mode toggle. Experience a delightful user interface that utilizes JavaScript's localStorage to securely store user information, enabling seamless logins after signing up. Explore the web application's multiple easter eggs, adding a touch of fun and surprise.
+
+### CodeGuide
+
+CodeGuide is an intricately crafted documentation hub for HTML, CSS, Python, JavaScript, and C++. Immerse yourself in the vast knowledge presented on our user-friendly platform, enhanced by a streamlined navigation bar featuring dropdowns designed using CSS class selectors. Explore the depths of each language's intricacies with ease in a visually appealing design, where SVG files are utilized for customization.
