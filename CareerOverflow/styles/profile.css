@@ -1,0 +1,206 @@
+:root {
+    --background-color: #232634;
+    --upper-page-background: #5e28a6;
+    --letter-color: #eff1f5;
+    --letter-color2: #00fff7;
+    --nav-hover: #ca9ee6;
+    --button-background: #7e28ef;
+    --button-bg-hover: #6c11e3;
+    --form-bg: #944deb;
+    --shadow: #421c72;
+    --title-color: #00ffea;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1.15px;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    /* background-color: var(--background-color) */
+    background-color: var(--nav-hover);
+}
+
+.bg-img {
+    position: fixed;
+    z-index: -1;
+    background-image: url('../images/profileBackground.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
+}
+
+form {
+    position: relative;
+    top: 50px;
+    margin: 0 auto 100px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#personal-info, #cv-bio, #tags {
+    background-color: var(--form-bg);
+}
+
+#personal-info {
+    width: 50%;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#img-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    background-color: var(--letter-color);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile-pic-file {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+#more-info {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+#cv-bio > p, .file-label > label, #tags > #tag-container > p {
+    font-size: 3rem;
+    color: var(--letter-color);
+    font-weight: bold;
+}
+
+#cv {
+    color: var(--letter-color);
+}
+
+.checkbox-label {
+    font-size: 2rem;
+    color: var(--letter-color);
+    user-select: none;
+}
+
+#more-info > article {
+    width: 100%;
+    height: fit-content;
+    border-radius: 20px;
+}
+
+#cv-bio, #tags {
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+#bio {
+    width: 100%;
+    height: 100px;
+    margin: auto;
+}
+
+#tag-container {
+    overflow: auto;
+}
+
+/* Input position styling */
+.input-position {
+    position: relative;
+    margin-top: 50px;
+    width: 100%;
+}
+
+
+/* Input box styling */
+.input-box {
+    width: 100%;
+    height: 2rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    border-bottom: 3px solid var(--letter-color);
+    outline: none;
+    font-size: 2.4rem;
+    color: var(--letter-color);
+    transition: border-bottom 0.5s, color 0.5s;
+}
+
+/* Input label styling */
+.input-label {
+    position: absolute;
+    top: -10px;
+    font-size: 2.8rem;
+    font-weight: bold;
+    user-select: none;
+    color: var(--letter-color);
+    opacity: 0.9;
+    display: flex;
+    align-items: last baseline;
+    transition: top 0.25s, font-size 0.3s, color 0.2s;
+}
+
+.input-box:focus + .input-label,
+.input-box:valid + .input-label,
+.input-box.filled + .input-label {
+    top: -30px;
+    font-size: 2rem;
+    color: var(--letter-color2);
+    opacity: 0.8;
+}
+
+/* Sign-up button styling */
+#save-button {
+    width: fit-content;
+    height: fit-content;
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--letter-color);
+    background-color: var(--button-background);
+    border: none;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 10px 50px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+#save-button:hover {
+    background-color: var(--button-bg-hover);
+}
+
+/* Styling for body scrollbar */
+body::-webkit-scrollbar {
+    width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--upper-page-background);
+    border-radius: 10px;
+}

@@ -1,0 +1,57 @@
+/* Variable declarations for color scheme */
+:root {
+    --background-color: #232634;
+    --upper-page-background: #5e28a6;
+    --letter-color: #eff1f5;
+    --letter-color2: #00fff7;
+    --nav-hover: #ca9ee6;
+    --button-background: #7e28ef;
+    --button-bg-hover: #7115e8;
+    --form-bg: #944deb;
+    --shadow: #421c72;
+    --title-color: #00ffea;
+}
+
+/* Resetting default styles and setting global styles */
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1.15px;
+}
+
+/* Setting base font size for better responsiveness */
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+/* Styling for the body */
+body {
+    position: relative;
+    background-color: var(--background-color);
+    position: fixed;
+    z-index: -1;
+    background-image: url('../images/profileBackground.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
+}
+
+#cv-list {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 99%;
+    box-sizing: border-box;
+    overflow: hidden;
+    float: left;
+    padding: 10px;
+    border-radius: 20px;
+    margin: 20px auto;
+    background-color: var(--shadow);
+    display: flex;
+    flex-flow: row wrap;
+}
