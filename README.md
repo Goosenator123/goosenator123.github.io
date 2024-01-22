@@ -7,6 +7,9 @@
 - [Websites](#websites)
   - [PixelGuess](#PixelGuess)
   - [QuackIn](#QuackIn)
+  - [CodeGuide](#CodeGuide)
+  - [CareerOverflow](#CareerOverflow)
+  - [RockPaperScissors](#RockPaperScissors)
 
 ## Introduction
 
@@ -45,3 +48,11 @@ QuackIn offers a whimsical and goose-themed login/signup page featuring a dynami
 ### CodeGuide
 
 CodeGuide is an intricately crafted documentation hub for HTML, CSS, Python, JavaScript, and C++. Immerse yourself in the vast knowledge presented on our user-friendly platform, enhanced by a streamlined navigation bar featuring dropdowns designed using CSS class selectors. Explore the depths of each language's intricacies with ease in a visually appealing design, where SVG files are utilized for customization.
+
+### CareerOverflow
+
+A submission for BrebeufHackathon. Currently unfinished.
+
+### RockPaperScissors
+
+STC
