@@ -1,0 +1,67 @@
+main {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    flex-direction: row-reverse;
+}
+
+#difficulty-section, #highscore-section {
+    /* width: 40%; */
+    min-width: 300px;
+    /* text-align: center; */
+}
+
+#difficulty-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#highscore-section {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* text-align: center; */
+}
+
+#highscore-container {
+    height: fit-content;
+    width: 100%;
+    padding: 40px 50px;
+    border: 5px solid black;
+}
+
+.difficulty {
+    height: 100px;
+    width: 200px;
+    padding: 0 20px 0;
+    margin-bottom: 10px;
+    border: 5px solid black;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#highscore-title {
+    font-size: 2rem;
+}
+
+#highscore {
+    font-size: 1.6rem;
+}
+
+/* @media query */
+@media (max-width: 750px) {
+    article {
+        display: block;
+    }
+
+    #highscore-section, #difficulty-section {
+        margin-bottom: 50px;
+    }
+
+    #highscore-container, .difficulty {
+        width: 50%;
+    }
+}

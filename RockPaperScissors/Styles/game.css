@@ -1,0 +1,50 @@
+main {
+    display: flex;
+    justify-content: space-around;
+}
+
+#player, #computer {
+    margin-top: 20px;
+    width: 40%;
+    box-sizing: border-box;
+    border: 5px solid black;
+}
+
+#health {
+    width: 3%;
+    border: 10px solid black;
+}
+
+.choice-title {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-top: 10px;
+}
+
+.player-choice, .computer-choice {
+    position: relative;
+    margin: 0 10px;
+}
+
+.computer-choice {
+    text-align: end;
+}
+
+#computer-rock, #player-rock, #computer-paper, #player-paper, #computer-scissors, #player-scissors {
+    position: relative;
+    left: 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+#player-rock:hover {
+    transform: translate();
+}
+
+.img {
+    width: 135px;
+    height: 135px;
+}
+
+.choice.computer {
+    background-color: gray;
+}

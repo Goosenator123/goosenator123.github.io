@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+
+    <!-- Linked CSS files -->
+    <link rel="stylesheet" href="./Styles/styles.css">
+    <link rel="stylesheet" href="./Styles/game.css">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>Pick your move!</h1>
+    </header>
+
+    <main>
+        <section id="health">
+            
+        </section>
+        <section id="player">
+            <h2 class="choice-title">Your choice: </h2>
+
+            <article class="choice player">            
+                <div class="player-choice" id="player-rock">
+                    <img class="img" src="./img/rock.png" alt="Rock">
+                </div>
+                <div class="player-choice" id="player-paper">
+                    <img class="img" src="./img/paper.png" alt="Paper">
+                </div>
+                <div class="player-choice" id="player-scissors">
+                    <img class="img" src="./img/scissors.png" alt="Scissors">
+                </div>
+            </article>
+        </section>
+        
+        <section id="computer">
+            <h2 class="choice-title">Computer choice: </h2>
+
+            <article class="choice computer">
+                <div class="computer-choice" id="computer-rock">
+                    <img class="img" src="./img/rock.png" alt="Rock">
+                </div>
+                <div class="computer-choice" id="computer-paper">
+                    <img class="img" src="./img/paper.png" alt="Paper">
+                </div>
+                <div class="computer-choice" id="computer-scissors">
+                    <img class="img" src="./img/scissors.png" alt="Scissors">
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- Linked JS files -->
+    <script src="./Scripts/game.js"></script>
+</body>
+</html>

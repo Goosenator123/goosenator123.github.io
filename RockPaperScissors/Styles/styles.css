@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: pixel;
+    src: url('../fonts/8-bit-pusab.ttf') format('truetype');
+}
+
+body, html {
+    font-size: 10px;
+    font-family: pixel, sans-serif;
+    /* word-spacing: 15px; */
+}
+
+header {
+    text-align: center;
+    font-size: 2rem;
+    padding-top: 20px;
+}
