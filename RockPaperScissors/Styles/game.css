@@ -6,13 +6,23 @@ main {
 #player, #computer {
     margin-top: 20px;
     width: 40%;
+    min-width: 250px;
     box-sizing: border-box;
     border: 5px solid black;
 }
 
 #health {
+    position: relative;
     width: 3%;
-    border: 10px solid black;
+    border: 5px solid black;
+    background-color: green;
+}
+
+#hp-bar {
+    position: relative;
+    bottom: 0;
+    height: 0%;
+    background-color: red;
 }
 
 .choice-title {
@@ -36,15 +46,7 @@ main {
     transition: transform 0.5s ease-in-out;
 }
 
-#player-rock:hover {
-    transform: translate();
-}
-
 .img {
     width: 135px;
     height: 135px;
-}
-
-.choice.computer {
-    background-color: gray;
 }
