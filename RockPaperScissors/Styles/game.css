@@ -5,20 +5,24 @@ main {
 
 #player, #computer {
     margin-top: 20px;
-    width: 40%;
+    width: 30%;
     min-width: 250px;
     box-sizing: border-box;
-    border: 5px solid black;
+    border: 5px solid white;
 }
 
-#health {
+#player, #computer, #highscore-container {
+    backdrop-filter: blur(10px);
+}
+
+.health {
     position: relative;
     width: 3%;
-    border: 5px solid black;
+    border: 5px solid white;
     background-color: green;
 }
 
-#hp-bar {
+.hp-bar {
     position: relative;
     bottom: 0;
     height: 0%;
@@ -27,7 +31,7 @@ main {
 
 .choice-title {
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 2rem;
     margin-top: 10px;
 }
 

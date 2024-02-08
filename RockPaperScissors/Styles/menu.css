@@ -17,38 +17,49 @@ main {
     flex-direction: column;
 }
 
-#highscore-section {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-}
-
-#highscore-container {
-    height: fit-content;
-    width: 100%;
-    padding: 40px 50px;
-    border: 5px solid black;
-}
-
 .difficulty {
     height: 100px;
-    width: 200px;
-    padding: 0 20px 0;
+    width: 400px;
+    padding: 20px 40px ;
     margin-bottom: 10px;
-    border: 5px solid black;
-    font-size: 1.6rem;
+    border: 5px solid var(--letter-color);
+    font-size: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+#easy, #normal, #impossible, #highscore-container {
+    backdrop-filter: blur(10px);
+}
+
+#easy {
+    background-color: rgba(30, 177, 30, 0.573);
+}
+
+#normal {
+    background-color: rgba(228, 185, 43, 0.551);
+}
+
+#impossible {
+    background-color: rgba(196, 28, 28, 0.535);
+}
+
 #highscore-title {
-    font-size: 2rem;
+    font-size: 2.4rem;
 }
 
 #highscore {
-    font-size: 1.6rem;
+    font-size: 2rem;
+}
+
+#highscore-container {
+    margin-top: 50px;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* @media query */

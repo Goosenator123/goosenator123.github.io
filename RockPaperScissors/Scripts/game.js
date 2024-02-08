@@ -1,9 +1,27 @@
 // Declaring variables
-const playerItems = document.getElementsByClassName('player-choice'); // Get all player choices
-const computerItems = document.getElementsByClassName('computer-choice'); // Get all computer choices
+// const playerItems = document.getElementsByClassName('player-choice'); // Get all player choices
+// const computerItems = document.getElementsByClassName('computer-choice'); // Get all computer choices
+const playerRock = document.getElementById('player-rock');
+const playerPaper = document.getElementById('player-paper');
+const playerScissors = document.getElementById('player-scissors');
+const computerRock = document.getElementById('computer-rock');
+const computerPaper = document.getElementById('computer-paper');
+const computerScissors = document.getElementById('computer-scissors');
+const playerHp = document.getElementById('player-hp-bar');
+const computerHp = document.getElementById('computer-hp-bar');
+
 let isClickable = true; // Flag to track if selections are clickable
 let playerChoice;
 let computerChoice;
+let outcome;
+let difficulty;
+let choice;
+let bgMusic = new Audio('./audio/bgRain.mp3');
+let dmgAudio = new Audio('./audio/undertale-dmg.mp3');
+let winAudio = new Audio('./audio/8bitSuccess.mp3');
+let tieAudio = new Audio('./audio/bell.wav');
+bgMusic.loop = true;
+[dmgAudio, winAudio, tieAudio].forEach(audio => audio.volume = 0.3);
 
 // Function to animate the player's choice
 function moveForward(choice, who) {
@@ -19,35 +37,109 @@ function moveForward(choice, who) {
     } else if (who === 'computer') {
         choice.style.transform = `translate(${x2}px)`; // For computer
     }
-
-    // Reset the transformation after 1 second
-    setTimeout(() => {
-        choice.style.transform = 'none'; // Remove the translation
-        isClickable = true; // Re-enable selections
-    }, 1000);
 }
 
+function moveBack(choice) {
+    choice.style.transform = 'none'; // Remove the translation
+    isClickable = true; // Re-enable selections
+}
+ 
 function computerChoose() {
-    let choice = ['rock', 'rock', 'rock', 'rock', 'paper', 'paper', 'paper', 'scissors', 'scissors', 'scissors'];
-    let choiceIndex = Math.floor(Math.random() * 10)
-    let computerChoice = choice[choiceIndex];
-    console.log(choiceIndex, computerChoice);
+    let options = [computerRock, computerRock, computerRock, computerRock, computerPaper, computerPaper, computerPaper, computerScissors, computerScissors, computerScissors];
+    let choiceIndex = Math.floor(Math.random() * 10);
+    choice = options[choiceIndex];
+
+    switch (choice) {
+        case computerRock:
+            moveForward(computerRock, 'computer');
+            computerChoice = 'rock'
+            break;
+        case computerPaper:
+            moveForward(computerPaper, 'computer');
+            computerChoice = 'paper'
+            break;
+        case computerScissors:
+            moveForward(computerScissors, 'computer');
+            computerChoice = 'scissors'
+            break;
+    }
 }
 
-// Loop through each player and computer choice element and add click event listeners
-Array.from(playerItems).forEach(element => {
-    element.addEventListener('click', () => {
-        if (isClickable) { // Check if selections are clickable
-            moveForward(element, 'player'); // Call the moveForward function with the clicked element
-        }
-        computerChoose();
-    });
-});
+function determineWinner() {
 
-Array.from(computerItems).forEach(element => {
-    element.addEventListener('click', () => {
-        if (isClickable) {
-            moveForward(element, 'computer');
-        }
-    })
-});
+    switch (playerChoice) {
+        case 'rock':
+            switch (computerChoice) {
+                case 'rock':
+                    outcome = 'tie';
+                    break;
+                case 'paper':
+                    outcome = 'lost';
+                    break;
+                case 'scissors':
+                    outcome = 'win';
+                    break;
+            }
+            break;
+        case 'paper':
+            switch (computerChoice) {
+                case 'rock':
+                    outcome = 'win';
+                    break;
+                case 'paper':
+                    outcome = 'tie';
+                    break;
+                case 'scissors':
+                    outcome = 'lost';
+                    break;
+            }
+            break;
+        case 'scissors':
+            switch (computerChoice) {
+                case 'rock':
+                    outcome = 'lost';
+                    break;
+                case 'paper':
+                    outcome = 'win';
+                    break;
+                case 'scissors':
+                    outcome = 'tie';
+                    break;
+            }
+            break;
+    }
+
+    if (outcome === 'win') {
+        winAudio.currentTime = 0;
+        winAudio.play();
+    } else if (outcome === 'tie') {
+        tieAudio.currentTime = 0;
+        tieAudio.play();
+    } else if (outcome === 'lost') {
+        dmgAudio.currentTime = 0;
+        dmgAudio.play();
+    }
+}
+
+function handlePlayerChoice(choiceOption, choiceName) {
+    if (isClickable) {
+        playerChoice = choiceName;
+        moveForward(choiceOption, 'player');
+        computerChoose();
+
+        setTimeout(() => {
+            moveBack(choiceOption);
+            moveBack(choice);
+            console.log(outcome);
+            determineWinner();
+        }, 1000);
+    }
+}
+
+playerRock.addEventListener('click', () => handlePlayerChoice(playerRock, 'rock'));
+playerPaper.addEventListener('click', () => handlePlayerChoice(playerPaper, 'paper'));
+playerScissors.addEventListener('click', () => handlePlayerChoice(playerScissors, 'scissors'));
+
+window.onload = () => {
+    bgMusic.play();
+};

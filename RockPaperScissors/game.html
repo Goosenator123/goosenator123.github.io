@@ -12,14 +12,28 @@
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- <div id="cover"></div> -->
+
+    <video id="bg-video" autoplay loop muted>
+        <source src="./img/rainyWallPaper.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+
     <header>
         <h1>Pick your move!</h1>
+        <div id="highscore-container">
+            <h2 id="highscore-title">Highscore</h2>
+            <br>
+            <p id="highscore">0 pts</p>
+        </div>
     </header>
 
     <main>
-        <section id="health">
-            <div id="hp-bar"></div>
+        <section class="health">
+            <div class="player hp-bar" id="player-hp-bar"></div>
         </section>
+        
         <section id="player">
             <h2 class="choice-title">Your choice: </h2>
 
@@ -50,6 +64,10 @@
                     <img class="img" src="./img/scissors.png" alt="Scissors">
                 </div>
             </article>
+        </section>
+
+        <section class="health">
+            <div class="computer hp-bar" id="computer-hp-bar"></div>
         </section>
     </main>
 
