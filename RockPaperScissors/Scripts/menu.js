@@ -3,6 +3,7 @@ const normal = document.getElementById('normal'); // Normal difficulty
 const impossible = document.getElementById('impossible'); // Hard difficulty
 let gameDiff = ''; // Game difficulty
 const highscore = document.getElementById('highscore'); // Highscore
+const bgMusic = new Audio('./audio/bgRain.mp3');
 
 // Define an array of game's difficulties
 const possibleDiff = [
@@ -42,4 +43,6 @@ possibleDiff.forEach(({ element, choice }) => {
 // Execute when page is loaded
 window.onload = () => {
     displayHighScore();
+    bgMusic.loop;
+    bgMusic.play();
 }
