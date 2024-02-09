@@ -1,67 +1,75 @@
+/* Define custom CSS variables */
 :root {
-    --letter-color: rgb(255, 255, 255);
+    --letter-color: rgb(255, 255, 255); /* Define color variable */
 }
 
+/* Reset default padding, margin, and disable text selection */
 * {
     padding: 0;
     margin: 0;
     user-select: none;
 }
 
+/* Define custom font */
 @font-face {
-    font-family: pixel;
-    src: url('../fonts/8-bit-pusab.ttf') format('truetype');
+    font-family: pixel; /* Define font family */
+    src: url('../fonts/8-bit-pusab.ttf') format('truetype'); /* Define font source */
 }
 
+/* Body and HTML styles */
 body, html {
-    font-size: 10px;
-    font-family: pixel, sans-serif;
-    /* word-spacing: 15px; */
-    color: var(--letter-color);
+    font-size: 10px; /* Set base font size */
+    font-family: pixel, sans-serif; /* Apply custom font */
+    color: var(--letter-color); /* Set text color using custom variable */
 }
 
+/* Header styles */
 header {
-    text-align: center;
-    font-size: 2.4rem;
-    margin: 20px 0;
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    text-align: center; /* Center-align text */
+    font-size: 2.4rem; /* Set font size */
+    margin: 20px 0; /* Set top and bottom margin */
+    padding-top: 20px; /* Set top padding */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Arrange items vertically */
 }
 
+/* Background video styles */
 #bg-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
+    position: fixed; /* Position fixed */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    width: 100%; /* Occupy full width */
+    height: 100%; /* Occupy full height */
+    object-fit: cover; /* Maintain aspect ratio */
+    z-index: -1; /* Place behind other elements */
 }
 
-#highscore-section {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
+/* Styles for highscore and score sections */
+#highscore-section, #score-section {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Arrange items vertically */
+    text-align: center; /* Center-align text */
 }
 
-#highscore-container {
-    height: fit-content;
-    width: fit-content;
-    margin-top: 20px;
-    padding: 20px 100px;
-    border: 5px solid var(--letter-color);
+/* Styles for containers holding highscore and score */
+#highscore-container, #score-container {
+    height: fit-content; /* Adjust height to fit content */
+    width: fit-content; /* Adjust width to fit content */
+    margin-top: 20px; /* Add top margin */
+    padding: 20px 100px; /* Add padding */
+    border: 5px solid var(--letter-color); /* Add border with custom color */
 }
 
+/* Cover overlay styles */
 #cover {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.27);
-    z-index: 3;
+    position: fixed; /* Position fixed */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    width: 100%; /* Occupy full width */
+    height: 100%; /* Occupy full height */
+    background-color: rgba(0, 0, 0, 0.27); /* Semi-transparent black background */
+    z-index: 3; /* Place above other elements */
 }

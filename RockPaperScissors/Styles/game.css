@@ -1,56 +1,71 @@
+/* Main section styles */
 main {
-    display: flex;
-    justify-content: space-around;
+    display: flex; /* Use flexbox */
+    justify-content: space-around; /* Distribute space evenly between flex items */
 }
 
+/* Styles for player and computer sections */
 #player, #computer {
-    margin-top: 20px;
-    width: 30%;
-    min-width: 250px;
-    box-sizing: border-box;
-    border: 5px solid white;
+    margin-top: 20px; /* Add top margin */
+    width: 30%; /* Set width */
+    min-width: 250px; /* Set minimum width */
+    box-sizing: border-box; /* Include border and padding in the width */
+    border: 5px solid white; /* Add border with white color */
 }
 
+/* Styles for player, computer, and highscore container */
 #player, #computer, #highscore-container {
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); /* Apply backdrop filter with blur effect */
 }
 
+/* Styles for health bar */
 .health {
-    position: relative;
-    width: 3%;
-    border: 5px solid white;
-    background-color: green;
+    position: relative; /* Position relative to its normal position */
+    width: 3%; /* Set width */
+    border: 5px solid white; /* Add border with white color */
+    background-color: rgb(53, 158, 53); /* Set background color */
 }
 
+/* Styles for health bar fill */
 .hp-bar {
-    position: relative;
-    bottom: 0;
-    height: 0%;
-    background-color: red;
+    position: relative; /* Position relative to its normal position */
+    bottom: 0; /* Align to the bottom */
+    height: 0%; /* Set initial height */
+    background-color: rgba(201, 10, 10, 0.902); /* Set background color */
 }
 
+/* Transition effect for health bars */
+#computer-hp-bar, #player-hp-bar {
+    transition: height 0.5s ease-in-out; /* Add transition effect for height changes */
+}
+
+/* Styles for choice title */
 .choice-title {
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 10px;
+    text-align: center; /* Center-align text */
+    font-size: 2rem; /* Set font size */
+    margin-top: 10px; /* Add top margin */
 }
 
+/* Styles for player and computer choice containers */
 .player-choice, .computer-choice {
-    position: relative;
-    margin: 0 10px;
+    position: relative; /* Position relative to its normal position */
+    margin: 0 10px; /* Add margin */
 }
 
+/* Styles for computer choice */
 .computer-choice {
-    text-align: end;
+    text-align: end; /* Right-align text */
 }
 
+/* Styles for choice elements */
 #computer-rock, #player-rock, #computer-paper, #player-paper, #computer-scissors, #player-scissors {
-    position: relative;
-    left: 0;
-    transition: transform 0.5s ease-in-out;
+    position: relative; /* Position relative to its normal position */
+    left: 0; /* Reset left position */
+    transition: transform 0.5s ease-in-out; /* Add transition effect for transform */
 }
 
+/* Styles for choice images */
 .img {
-    width: 135px;
-    height: 135px;
+    width: 135px; /* Set width */
+    height: 135px; /* Set height */
 }
