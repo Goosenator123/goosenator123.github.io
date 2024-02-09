@@ -55,4 +55,5 @@ A submission for BrebeufHackathon. Currently unfinished.
 
 ### [RockPaperScissors](./RockPaperScissors)
 
-STC
+
+RockPaperScissors is a timeless rendition of the classic game, crafted using HTML, CSS, and JavaScript. Engage in exhilarating matches across three distinct difficulty levels. Utilize JavaScript's localStorage feature to seamlessly track and monitor your progress, ensuring your victories are immortalized in your high scores.
