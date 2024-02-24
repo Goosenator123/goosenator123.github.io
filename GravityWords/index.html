@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GravityWords</title>
+
+    <!-- Linked CSS files -->
+    <link rel="stylesheet" href="./Styles/styles.css">
+
+    <!-- Game Icon -->
+    <link rel="shortcut icon" href="./Assets/GravityBalls.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>GravityWords</h1>
+    </header>
+    
+    <button id="play-button">Play</button>
+
+    <section id="info-section">
+        <div id="instructions-container">
+            <h2 class="info-heading">Type the words shown on the screen before it bounce it's too late!</h2>
+        </div>
+        <div id="settings-container">
+            <h2 class="info-heading">Settings:</h2>
+            <div id="difficulty-contaianer">
+                <label for="difficulty">Difficulty</label>
+                <div class="wrapper">
+                    <input type="range" name="difficulty" id="difficulty" step="50"> 
+                    <p id="difficulty-text">hard</p>
+                </div>
+            </div>
+            <label for="">Themes</label>
+            <div id="theme-container">
+                <div>
+                    <label for="red">Red</label>
+                    <input type="radio" id="red">
+                </div>
+                <div>
+                    <label for="blue">Blue</label>
+                    <input type="radio" id="blue">
+                </div>
+                <div>
+                    <label for="green">Green</label>
+                    <input type="radio" id="green">
+                </div>
+                <div>
+                    <label for="purple">Purple</label>
+                    <input type="radio" id="purple">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <canvas class="canvas" id="canvas"></canvas>
+    <!-- <canvas id="canvas2"></canvas> -->
+    <!-- Linked js files -->
+    <script src="./Scripts/main.js"></script>
+</body>
+</html>

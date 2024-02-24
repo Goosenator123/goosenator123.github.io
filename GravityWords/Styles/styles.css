@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+body {
+    overflow: hidden;
+}
+
+#canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: -1;
+}
+
+#canvas2 {
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.32);
+    z-index: 3;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.436);
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-size: 6rem;
+    color: white;
+}
+
+#play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid rgba(0, 0, 0, 0.594);
+    border-radius: 10px;
+    width: 30%;
+    height: 15%;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 3rem;
+    transition: background-color 0.3s;
+    backdrop-filter: blur(10px);
+    color: white;
+    font-weight: bold;
+}
+
+#play-button:hover {
+    background: rgba(255, 255, 255, 0.436);
+}
+
+#info-section {
+    background-color: white;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+
+}
+
+.info-heading {    
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
