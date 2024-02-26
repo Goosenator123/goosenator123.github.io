@@ -12,51 +12,53 @@
     <link rel="shortcut icon" href="./Assets/GravityBalls.ico" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <h1>GravityWords</h1>
+    <header id="title-header">
+        <h1 id="title">GravityWords</h1>
     </header>
     
     <button id="play-button">Play</button>
 
     <section id="info-section">
-        <div id="instructions-container">
-            <h2 class="info-heading">Type the words shown on the screen before it bounce it's too late!</h2>
-        </div>
-        <div id="settings-container">
-            <h2 class="info-heading">Settings:</h2>
-            <div id="difficulty-contaianer">
-                <label for="difficulty">Difficulty</label>
-                <div class="wrapper">
-                    <input type="range" name="difficulty" id="difficulty" step="50"> 
-                    <p id="difficulty-text">hard</p>
+        <header>
+            <h2>Type the word before it's too late!</h2>
+        </header>
+        <article id="info-article">
+            <section id="difficulty-section">
+                <label for="difficulty-container">Difficulty:</label>
+                <div id="difficulty-container">
+                    <input type="range" max="2" id="difficulty">
+                    <p>2 Bounces</p>
                 </div>
-            </div>
-            <label for="">Themes</label>
-            <div id="theme-container">
-                <div>
-                    <label for="red">Red</label>
-                    <input type="radio" id="red">
+            </section>
+            <div id="divider"></div>
+            <section id="theme-section">
+                <label for="theme-container">Themes:</label>
+                <div id="theme-container">
+                    <div class="theme-wrapper">
+                        <label for="red" class="theme-label" id="red-label">Red</label>
+                        <input type="radio" name="theme" id="red" checked>
+                    </div>
+                    <div class="theme-wrapper">
+                        <label for="blue" class="theme-label" id="blue-label">Blue</label>
+                        <input type="radio" name="theme" id="blue">
+                    </div>
+                    <div class="theme-wrapper">
+                        <label for="green" class="theme-label" id="green-label">Green</label>
+                        <input type="radio" name="theme" id="green">
+                    </div>
                 </div>
-                <div>
-                    <label for="blue">Blue</label>
-                    <input type="radio" id="blue">
-                </div>
-                <div>
-                    <label for="green">Green</label>
-                    <input type="radio" id="green">
-                </div>
-                <div>
-                    <label for="purple">Purple</label>
-                    <input type="radio" id="purple">
-                </div>
-            </div>
-        </div>
+            </section>
+        </article>
+        <footer>
+            <p>Press &lt;Esc&gt; to hide/show settings</p>
+        </footer>
     </section>
 
 
     <canvas class="canvas" id="canvas"></canvas>
     <!-- <canvas id="canvas2"></canvas> -->
     <!-- Linked js files -->
-    <script src="./Scripts/main.js"></script>
+    <script src="./Scripts/animation.js"></script>
+    <script src="./Scripts/instructions.js"></script>
 </body>
 </html>

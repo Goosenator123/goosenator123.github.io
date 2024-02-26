@@ -3,10 +3,11 @@
     padding: 0;
     font-family: sans-serif;
     font-size: 10px;
+    letter-spacing: 1.15px;
 }
 
 body {
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 #canvas {
@@ -23,16 +24,17 @@ body {
     z-index: 3;
 }
 
-header {
+#title-header {
     text-align: center;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.436);
+    background-color: rgba(39, 39, 39, 0.46);
     backdrop-filter: blur(10px);
 }
 
 h1 {
     font-size: 6rem;
-    color: white;
+    color: #2a2a2a;
+    transition: color 2s;
 }
 
 #play-button {
@@ -57,25 +59,80 @@ h1 {
 }
 
 #info-section {
-    background-color: white;
-    width: 80%;
+    background-color: rgba(42, 42, 42, 0.582);
+    backdrop-filter: blur(20px);
     max-width: 800px;
+    min-width: 600px;
+    width: 50%;
+    height: fit-content;
     padding: 20px;
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: fixed;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100;
-
 }
 
-.info-heading {    
+#info-article {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 130px;
+}
+
+#difficulty-container, #theme-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.theme-wrapper, #difficulty-container > input {
+    margin-right: 15px;
+}
+
+#info-section > header {
+    padding-bottom: 15px;
+    border-bottom: 1px solid white;
+}
+
+#info-section > header > h2 {
+    font-size: 4rem;
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 10px;
 }
 
-label {
-    font-size: 1.6rem;
+#difficulty-section > label, #theme-section > label {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+#difficulty-container > p, .theme-wrapper > label {
+    font-size: 2rem;
     font-weight: bold;
+}
+
+#info-section > footer > p {
+    font-size: 1.6rem;
+}
+
+#divider {
+    border: 1px solid white;
+}
+
+#red-label {
+    color: #d00000;
+}
+
+#blue-label {
+    color: #5390d9;
+}
+
+#green-label {
+    color: #55a630;
 }
