@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.15px;
+}
+
+#canvas {
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: -1;
+}
+
+#typing-area {
+    position: relative;
+    transform: translate(-50%);
+    left: 50%;
+    margin-top: 50px;
+    width: 50%;
+    height: fit-content;
+    padding: 10px;
+    font-size: 2rem;
+    text-align: center;
+}
