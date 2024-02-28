@@ -5,6 +5,7 @@ const blueChoice = document.getElementById('blue');
 const greenChoice = document.getElementById('green');
 const title = document.getElementById('title');
 const playButton = document.getElementById('play-button');
+const difficulty = document.getElementById('difficulty');
 
 // Retrieving the 2D rendering context
 const ctx = canvas.getContext('2d');
@@ -133,8 +134,15 @@ function animate() {
         // Make a loop
         requestAnimationFrame(animate);
     
-        // Clear canvas
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        // Clear canvas by redrawing background
+        ctx.beginPath();
+        ctx.rect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'black';
+        ctx.fill();
+        ctx.closePath();
+
+        console.log(difficulty.value);
+        console.log(setColour);
     
         // Move the ball Objects in ballArray
         for (let i = 0; i < ballArray.length; i++) {

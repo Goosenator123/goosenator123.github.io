@@ -38,8 +38,14 @@ let x = new Ball(100,100,5,1,50,redTheme[1]);
 // Animate function
 function animate() {
     requestAnimationFrame(animate);
-    // Clear canvas
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+    // Clear canvas by redrawing background
+    ctx.beginPath();
+    ctx.rect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+    ctx.closePath();
+    
     x.update();
 }
 
