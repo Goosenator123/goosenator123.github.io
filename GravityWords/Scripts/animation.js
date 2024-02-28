@@ -45,11 +45,6 @@ const greenTheme = [
     '#ccff33'
 ]
 
-// Utility Functions
-function randomIntFromRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
 // Implementation
 function init() {
     ballArray = []; // Clear array
@@ -78,7 +73,7 @@ function createBall() {
         }
 
         // Inserting ball Object
-        ballArray.push(new Ball(x, y, dx, dy, radius, color));
+        ballArray.push(new Ball(x, y, dx, dy, radius, color, '', false));
         
         setTimeout(createBall, 300); // Delay for 1 second between each ball creation
 

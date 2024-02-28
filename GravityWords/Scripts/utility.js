@@ -3,13 +3,15 @@ let gravity = 0.3;
 let friction = 0.9;
 
 // Ball Object
-function Ball(x, y, dx, dy, radius, color) {
+function Ball(x, y, dx, dy, radius, color, text, textPresent) {
     this.x = x;
     this.y = y;
     this.radius = radius;
     this.color = color;
     this.dx = dx;
     this.dy = dy;
+    this.text = text;
+    this.textPresent = textPresent;
 
     this.draw = () => {
         ctx.beginPath();
@@ -18,7 +20,13 @@ function Ball(x, y, dx, dy, radius, color) {
         ctx.fillStyle = this.color;
         ctx.stroke();
         ctx.fill();
+        ctx.font = '30px Arial';
         ctx.closePath();
+        if (this.textPresent) {
+            ctx.fillStyle = 'white';
+            ctx.textAlign = 'center';
+            ctx.fillText(this.text, this.x, this.y + 5, this.radius * 2 - 20);
+        }
     }
 
     this.update = () => {
@@ -36,4 +44,8 @@ function Ball(x, y, dx, dy, radius, color) {
         this.y += this.dy;
         this.draw();
     }
+}
+
+function randomIntFromRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
