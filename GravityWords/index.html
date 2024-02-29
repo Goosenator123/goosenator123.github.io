@@ -30,7 +30,7 @@
                 <label for="difficulty-container">Difficulty:</label>
                 <div id="difficulty-container">
                     <input type="range" max="2" id="difficulty">
-                    <p>2 Bounces</p>
+                    <p id="difficulty-text">Normal</p>
                 </div>
             </section>
             <div id="divider"></div>
@@ -52,6 +52,27 @@
                 </div>
             </section>
         </article>
+        <section id="text-section">
+            <label for="text-container">Choose your text:</label>
+            <div id="text-container">
+                <div class="text-wrapper">
+                    <label for="shrek" class="text-label" id="shrek-label">Shrek Movie</label>
+                    <input type="radio" name="text" id="shrek" checked>
+                </div>
+                <div class="text-wrapper">
+                    <label for="bee" class="text-label" id="bee-label">Bee Movie</label>
+                    <input type="radio" name="text" id="bee">
+                </div>
+                <div class="text-wrapper">
+                    <label for="geneva" class="text-label" id="geneva-label">Geneva Convention</label>
+                    <input type="radio" name="text" id="geneva">
+                </div>
+                <div class="text-wrapper">
+                    <label for="bible" class="text-label" id="bible-label">Holy Bible</label>
+                    <input type="radio" name="text" id="bible">
+                </div>
+            </div>
+        </section>
         <footer>
             <p>Press &lt;Esc&gt; to hide/show settings</p>
         </footer>

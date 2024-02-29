@@ -13,8 +13,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = (innerHeight * 0.8);
 let condition = 1;
-let bounces = 3;
-let bounceCount = [];
+let bounces = 2;
 gravity = 0.1;
 friction = 0.65;
 let points = 0;
@@ -63,21 +62,18 @@ function generateWord() {
         let x = randomIntFromRange(radius, (canvas.width - radius));
         let y = 10;
         let dx = randomIntFromRange(-3, 3);
-        let dy = 2;
+        let dy = 1;
         let color = 'red';
-        let text = 'hellohowareyou'
+        let text = getRandomWord(genevaConvention);
 
         ballArray.push(new Ball(x, y, dx, dy, radius, color, text));
-        bounceCount.push(0);
     }
 }
 
 // Function that checks if the ball bounced
 function checkBounce(ball) {
-    console.log(ball.bounce)
     if ((ball.bounce) === bounces) {
         ballArray.shift();
-        // bounceCount.splice(index, 1);
     }
 }
 
@@ -112,6 +108,43 @@ window.onload = () => {
         if (condition === 1) {
             generateWord();
         }
-    }, 2000)
+    }, 1000)
 }
+
+// const typedWord = event.target.value.trim().toLowerCase();
+// if (typedWord === ball.word) {
+//     // Typed word matches the word inside the ball, hide the ball
+//     ball.y = -ball.radius; // Move the ball above the canvas
+//     event.target.value = ''; // Clear the input field
+// }
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === ' ' || event.key === 'Enter') {
+        // Space or Enter key is pressed
+        console.log(userInput.value)
+        console.log('Space or Enter key is pressed');
+        for (let i = 0; i < ballArray.length; i++) {
+            if (userInput.value.trim() === ballArray[i].text) {
+                ballArray.splice(i, 1);
+                points += 10;
+            }
+        }
+        // Add your desired actions here
+        userInput.value = '';
+        console.log(points)
+    }
+});
+
+// Get random word from string
+function getRandomWord(sentence) {
+    // Split the sentence into an array of words
+    const words = sentence.split(/\s+/);
+    
+    // Generate a random index
+    const randomIndex = Math.floor(Math.random() * words.length);
+    
+    // Return the word at the random index
+    return words[randomIndex];
+}
+
 

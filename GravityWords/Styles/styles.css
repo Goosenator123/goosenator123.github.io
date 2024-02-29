@@ -1,15 +1,18 @@
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     font-size: 10px;
     letter-spacing: 1.15px;
+    user-select: none;
 }
 
 body {
     /* overflow: hidden; */
 }
 
+/* Background canvas style */
 #canvas {
     position: fixed;
     top: 0;
@@ -18,12 +21,7 @@ body {
     z-index: -1;
 }
 
-#canvas2 {
-    position: fixed;
-    background-color: rgba(255, 255, 255, 0.32);
-    z-index: 3;
-}
-
+/* Title style */
 #title-header {
     text-align: center;
     padding: 20px;
@@ -37,6 +35,7 @@ h1 {
     transition: color 2s;
 }
 
+/* Play Button style */
 #play-button {
     position: absolute;
     top: 50%;
@@ -58,6 +57,7 @@ h1 {
     background: rgba(255, 255, 255, 0.436);
 }
 
+/* Settings/info section styles */
 #info-section {
     background-color: rgba(42, 42, 42, 0.582);
     backdrop-filter: blur(20px);
@@ -83,14 +83,14 @@ h1 {
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
-    margin-top: 100px;
-    margin-bottom: 130px;
+    margin-top: 30px;
 }
 
 #difficulty-container, #theme-container {
     display: flex;
     flex-direction: row;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .theme-wrapper, #difficulty-container > input {
@@ -118,26 +118,11 @@ h1 {
     font-weight: bold;
 }
 
-#info-section > footer > p {
-    font-size: 1.6rem;
-}
-
 #divider {
     border: 1px solid white;
 }
 
-#red-label {
-    color: #d00000;
-}
-
-#blue-label {
-    color: #5390d9;
-}
-
-#green-label {
-    color: #55a630;
-}
-
+/* Setting Button for mobile styles*/
 #setting-button {
     position: fixed;
     bottom: 0;
@@ -160,4 +145,74 @@ h1 {
 
 #setting-button:hover #setting-icon {
     transform: rotate(200deg);
+}
+
+#red-label {
+    color: #d00000;
+}
+
+#blue-label {
+    color: #5390d9;
+}
+
+#green-label {
+    color: #55a630;
+}
+
+/* Text/script selection section styles */
+#text-section {
+    border-top: 1px solid white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border-bottom: 1px solid white;
+}
+
+#text-section > label {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+#text-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
+    width: 50%;
+}
+
+.text-wrapper {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+.text-wrapper > label {
+    font-size: 2rem;
+}
+
+#shrek-label {
+    color: #8ac926;
+}
+
+#bee-label {
+    color: #ffca3a;
+}
+
+#geneva-label {
+    color: #d00000;
+}
+
+#bible-label {
+    color: #9d4edd;
+}
+
+/* Footer styles */
+footer {
+    margin-top: 20px;
+}
+
+footer > p {
+    font-size: 1.6rem;
 }

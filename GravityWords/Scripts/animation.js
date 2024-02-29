@@ -1,11 +1,9 @@
 // Retrieving references to the canvas element and color radio inputs
 const canvas = document.querySelector('canvas');
-const redChoice = document.getElementById('red');
-const blueChoice = document.getElementById('blue');
-const greenChoice = document.getElementById('green');
 const title = document.getElementById('title');
 const playButton = document.getElementById('play-button');
 const difficulty = document.getElementById('difficulty');
+const difficultyText = document.getElementById('difficulty-text');
 
 // Retrieving the 2D rendering context
 const ctx = canvas.getContext('2d');
@@ -20,7 +18,10 @@ let ballArray = [];
 let animation1;
 let ballSpawn = true;
 let setColour = 'red';
+let textChoice = 'shrek';
 let colorIndex = 0;
+let chosenDiff = '1';
+
 
 // Color Arrays
 const redTheme = [
@@ -136,8 +137,9 @@ function animate() {
         ctx.fill();
         ctx.closePath();
 
-        console.log(difficulty.value);
-        console.log(setColour);
+        // console.log(difficulty.value);
+        // console.log(setColour);
+        // console.log(textChoice);
     
         // Move the ball Objects in ballArray
         for (let i = 0; i < ballArray.length; i++) {
@@ -154,30 +156,49 @@ window.addEventListener('resize', () => {
 })
 
 window.onload = () => {
+
     animation1 = true; // Set intro animation on
     init(); // Load balls
     createBall();
     animate();
+    console.log('executed')
 }
 
-// Change color depending on theme selected
-redChoice.addEventListener('change', () => {
-    setColour = 'red';
-    updateBalls();
+
+// Theme color selection
+const colorChoices = ['red', 'blue', 'green'];
+colorChoices.forEach(color => {
+    document.getElementById(color).addEventListener('change', () => {
+        setColour = color;
+        updateBalls();
+    });
 });
 
-blueChoice.addEventListener('change', () => {
-    setColour = 'blue';
-    updateBalls();
+// Text choice selection
+const textChoices = ['shrek', 'bee', 'geneva', 'bible'];
+textChoices.forEach(choice => {
+    document.getElementById(choice).addEventListener('change', () => {
+        textChoice = choice;
+    });
 });
 
-greenChoice.addEventListener('change', () => {
-    setColour = 'green';
-    updateBalls();
-});
+// Diffuculty selection
+difficulty.addEventListener('input', () => {
+    chosenDiff = difficulty.value;
+    console.log(chosenDiff)
+    if (chosenDiff === '1') {
+        difficultyText.textContent = 'Normal'
+    } else if (chosenDiff === '2') {
+        difficultyText.textContent = 'Hard'
+    } else {
+        difficultyText.textContent = 'Easy'
+    }
+})
 
 // Start game
 playButton.addEventListener('click', () => {
+    localStorage.setItem('text', textChoice);
+    localStorage.setItem('color', setColour);
+    localStorage.setItem('diff', chosenDiff);
     window.location.href = './game.html'
 })
-

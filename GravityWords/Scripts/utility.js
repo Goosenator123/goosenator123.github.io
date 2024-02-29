@@ -20,12 +20,12 @@ function Ball(x, y, dx, dy, radius, color, text='') {
         ctx.fillStyle = this.color;
         ctx.stroke();
         ctx.fill();
-        ctx.font = '30px Arial';
+        ctx.font = '36px Arial';
         ctx.closePath();
         if (this.text !== '') {
             ctx.fillStyle = 'white';
             ctx.textAlign = 'center';
-            ctx.fillText(this.text, this.x, this.y + 5, this.radius * 2 - 20);
+            ctx.fillText(this.text, this.x, this.y + 12, this.radius * 2 - 20);
         }
     }
 
