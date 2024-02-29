@@ -13,7 +13,7 @@ const ctx = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = (innerHeight * 0.8);
 let condition = 1;
-let bounces = 2;
+let bounces = 3;
 let bounceCount = [];
 gravity = 0.1;
 friction = 0.65;
@@ -63,24 +63,21 @@ function generateWord() {
         let x = randomIntFromRange(radius, (canvas.width - radius));
         let y = 10;
         let dx = randomIntFromRange(-3, 3);
-        let dy = randomIntFromRange(1, 5);
+        let dy = 2;
         let color = 'red';
         let text = 'hellohowareyou'
 
-        ballArray.push(new Ball(x, y, dx, dy, radius, color, text, true));
+        ballArray.push(new Ball(x, y, dx, dy, radius, color, text));
         bounceCount.push(0);
     }
 }
 
 // Function that checks if the ball bounced
-function checkBounce(ball, index) {
-    if ((ball.y + ball.radius + ball.dy) > canvas.height) {
-        bounceCount[index]++;
-        // console.log(bounceCount[index])
-    }
-    if ((bounceCount[index] - 1) === bounces) {
+function checkBounce(ball) {
+    console.log(ball.bounce)
+    if ((ball.bounce) === bounces) {
         ballArray.shift();
-        bounceCount.splice(index, 1);
+        // bounceCount.splice(index, 1);
     }
 }
 
@@ -93,7 +90,7 @@ function animate() {
         clearCanvas();
 
         for (let i = 0; i < ballArray.length; i++) {
-            checkBounce(ballArray[i], i);
+            checkBounce(ballArray[i]);
             ballArray[i].update();
         }
     }
@@ -117,3 +114,4 @@ window.onload = () => {
         }
     }, 2000)
 }
+

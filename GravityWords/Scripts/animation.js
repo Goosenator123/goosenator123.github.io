@@ -73,7 +73,7 @@ function createBall() {
         }
 
         // Inserting ball Object
-        ballArray.push(new Ball(x, y, dx, dy, radius, color, '', false));
+        ballArray.push(new Ball(x, y, dx, dy, radius, color));
         
         setTimeout(createBall, 300); // Delay for 1 second between each ball creation
 

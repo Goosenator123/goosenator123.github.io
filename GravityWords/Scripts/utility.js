@@ -3,7 +3,7 @@ let gravity = 0.3;
 let friction = 0.9;
 
 // Ball Object
-function Ball(x, y, dx, dy, radius, color, text, textPresent) {
+function Ball(x, y, dx, dy, radius, color, text='') {
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -11,7 +11,7 @@ function Ball(x, y, dx, dy, radius, color, text, textPresent) {
     this.dx = dx;
     this.dy = dy;
     this.text = text;
-    this.textPresent = textPresent;
+    this.bounce = 0;
 
     this.draw = () => {
         ctx.beginPath();
@@ -22,7 +22,7 @@ function Ball(x, y, dx, dy, radius, color, text, textPresent) {
         ctx.fill();
         ctx.font = '30px Arial';
         ctx.closePath();
-        if (this.textPresent) {
+        if (this.text !== '') {
             ctx.fillStyle = 'white';
             ctx.textAlign = 'center';
             ctx.fillText(this.text, this.x, this.y + 5, this.radius * 2 - 20);
@@ -32,6 +32,7 @@ function Ball(x, y, dx, dy, radius, color, text, textPresent) {
     this.update = () => {
         if ((this.y + this.radius + this.dy) > canvas.height) {
             this.dy = -this.dy * friction;
+            this.bounce++;
         } else {
             this.dy += gravity;
         }
