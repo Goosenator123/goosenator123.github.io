@@ -1,7 +1,3 @@
-// Declaring variables
-let gravity = 0.3;
-let friction = 0.9;
-
 // Ball Object
 function Ball(x, y, dx, dy, radius, color, text='') {
     this.x = x;
@@ -50,6 +46,14 @@ function Ball(x, y, dx, dy, radius, color, text='') {
 function randomIntFromRange(min, max) {
     let x = Math.floor(Math.random() * (max - min + 1) + min)
     value = x
-    console.log(value)
     return value
+}
+
+// Clear canvas
+let clearCanvas = () => {
+    ctx.beginPath();
+    ctx.rect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'black';
+    ctx.fill();
+    ctx.closePath();
 }

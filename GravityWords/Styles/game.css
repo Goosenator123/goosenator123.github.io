@@ -10,6 +10,7 @@ body {
     position: relative;
     background-color: black;
     height: 100%;
+    /* overflow: hidden; */
 }
 
 #canvas {
@@ -23,11 +24,10 @@ body {
 }
 
 #typing-area {
-    position: absolute;
-    transform: translate(-50%, -20%);
-    top: 720px;
+    position: fixed;
+    top: 0;
     left: 50%;
-    margin-top: 50px;
+    transform: translate(-50%);
     width: 33%;
     height: fit-content;
     padding: 10px;
@@ -40,6 +40,7 @@ body {
     backdrop-filter: blur(10px);
     color: white;
     transition: background-color 0.3s ease;
+    z-index: 100;
 }
 
 #typing-area:hover {
@@ -105,6 +106,7 @@ footer > p {
 #info-button {
     position: fixed;
     bottom: 0;
+    left: 0;
     margin: 20px;
     width: 50px;
     height: 50px;

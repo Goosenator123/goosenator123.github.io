@@ -7,7 +7,7 @@ function putBack () {
     zPosition = -zPosition
     inputPosition = -inputPosition
     infoSection.style.zIndex = zPosition; // Set z-index to a value that places the element behind others
-    userInput.style.top = -inputPosition + 'px';
+    userInput.style.top = -inputPosition + '%';
     cover.style.zIndex = zPosition;
     console.log(userInput.style.zIndex)
 }
