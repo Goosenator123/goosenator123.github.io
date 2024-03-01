@@ -18,6 +18,10 @@ gravity = 0.1;
 friction = 0.65;
 let points = 0;
 let inputPosition = 720;
+let difficulty;
+let theme;
+let chosenText;
+let spawnRate = 0;
 
 // Ball Array
 let ballArray = []
@@ -35,9 +39,9 @@ let clearCanvas = () => {
 const redTheme = [
     '#9d0208',
     '#d00000',
-    '#dc2f02',
+    '#e85d04',
     '#f48c06',
-    '#f48c06'
+    '#ffba08'
 ];
 const blueTheme = [
     '#6930c3',
@@ -63,10 +67,29 @@ function generateWord() {
         let y = 10;
         let dx = randomIntFromRange(-3, 3);
         let dy = 1;
-        let color = 'red';
-        let text = getRandomWord(genevaConvention);
+        let color;
+        
+        // Setting color depending on theme
+        if (theme === 'red') {
+            color = redTheme[randomIntFromRange(0, 4)];
+        } else if (theme === 'green') {
+            color = greenTheme[randomIntFromRange(0, 4)];
+        } else if (theme === 'blue') {
+            color = blueTheme[randomIntFromRange(0, 4)];
+        }
 
-        ballArray.push(new Ball(x, y, dx, dy, radius, color, text));
+        if (chosenText === 'shrek') {
+            chosenText = getRandomWord(shrekMovie);
+        } else if (chosenText === 'bee') {
+            chosenText = getRandomWord(beeMovie);
+        } else if (chosenText === 'geneva') {
+            chosenText = getRandomWord(genevaConvention);
+        } else {
+            chosenText = getRandomWord(holyBible);
+        }
+
+        // console.log(chosenText)
+        ballArray.push(new Ball(x, y, dx, dy, radius, color, chosenText));
     }
 }
 
@@ -100,15 +123,31 @@ window.addEventListener('resize', () => {
 })
 
 window.onload = () => {
-    condition = -1;
+    condition = 
+    -1;
     userInput.style.top = -inputPosition + 'px';
     cover.style.zIndex = 100;
+    theme = localStorage.getItem('color');
+    difficulty = localStorage.getItem('diff');
+    chosenText = localStorage.getItem('text');
+
+    console.log(theme, difficulty, chosenText);
+
+    if (difficulty === '0') {
+        console.log('executed')
+        spawnRate = 3000;
+    } else if (difficulty === '1') {
+        spawnRate = 2000;
+    } else {
+        spawnRate = 1000;
+    }
+    
     animate();
     setInterval(() => {
         if (condition === 1) {
             generateWord();
         }
-    }, 1000)
+    }, spawnRate);
 }
 
 // const typedWord = event.target.value.trim().toLowerCase();
@@ -140,11 +179,15 @@ function getRandomWord(sentence) {
     // Split the sentence into an array of words
     const words = sentence.split(/\s+/);
     
-    // Generate a random index
-    const randomIndex = Math.floor(Math.random() * words.length);
+    let chosenWord = '';
+    do {
+        // Generate a random index
+        const randomIndex = Math.floor(Math.random() * words.length);
+        chosenWord = words[randomIndex];
+    } while (chosenWord.length > 10);
     
     // Return the word at the random index
-    return words[randomIndex];
+    return chosenWord;
 }
 
 

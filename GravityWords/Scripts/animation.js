@@ -27,9 +27,9 @@ let chosenDiff = '1';
 const redTheme = [
     '#9d0208',
     '#d00000',
-    '#dc2f02',
+    '#e85d04',
     '#f48c06',
-    '#f48c06'
+    '#ffba08'
 ];
 const blueTheme = [
     '#6930c3',
@@ -66,11 +66,11 @@ function createBall() {
 
         // Setting color depending on theme
         if (setColour === 'red') {
-            color = redTheme[randomIntFromRange(1, 5)];
+            color = redTheme[randomIntFromRange(0, 4)];
         } else if (setColour === 'green') {
-            color = greenTheme[randomIntFromRange(1, 5)];
+            color = greenTheme[randomIntFromRange(0, 4)];
         } else if (setColour === 'blue') {
-            color = blueTheme[randomIntFromRange(1, 5)];
+            color = blueTheme[randomIntFromRange(0, 4)];
         }
 
         // Inserting ball Object

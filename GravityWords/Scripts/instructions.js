@@ -16,6 +16,7 @@ window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') { // Check if the key code is equal to the keycode of the "Escape" key
         putBack();
         condition = -condition;
+        userInput.focus();
     }
 });
 
@@ -23,4 +24,4 @@ infoButton.addEventListener('click', () => {
     putBack();
     infoIcon.classList.toggle('spin-animation');
     condition = -condition;
-})
+});
