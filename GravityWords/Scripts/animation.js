@@ -5,6 +5,8 @@ const playButton = document.getElementById('play-button');
 const difficulty = document.getElementById('difficulty');
 const difficultyText = document.getElementById('difficulty-text');
 const redRadio = document.getElementById('red');
+const infoSection = document.getElementById('info-section');
+const settingButton = document.getElementById('setting-button');
 
 // Retrieving the 2D rendering context
 const ctx = canvas.getContext('2d');
@@ -21,6 +23,7 @@ let colorIndex = 0; // First color of colorArrays
 let chosenDiff = '1'; // Normal Difficulty
 let gravity = 0.3; // Setting acceleration speed the ball falls
 let friction = 0.9; // Setting height lost after each bounce
+let zPosition = 100; // Set z-index
 
 // Color Arrays
 const redTheme = [
@@ -136,6 +139,12 @@ function animate() {
     }
 }
 
+// Set element behind other element with by changing their z-index
+function putBack() {
+    zPosition = -zPosition
+    infoSection.style.zIndex = zPosition; // Set z-index to a value that places the element behind others
+}
+
 //! Event listener
 // Execute upon page load
 window.onload = () => {
@@ -183,6 +192,18 @@ difficulty.addEventListener('input', () => {
     }
 });
 
+// Set elements to their respective place when <Esc> is pressed
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { // Check if the key code is equal to the keycode of the "Escape" key
+        putBack();
+    }
+});
+
+// Set elements to their respective place when button is pressed
+settingButton.addEventListener('click', () => {
+    putBack();
+})
+
 // Start game
 playButton.addEventListener('click', () => {
     // Send info to localStorage
@@ -194,7 +215,7 @@ playButton.addEventListener('click', () => {
     window.location.href = './game.html';
 });
 
-// Testing functions
+//! Testing functions
 function check() {
     console.log('executed')
     document.getElementById("red").checked = true;

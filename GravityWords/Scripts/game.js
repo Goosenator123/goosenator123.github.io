@@ -2,6 +2,9 @@
 const canvas = document.getElementById('canvas');
 const userInput = document.getElementById('typing-area');
 const cover = document.getElementById('cover');
+const infoButton = document.getElementById('info-button');
+const infoSection = document.getElementById('instruction-section');
+const infoIcon = document.getElementById('info-icon');
 
 // Retrieving the 2D rendering context
 const ctx = canvas.getContext('2d');
@@ -21,6 +24,8 @@ let difficulty;
 let theme;
 let chosenText;
 let spawnRate = 0; // Set ball spawn rate
+let zPosition = 100; // Set z-index
+let chosenWord = ''; // Set random chosen word to be none
 
 // Ball Array
 let ballArray = [];
@@ -69,17 +74,21 @@ function generateWord() {
 
     // Setting text depending on the one chosen
     if (chosenText === 'shrek') {
-        chosenText = getRandomWord(shrekMovie);
+        // Choose random word from the shrek movie script
+        getRandomWord(shrekMovie);
     } else if (chosenText === 'bee') {
-        chosenText = getRandomWord(beeMovie);
+        // Choose random word from the bee movie script
+        getRandomWord(beeMovie);
     } else if (chosenText === 'geneva') {
-        chosenText = getRandomWord(genevaConvention);
-    } else {
-        chosenText = getRandomWord(holyBible);
+        // Choose random word from the geneva convention
+        getRandomWord(genevaConvention);
+    } else if (chosenText === 'bible') {
+        // Choose random word from the Holy Bible Babyyyy
+        getRandomWord(holyBible);
     }
 
     // Insert ball in ballArray
-    ballArray.push(new Ball(x, y, dx, dy, radius, color, chosenText));
+    ballArray.push(new Ball(x, y, dx, dy, radius, color, chosenWord));
 }
 
 // Function that checks if the ball bounced
@@ -105,6 +114,28 @@ function animate() {
             ballArray[i].update(); // Update ball coordinates
         }
     }
+}
+
+// Set element behind other element with by changing their z-index
+function putBack () {
+    zPosition = -zPosition
+    inputPosition = -inputPosition
+    infoSection.style.zIndex = zPosition; // Set z-index to a value that places the element behind others
+    userInput.style.top = -inputPosition + '%';
+    cover.style.zIndex = zPosition;
+    console.log(userInput.style.zIndex)
+}
+
+// Get random word from string
+function getRandomWord(sentence) {
+    // Split the sentence into an array of words
+    const words = sentence.split(/\s+/);
+    
+    do {
+        // Generate a random index
+        const randomIndex = Math.floor(Math.random() * words.length);
+        chosenWord = words[randomIndex];
+    } while (chosenWord.length > 10);
 }
 
 //! Event listener
@@ -135,6 +166,7 @@ window.onload = () => {
     // Start generating word
     setInterval(() => {
         if (condition === 1) {
+            console.log(chosenText)
             generateWord();
         }
     }, spawnRate);
@@ -163,20 +195,18 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Get random word from string
-function getRandomWord(sentence) {
-    // Split the sentence into an array of words
-    const words = sentence.split(/\s+/);
-    
-    let chosenWord = '';
-    do {
-        // Generate a random index
-        const randomIndex = Math.floor(Math.random() * words.length);
-        chosenWord = words[randomIndex];
-    } while (chosenWord.length > 10);
-    
-    // Return the word at the random index
-    return chosenWord;
-}
+// Set elements to their respective place when <Esc> is pressed
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { // Check if the key code is equal to the keycode of the "Escape" key
+        putBack();
+        condition = -condition;
+        userInput.focus(); // Make user select input element
+    }
+});
 
-
+// Set elements to their respective place when button is pressed
+infoButton.addEventListener('click', () => {
+    putBack();
+    infoIcon.classList.toggle('spin-animation');
+    condition = -condition;
+});
