@@ -1,10 +1,10 @@
 // Retrieving references from HTML
-const canvas = document.getElementById('canvas');
-const userInput = document.getElementById('typing-area');
-const cover = document.getElementById('cover');
-const infoButton = document.getElementById('info-button');
-const infoSection = document.getElementById('instruction-section');
-const infoIcon = document.getElementById('info-icon');
+const canvas = document.getElementById('canvas');  // Canvas element
+const userInput = document.getElementById('typing-area');  // User input element
+const cover = document.getElementById('cover');  // Cover element
+const infoButton = document.getElementById('info-button');  // Information button element
+const infoSection = document.getElementById('instruction-section');  // Information section element
+const infoIcon = document.getElementById('info-icon');  // Information icon element
 
 // Retrieving the 2D rendering context
 const ctx = canvas.getContext('2d');
@@ -14,18 +14,18 @@ canvas.width = innerWidth;
 canvas.height = (innerHeight * 0.8);
 
 // Declaring variables
-let condition = 1;
-let bounces = 2;
-let gravity = 0.1; // Setting acceleration speed the ball falls
-let friction = 0.65; // Setting height lost after each bounce
-let points = 0; // Set points
-let inputPosition = 90; // Set defauly user input position
-let difficulty;
-let theme;
-let chosenText;
-let spawnRate = 0; // Set ball spawn rate
-let zPosition = 100; // Set z-index
-let chosenWord = ''; // Set random chosen word to be none
+let condition = 1;  // Game condition variable
+let gravity = 0.1; // Acceleration due to gravity
+let friction = 0.65; // Friction coefficient
+let points = 0; // Player points
+let inputPosition = 90; // Default user input position
+let difficulty;  // Difficulty level
+let theme;  // Theme color
+let chosenText;  // Chosen text for word generation
+let spawnRate = 0; // Ball spawn rate
+let deleteInterval = 0; // Ball delete rate
+let zPosition = 100; // Z-index position
+let chosenWord = ''; // Random chosen word
 
 // Ball Array
 let ballArray = [];
@@ -56,7 +56,7 @@ const greenTheme = [
 // Randomly generate word with the text the user chose
 function generateWord() {
     // Setting random variables
-    let radius = 80;
+    let radius = 100;
     let x = randomIntFromRange(radius, (canvas.width - radius));
     let y = 10;
     let dx = randomIntFromRange(-3, 3);
@@ -74,28 +74,17 @@ function generateWord() {
 
     // Setting text depending on the one chosen
     if (chosenText === 'shrek') {
-        // Choose random word from the shrek movie script
         getRandomWord(shrekMovie);
     } else if (chosenText === 'bee') {
-        // Choose random word from the bee movie script
         getRandomWord(beeMovie);
     } else if (chosenText === 'geneva') {
-        // Choose random word from the geneva convention
         getRandomWord(genevaConvention);
     } else if (chosenText === 'bible') {
-        // Choose random word from the Holy Bible Babyyyy
         getRandomWord(holyBible);
     }
 
     // Insert ball in ballArray
-    ballArray.push(new Ball(x, y, dx, dy, radius, color, chosenWord));
-}
-
-// Function that checks if the ball bounced
-function checkBounce(ball) {
-    if ((ball.bounce) === bounces) {
-        ballArray.shift();
-    }
+    ballArray.push(new Ball(x, y, dx, dy, radius, color, chosenWord, true, true, deleteInterval));
 }
 
 // Animate canvas
@@ -110,8 +99,7 @@ function animate() {
 
         // Update every ball in ballArray
         for (let i = 0; i < ballArray.length; i++) {
-            checkBounce(ballArray[i]); // Check if ball need to be deleted
-            ballArray[i].update(); // Update ball coordinates
+            ballArray[i].update(ballArray); // Update ball coordinates
         }
     }
 }
@@ -123,19 +111,16 @@ function putBack () {
     infoSection.style.zIndex = zPosition; // Set z-index to a value that places the element behind others
     userInput.style.top = -inputPosition + '%';
     cover.style.zIndex = zPosition;
-    console.log(userInput.style.zIndex)
 }
 
 // Get random word from string
 function getRandomWord(sentence) {
-    // Split the sentence into an array of words
-    const words = sentence.split(/\s+/);
+    const words = sentence.split(/\s+/);  // Split sentence into words
     
     do {
-        // Generate a random index
-        const randomIndex = Math.floor(Math.random() * words.length);
-        chosenWord = words[randomIndex];
-    } while (chosenWord.length > 10);
+        const randomIndex = Math.floor(Math.random() * words.length);  // Generate random index
+        chosenWord = words[randomIndex];  // Set chosen word
+    } while (chosenWord.length > 10);  // Ensure chosen word is not too long
 }
 
 //! Event listener
@@ -153,11 +138,14 @@ window.onload = () => {
 
     // Setting word spawn rate depending on difficulty
     if (difficulty === '0') {
-        spawnRate = 2400;
+        spawnRate = 2000;
+        deleteInterval = 10000;
     } else if (difficulty === '1') {
-        spawnRate = 1600;
+        spawnRate = 1400;
+        deleteInterval = 7000;
     } else {
         spawnRate = 800;
+        deleteInterval = 4000;
     }
     
     // Start canvas animation
@@ -166,7 +154,6 @@ window.onload = () => {
     // Start generating word
     setInterval(() => {
         if (condition === 1) {
-            console.log(chosenText)
             generateWord();
         }
     }, spawnRate);
@@ -207,6 +194,5 @@ window.addEventListener('keydown', (e) => {
 // Set elements to their respective place when button is pressed
 infoButton.addEventListener('click', () => {
     putBack();
-    infoIcon.classList.toggle('spin-animation');
     condition = -condition;
 });
