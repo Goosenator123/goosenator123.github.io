@@ -15,28 +15,33 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
+    <!-- Canvas for game rendering -->
     <canvas class="canvas" id="canvas"></canvas>
 
+    <!-- Typing area for user input -->
     <input type="text" id="typing-area">
+
+    <!-- Cover div for covering the canvas during instruction display -->
     <div id="cover"></div>
 
+    <!-- Section for displaying game instructions -->
     <section id="instruction-section">
         <header>
             <h2>Instructions</h2>
         </header>
         <ul>
-            <li>Type the words in the balls before its too late!</li>
+            <li>Type the words in the balls before it's too late!</li>
             <li>Press &lt;Space&gt; or &lt;Enter&gt; to submit word</li>
-            <li>StuffStuffStuffStuffStuffStuffStuffStuff StuffStuff</li>
+            <li>Additional instructions here...</li>
             <li></li>
             <li></li>
         </ul>
         <footer>
-            <p>Press &lt;Esc&gt; to hide/show intructions</p>
+            <p>Press &lt;Esc&gt; to hide/show instructions</p>
         </footer>
     </section>
 
-    <!-- Info icon for people without keyboards -->
+    <!-- Info button for displaying instructions -->
     <button id="info-button">
         <span class="material-symbols-outlined" id="info-icon">info</span>
     </button>

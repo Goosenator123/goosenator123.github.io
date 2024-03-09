@@ -12,82 +12,90 @@
     <link rel="shortcut icon" href="./Assets/GravityBalls.ico" type="image/x-icon">
 
     <!-- Setting icon -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
+    <!-- Header Section -->
     <header id="title-header">
         <h1 id="title">GravityWords</h1>
     </header>
     
+    <!-- Play Button -->
     <button id="play-button">Play</button>
 
+    <!-- Settings Section -->
     <section id="info-section">
         <header>
             <h2>Settings</h2>
         </header>
         <article id="info-article">
+            <!-- Difficulty Settings -->
             <section id="difficulty-section">
                 <label for="difficulty-container">Difficulty:</label>
                 <div id="difficulty-container">
                     <input type="range" max="2" id="difficulty">
-                    <p id="difficulty-text">Normal</p>
+                    <div id="difficulty-text-container">
+                        <p id="difficulty-text">Normal</p>
+                    </div>
                 </div>
             </section>
             <div id="divider"></div>
+            <!-- Theme Settings -->
             <section id="theme-section">
                 <label for="theme-container">Themes:</label>
                 <div id="theme-container">
                     <div class="theme-wrapper">
                         <label for="red" class="theme-label" id="red-label">Red</label>
-                        <input type="radio" name="theme" id="red" checked>
+                        <input type="radio" name="theme" class="color-option" id="red" checked value="red">
                     </div>
                     <div class="theme-wrapper">
                         <label for="blue" class="theme-label" id="blue-label">Blue</label>
-                        <input type="radio" name="theme" id="blue">
+                        <input type="radio" name="theme" class="color-option" id="blue" value="blue">
                     </div>
                     <div class="theme-wrapper">
                         <label for="green" class="theme-label" id="green-label">Green</label>
-                        <input type="radio" name="theme" id="green">
+                        <input type="radio" name="theme" class="color-option" id="green" value="green">
                     </div>
                 </div>
             </section>
         </article>
+        <!-- Text Selection Section -->
         <section id="text-section">
             <label for="text-container">Choose your text:</label>
             <div id="text-container">
                 <div class="text-wrapper">
                     <label for="shrek" class="text-label" id="shrek-label">Shrek Movie</label>
-                    <input type="radio" name="text" id="shrek" checked>
+                    <input type="radio" name="text" class="text-option" id="shrek" value="shrek">
                 </div>
                 <div class="text-wrapper">
                     <label for="bee" class="text-label" id="bee-label">Bee Movie</label>
-                    <input type="radio" name="text" id="bee">
+                    <input type="radio" name="text" class="text-option" id="bee" value="bee">
                 </div>
                 <div class="text-wrapper">
                     <label for="geneva" class="text-label" id="geneva-label">Geneva Convention</label>
-                    <input type="radio" name="text" id="geneva">
+                    <input type="radio" name="text" class="text-option" id="geneva" value="geneva">
                 </div>
                 <div class="text-wrapper">
                     <label for="bible" class="text-label" id="bible-label">Holy Bible</label>
-                    <input type="radio" name="text" id="bible">
+                    <input type="radio" name="text" class="text-option" id="bible" value="bible">
                 </div>
             </div>
         </section>
+        <!-- Footer Section -->
         <footer>
             <p>Press &lt;Esc&gt; to hide/show settings</p>
         </footer>
     </section>
 
-    <!-- Setting button for people without keyboard -->
+    <!-- Setting Button for people without keyboard -->
     <button id="setting-button">
-        <span class="material-symbols-outlined" id="setting-icon">
-            settings
-            </span>
+        <span class="material-symbols-outlined" id="setting-icon">settings</span>
     </button>
 
+    <!-- Canvas for game rendering -->
     <canvas class="canvas" id="canvas"></canvas>
-    <!-- <canvas id="canvas2"></canvas> -->
 
+    <!-- Linked JS files -->
     <script src="./Scripts/utility.js"></script>
     <script src="./Scripts/animation.js"></script>
 </body>

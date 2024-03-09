@@ -1,3 +1,4 @@
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +7,14 @@
     letter-spacing: 1.15px;
 }
 
+/* Body Styles */
 body {
     position: relative;
     background-color: black;
     height: 100%;
-    /* overflow: hidden; */
 }
 
+/* Canvas Styles */
 #canvas {
     position: fixed;
     top: 0;
@@ -23,6 +25,7 @@ body {
     box-sizing: border-box;
 }
 
+/* User Input Styles */
 #typing-area {
     position: fixed;
     top: 0;
@@ -43,10 +46,12 @@ body {
     z-index: 100;
 }
 
+/* User Input Hover Styles */
 #typing-area:hover {
     background-color: rgba(142, 142, 142, 0.246);
 }
 
+/* Instruction Section Styles */
 #instruction-section {
     background-color: rgba(42, 42, 42, 0.582);
     backdrop-filter: blur(20px);
@@ -68,10 +73,12 @@ body {
     z-index: 100;
 }
 
+/* Instruction Section Header Styles */
 #instruction-section > header > h2 {
     font-size: 4rem;
 }
 
+/* Header Styles */
 header {
     border-bottom: 1px solid white;
     width: 100%;
@@ -79,6 +86,7 @@ header {
     margin-bottom: 20px;
 }
 
+/* Unordered List Styles */
 ul {
     display: flex;
     flex-direction: column;
@@ -86,12 +94,14 @@ ul {
     align-items: flex-start;
 }
 
+/* List Item Styles */
 li {
     font-size: 2.5rem;
     margin-left: 30px;
     margin-bottom: 10px;
 }
 
+/* Footer Styles */
 footer {
     border-top: 1px solid white;
     margin-top: 20px;
@@ -99,10 +109,12 @@ footer {
     text-align: center;
 }
 
+/* Footer Paragraph Styles */
 footer > p {
     font-size: 1.6rem;
 }
 
+/* Information Button Styles */
 #info-button {
     position: fixed;
     bottom: 0;
@@ -116,19 +128,23 @@ footer > p {
     z-index: 100;
 }
 
+/* Information Icon Styles */
 #info-icon {
     color: white;
-    transition: transform 0.8s ease-in-out;
+    transition: transform 0.5s ease-in-out;
 }
 
+/* Information Button Hover Styles */
 #info-button:hover {
     background: rgba(93, 93, 93, 0.703);
 }
 
-.spin-animation {
-    transform: rotate3d(0, 1, 0, 540deg);
+/* Animation Styles */
+#info-button:hover #info-icon {
+    transform: rotate3d(0, 1, 0, 540deg); /* Apply the spin animation to the icon when the button is hovered */
 }
 
+/* Cover Styles */
 #cover {
     position: fixed;
     top: 0;

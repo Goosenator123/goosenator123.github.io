@@ -1,5 +1,5 @@
-// Ball Object
-function Ball(x, y, dx, dy, radius, color, text = '', preventOutOfBounds = false, autoDelete = false, deleteInterval = 0) {
+// Ball Object Constructor
+function Ball(x, y, dx, dy, radius, color, text = '', preventOutOfBounds = false) {
     // Ball properties
     this.x = x;  // x-coordinate of the ball
     this.y = y;  // y-coordinate of the ball
@@ -13,8 +13,6 @@ function Ball(x, y, dx, dy, radius, color, text = '', preventOutOfBounds = false
     this.bounce = 0;   // number of bounces
     this.mass = (this.radius ** 2) * Math.PI;  // mass of the ball (based on its radius)
     this.preventOutOfBounds = preventOutOfBounds;  // flag to determine if the ball goes out of bounds
-    this.lifespan = deleteInterval;  // lifespan of the ball before auto-deletion
-    this.autoDelete = autoDelete;  // flag to enable auto-deletion
 
     // Method to draw the ball on the canvas
     this.draw = () => {
@@ -35,10 +33,9 @@ function Ball(x, y, dx, dy, radius, color, text = '', preventOutOfBounds = false
 
     // Method to update the ball's position and handle collisions
     this.update = (objectArray) => {
-        // Simulate bounces when ball touches bottom of the canvas
+        // Handle gravity and collision with bottom of the canvas
         if ((this.y + this.radius + this.velocity.y) > canvas.height) {
             this.velocity.y = -this.velocity.y * friction;
-            // this.bounce++;
         } else {
             this.velocity.y += gravity;
         }
@@ -50,26 +47,15 @@ function Ball(x, y, dx, dy, radius, color, text = '', preventOutOfBounds = false
             }
         }
 
-        // Cycle through every object inside array
+        // Check collision with other objects
         for (let i = 0; i < objectArray.length; i++) {
-            // Ignore self
-            if (objectArray[i] === this) continue;
+            if (objectArray[i] === this) continue; // Ignore self
 
             // Check collision
             if (getDistance(this.x, this.y, objectArray[i].x, objectArray[i].y) < (this.radius + objectArray[i].radius)) {
                 // Resolve collision
                 resolveCollision(this, objectArray[i]);
             }
-        }
-
-        // Start the timer to remove the ball if autoDelete is enabled
-        if (this.autoDelete) {
-            setTimeout(() => {
-                const index = objectArray.indexOf(this);
-                if (index > -1) {
-                    objectArray.splice(index, 1); // Remove the ball from the array
-                }
-            }, this.lifespan);
         }
 
         // Update position and draw the ball
@@ -111,22 +97,20 @@ function rotate(vector, angle) {
 
 // Resolve collision function
 function resolveCollision(object, otherObject) {
-    // Calculate the vector between the objects
-    const relativePosition = {
-        x: otherObject.x - object.x,
-        y: otherObject.y - object.y
-    }
+    // Calculate relative position and velocity vectors
+    const relativePosition = { 
+        x: otherObject.x - object.x, 
+        y: otherObject.y - object.y 
+    };
+    const relativeVelocity = { 
+        x: object.velocity.x - otherObject.velocity.x, 
+        y: object.velocity.y - otherObject.velocity.y 
+    };
 
-    // Calculate relative velocity vector
-    const relativeVelocity = {
-        x: object.velocity.x - otherObject.velocity.x,
-        y: object.velocity.y - otherObject.velocity.y
-    }
-
-    // Check if dot-product is not negative (negative = moving away)
+    // Check if objects are moving towards each other
     if ((relativePosition.x * relativeVelocity.x) + (relativePosition.y * relativeVelocity.y) >= 0) {
-        // Get angle (in radians) of the right triangle formed by the center of both objects
-        const angle = -Math.atan2((otherObject.y - object.y), (otherObject.x - object.x));
+        // Get angle of collision
+        const angle = -Math.atan2(relativePosition.y, relativePosition.x);
 
         // Get masses of objects
         const m1 = object.mass;
@@ -136,21 +120,21 @@ function resolveCollision(object, otherObject) {
         const u1 = rotate(object.velocity, angle);
         const u2 = rotate(otherObject.velocity, angle);
 
-        // Get velocities after the 1D collision (Using One-dimensional Newtonian equation)
-        const v1 = {
-            x: (u1.x * (m1 - m2) + 2 * m2 * u2.x) / (m1 + m2),
-            y: u1.y
-        }
-        const v2 = {
-            x: (u2.x * (m2 - m1) + 2 * m1 * u1.x) / (m1 + m2),
-            y: u2.y
-        }
+        // Calculate velocities after collision using one-dimensional Newtonian equations
+        const v1 = { 
+            x: (u1.x * (m1 - m2) + 2 * m2 * u2.x) / (m1 + m2), 
+            y: u1.y 
+        };
+        const v2 = { 
+            x: (u2.x * (m2 - m1) + 2 * m1 * u1.x) / (m1 + m2), 
+            y: u2.y 
+        };
 
-        // Re-rotate the velocities to their initial state
+        // Re-rotate the velocities
         const finalV1 = rotate(v1, -angle);
         const finalV2 = rotate(v2, -angle);
 
-        // Reassigning velocities to the objects
+        // Update velocities
         object.velocity = finalV1;
         otherObject.velocity = finalV2;
     }

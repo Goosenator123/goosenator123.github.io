@@ -1,17 +1,17 @@
 // Retrieving references from HTML
-const canvas = document.getElementById('canvas');  // Canvas element
-const userInput = document.getElementById('typing-area');  // User input element
-const cover = document.getElementById('cover');  // Cover element
-const infoButton = document.getElementById('info-button');  // Information button element
-const infoSection = document.getElementById('instruction-section');  // Information section element
-const infoIcon = document.getElementById('info-icon');  // Information icon element
+const canvas = document.getElementById('canvas');  // Reference to the canvas element
+const userInput = document.getElementById('typing-area');  // Reference to the user input element
+const cover = document.getElementById('cover');  // Reference to the cover element
 
 // Retrieving the 2D rendering context
 const ctx = canvas.getContext('2d');
 
-// Setting canvas size to full web page 
-canvas.width = innerWidth;
-canvas.height = (innerHeight * 0.8);
+// Setting canvas size
+function setCanvasSize() {
+    canvas.width = innerWidth;
+    canvas.height = (innerHeight * 0.8);
+}
+setCanvasSize(); // Set canvas size initially
 
 // Declaring variables
 let condition = 1;  // Game condition variable
@@ -20,10 +20,9 @@ let friction = 0.65; // Friction coefficient
 let points = 0; // Player points
 let inputPosition = 90; // Default user input position
 let difficulty;  // Difficulty level
-let theme;  // Theme color
+let chosenTheme;  // Chosen theme color
 let chosenText;  // Chosen text for word generation
 let spawnRate = 0; // Ball spawn rate
-let deleteInterval = 0; // Ball delete rate
 let zPosition = 100; // Z-index position
 let chosenWord = ''; // Random chosen word
 
@@ -31,27 +30,26 @@ let chosenWord = ''; // Random chosen word
 let ballArray = [];
 
 // Color Arrays
-const redTheme = [
-    '#9d0208',
-    '#d00000',
-    '#e85d04',
-    '#f48c06',
-    '#ffba08'
-];
-const blueTheme = [
-    '#6930c3',
-    '#5e60ce',
-    '#4ea8de',
-    '#56cfe1',
-    '#64dfdf'
-];
-const greenTheme = [
-    '#004b23',
-    '#007200',
-    '#38b000',
-    '#70e000',
-    '#ccff33'
-];
+const themes = {
+    'red': ['#9d0208', '#d00000', '#e85d04', '#f48c06', '#ffba08'],
+    'blue': ['#6930c3', '#5e60ce', '#4ea8de', '#56cfe1', '#64dfdf'],
+    'green': ['#004b23', '#007200', '#38b000', '#70e000', '#ccff33']
+};
+
+// Text array
+const texts = {
+    'shrek': shrekMovie,
+    'bee': beeMovie,
+    'geneva': genevaConvention,
+    'bible': holyBible
+}
+
+// Possible difficulty
+const possibleDiff = {
+    '0': 2000,
+    '1': 1400,
+    '2': 800
+}
 
 // Randomly generate word with the text the user chose
 function generateWord() {
@@ -64,27 +62,16 @@ function generateWord() {
     let color;
     
     // Setting color depending on theme chosen
-    if (theme === 'red') {
-        color = redTheme[randomIntFromRange(0, 4)];
-    } else if (theme === 'green') {
-        color = greenTheme[randomIntFromRange(0, 4)];
-    } else if (theme === 'blue') {
-        color = blueTheme[randomIntFromRange(0, 4)];
+    if (chosenTheme in themes) {
+        const theme = themes[chosenTheme];
+        color = theme[randomIntFromRange(0, (theme.length - 1))];
     }
 
     // Setting text depending on the one chosen
-    if (chosenText === 'shrek') {
-        getRandomWord(shrekMovie);
-    } else if (chosenText === 'bee') {
-        getRandomWord(beeMovie);
-    } else if (chosenText === 'geneva') {
-        getRandomWord(genevaConvention);
-    } else if (chosenText === 'bible') {
-        getRandomWord(holyBible);
-    }
+    getRandomWord(texts[chosenText]);
 
     // Insert ball in ballArray
-    ballArray.push(new Ball(x, y, dx, dy, radius, color, chosenWord, true, true, deleteInterval));
+    ballArray.push(new Ball(x, y, dx, dy, radius, color, chosenWord, true));
 }
 
 // Animate canvas
@@ -108,9 +95,9 @@ function animate() {
 function putBack () {
     zPosition = -zPosition
     inputPosition = -inputPosition
-    infoSection.style.zIndex = zPosition; // Set z-index to a value that places the element behind others
-    userInput.style.top = -inputPosition + '%';
+    document.getElementById('instruction-section').style.zIndex = zPosition; // Set z-index to a value that places the element behind others
     cover.style.zIndex = zPosition;
+    userInput.style.top = -inputPosition + '%';
 }
 
 // Get random word from string
@@ -132,27 +119,27 @@ window.onload = () => {
     cover.style.zIndex = 100;
 
     // Retrieve user choices from localStorage
-    theme = localStorage.getItem('color');
+    chosenTheme = localStorage.getItem('color');
     difficulty = localStorage.getItem('diff');
     chosenText = localStorage.getItem('text');
 
     // Setting word spawn rate depending on difficulty
-    if (difficulty === '0') {
-        spawnRate = 2000;
-        deleteInterval = 10000;
-    } else if (difficulty === '1') {
-        spawnRate = 1400;
-        deleteInterval = 7000;
-    } else {
-        spawnRate = 800;
-        deleteInterval = 4000;
-    }
+    spawnRate = possibleDiff[difficulty];
     
     // Start canvas animation
     animate();
 
+    // Delete a word each time a word gets generated
+    setInterval(() => {
+        // Check if paused or there are at least 6 words on the screen
+        if (condition === 1 && ballArray.length >= 6 ) {
+            ballArray.shift();
+        }
+    }, spawnRate);
+
     // Start generating word
     setInterval(() => {
+        // Check if paused
         if (condition === 1) {
             generateWord();
         }
@@ -161,9 +148,8 @@ window.onload = () => {
 
 // Resetting canvas size upon page resize
 window.addEventListener('resize', () => {
-    // Setting canvas size to full web page 
-    canvas.width = innerWidth;
-    canvas.height = (innerHeight * 0.8);
+    // Reset canvas size
+    setCanvasSize();
 })
 
 // Submit word from input box if <Space> or <Enter> keys are pressed
@@ -192,7 +178,8 @@ window.addEventListener('keydown', (e) => {
 });
 
 // Set elements to their respective place when button is pressed
-infoButton.addEventListener('click', () => {
+document.getElementById('info-button').addEventListener('click', () => {
     putBack();
     condition = -condition;
+    
 });
