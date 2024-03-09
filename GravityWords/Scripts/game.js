@@ -25,6 +25,7 @@ let chosenText;  // Chosen text for word generation
 let spawnRate = 0; // Ball spawn rate
 let zPosition = 100; // Z-index position
 let chosenWord = ''; // Random chosen word
+let addPoints = 100;
 
 // Ball Array
 let ballArray = [];
@@ -159,7 +160,8 @@ document.addEventListener('keydown', function(event) {
         for (let i = 0; i < ballArray.length; i++) {
             if (userInput.value.trim() === ballArray[i].text) {
                 ballArray.splice(i, 1);
-                points += 10;
+                points += addPoints;
+                localStorage.setItem('highscore', points);
             }
         }
 

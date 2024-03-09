@@ -121,6 +121,9 @@ window.onload = () => {
     document.getElementById('difficulty').value = chosenDiff;
     document.getElementById('difficulty-text').textContent = possibleDiff[chosenDiff];
 
+    // Get highscore from localStorage
+    document.getElementById('highscore').textContent = `${localStorage.getItem('highscore') || 0} points`
+
     createBall(); // Start createBall() loop
     animate(); // Start animate() loop
 }

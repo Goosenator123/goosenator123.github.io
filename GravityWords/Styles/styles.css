@@ -76,6 +76,7 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 20px;
+    z-index: 100;
 }
 
 #info-article {
@@ -225,4 +226,40 @@ footer {
 
 footer > p {
     font-size: 1.6rem;
+}
+
+#highscore-section {
+    position: fixed;
+    top: 40%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(42, 42, 42, 0.582);
+    backdrop-filter: blur(20px);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    /* display: flex;
+    flex-direction: column; */
+    z-index: 1;
+}
+
+#highscore-section > header {
+    width: 200px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
+
+#highscore-section > header > h2 {
+    font-size: 3rem;
+    text-align: center;
+}
+
+
+#highscore-container {
+    text-align: center;
+    padding-top: 20px;
+}
+
+#highscore-container > p {
+    font-size: 2.4rem;
 }

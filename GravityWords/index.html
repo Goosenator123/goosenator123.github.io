@@ -60,7 +60,7 @@
             </section>
         </article>
         <!-- Text Selection Section -->
-        <section id="text-section">
+        <article id="text-section">
             <label for="text-container">Choose your text:</label>
             <div id="text-container">
                 <div class="text-wrapper">
@@ -80,11 +80,21 @@
                     <input type="radio" name="text" class="text-option" id="bible" value="bible">
                 </div>
             </div>
-        </section>
+        </article>
         <!-- Footer Section -->
         <footer>
             <p>Press &lt;Esc&gt; to hide/show settings</p>
         </footer>
+    </section>
+
+    <!-- Highscore Section -->
+    <section id="highscore-section">
+        <header>
+            <h2>Highscore</h2>
+        </header>
+        <article id="highscore-container">
+            <p id="highscore">0 points</p>
+        </article>
     </section>
 
     <!-- Setting Button for people without keyboard -->
@@ -96,7 +106,7 @@
     <canvas class="canvas" id="canvas"></canvas>
 
     <!-- Linked JS files -->
-    <script src="./Scripts/utility.js"></script>
-    <script src="./Scripts/animation.js"></script>
+    <script src="./Scripts/utilities.js"></script>
+    <script src="./Scripts/index.js"></script>
 </body>
 </html>

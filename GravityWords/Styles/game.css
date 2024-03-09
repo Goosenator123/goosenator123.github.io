@@ -155,3 +155,40 @@ footer > p {
     backdrop-filter: blur(10px);
     z-index: 10; /* Adjust z-index as needed */
 }
+
+/* Highscore Styles */
+#score-section {
+    position: fixed;
+    bottom: 5%;
+    left: 80%;
+    transform: translate(-50%);
+    background-color: rgba(42, 42, 42, 0.582);
+    backdrop-filter: blur(20px);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    /* display: flex;
+    flex-direction: column; */
+    z-index: 1;
+}
+
+#score-section > header {
+    width: 200px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
+
+#score-section > header > h2 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+#score-container {
+    text-align: center;
+    padding-top: 5px;
+}
+
+#score-container > p {
+    font-size: 1.6rem;
+}
