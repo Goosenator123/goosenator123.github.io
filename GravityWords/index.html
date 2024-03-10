@@ -17,89 +17,106 @@
 <body>
     <!-- Header Section -->
     <header id="title-header">
-        <h1 id="title">GravityWords</h1>
+        <h1 id="title">GravityWords</h1> <!-- Game title -->
     </header>
     
     <!-- Play Button -->
-    <button id="play-button">Play</button>
+    <button id="play-button">Play</button> <!-- Button to start playing -->
 
     <!-- Settings Section -->
     <section id="info-section">
         <header>
-            <h2>Settings</h2>
+            <h2>Settings</h2> <!-- Section header -->
         </header>
+        <!-- First article: contains difficulty and theme settings -->
         <article id="info-article">
             <!-- Difficulty Settings -->
             <section id="difficulty-section">
-                <label for="difficulty-container">Difficulty:</label>
+                <label for="difficulty-container">Difficulty:</label> <!-- Difficulty label -->
                 <div id="difficulty-container">
-                    <input type="range" max="2" id="difficulty">
-                    <div id="difficulty-text-container">
-                        <p id="difficulty-text">Normal</p>
+                    <input type="range" max="2" id="difficulty-input"> <!-- Slider for difficulty adjustment -->
+                    <div id="difficulty-label-container">
+                        <label for="difficulty-input" id="difficulty-label">Normal</label> <!-- Difficulty level -->
                     </div>
                 </div>
             </section>
-            <div id="divider"></div>
+            <!-- Divider -->
+            <div id="divider"></div> <!-- Divider between sections -->
             <!-- Theme Settings -->
             <section id="theme-section">
-                <label for="theme-container">Themes:</label>
+                <label for="theme-container">Themes:</label> <!-- Theme label -->
                 <div id="theme-container">
+                    <!-- Theme options -->
                     <div class="theme-wrapper">
-                        <label for="red" class="theme-label" id="red-label">Red</label>
+                        <label for="red" class="theme-label" id="red-label">Red</label> <!-- Red theme -->
                         <input type="radio" name="theme" class="color-option" id="red" checked value="red">
                     </div>
                     <div class="theme-wrapper">
-                        <label for="blue" class="theme-label" id="blue-label">Blue</label>
+                        <label for="blue" class="theme-label" id="blue-label">Blue</label> <!-- Blue theme -->
                         <input type="radio" name="theme" class="color-option" id="blue" value="blue">
                     </div>
                     <div class="theme-wrapper">
-                        <label for="green" class="theme-label" id="green-label">Green</label>
+                        <label for="green" class="theme-label" id="green-label">Green</label> <!-- Green theme -->
                         <input type="radio" name="theme" class="color-option" id="green" value="green">
                     </div>
                 </div>
             </section>
         </article>
-        <!-- Text Selection Section -->
-        <article id="text-section">
-            <label for="text-container">Choose your text:</label>
-            <div id="text-container">
-                <div class="text-wrapper">
-                    <label for="shrek" class="text-label" id="shrek-label">Shrek Movie</label>
-                    <input type="radio" name="text" class="text-option" id="shrek" value="shrek">
+        <!-- Second article: contains text and timer settings -->
+        <article id="additonal-info-article">
+            <!-- Text selection section -->
+            <section id="text-section">
+                <label for="text-container">Choose your text:</label> <!-- Text label -->
+                <div id="text-container">
+                    <!-- Text options -->
+                    <div class="text-wrapper">
+                        <label for="shrek" class="text-label" id="shrek-label">Shrek Movie</label> <!-- Shrek text -->
+                        <input type="radio" name="text" class="text-option" id="shrek" value="shrek">
+                    </div>
+                    <div class="text-wrapper">
+                        <label for="bee" class="text-label" id="bee-label">Bee Movie</label> <!-- Bee Movie text -->
+                        <input type="radio" name="text" class="text-option" id="bee" value="bee">
+                    </div>
+                    <div class="text-wrapper">
+                        <label for="geneva" class="text-label" id="geneva-label">Geneva Convention</label> <!-- Geneva Convention text -->
+                        <input type="radio" name="text" class="text-option" id="geneva" value="geneva">
+                    </div>
+                    <div class="text-wrapper">
+                        <label for="bible" class="text-label" id="bible-label">Holy Bible</label> <!-- Holy Bible text -->
+                        <input type="radio" name="text" class="text-option" id="bible" value="bible">
+                    </div>
                 </div>
-                <div class="text-wrapper">
-                    <label for="bee" class="text-label" id="bee-label">Bee Movie</label>
-                    <input type="radio" name="text" class="text-option" id="bee" value="bee">
+            </section>
+            <!-- Divider -->
+            <div id="divider"></div> <!-- Divider between sections -->
+            <!-- Timer selection section -->
+            <section id="time-section">
+                <label for="time-container">Set the timer:</label> <!-- Timer label -->
+                <div id="time-container">
+                    <input type="range" name="time" id="time-input" max="4"> <!-- Slider for timer adjustment -->
+                    <label for="time-input" id="time-label">3 Minutes</label> <!-- Timer value label -->
                 </div>
-                <div class="text-wrapper">
-                    <label for="geneva" class="text-label" id="geneva-label">Geneva Convention</label>
-                    <input type="radio" name="text" class="text-option" id="geneva" value="geneva">
-                </div>
-                <div class="text-wrapper">
-                    <label for="bible" class="text-label" id="bible-label">Holy Bible</label>
-                    <input type="radio" name="text" class="text-option" id="bible" value="bible">
-                </div>
-            </div>
+            </section>
         </article>
         <!-- Footer Section -->
         <footer>
-            <p>Press &lt;Esc&gt; to hide/show settings</p>
+            <p>Press &lt;Esc&gt; to hide/show settings</p> <!-- Instruction to toggle settings -->
         </footer>
     </section>
 
     <!-- Highscore Section -->
     <section id="highscore-section">
         <header>
-            <h2>Highscore</h2>
+            <h2>Highscore</h2> <!-- Highscore header -->
         </header>
         <article id="highscore-container">
-            <p id="highscore">0 points</p>
+            <p id="highscore">0 points</p> <!-- Highscore display -->
         </article>
     </section>
 
     <!-- Setting Button for people without keyboard -->
     <button id="setting-button">
-        <span class="material-symbols-outlined" id="setting-icon">settings</span>
+        <span class="material-symbols-outlined" id="setting-icon">settings</span> <!-- Setting icon -->
     </button>
 
     <!-- Canvas for game rendering -->

@@ -1,5 +1,9 @@
 // Retrieving references from HTML
 const canvas = document.querySelector('canvas');  // Canvas element
+const difficultyInput = document.getElementById('difficulty-input');
+const difficultyLabel = document.getElementById('difficulty-label');
+const timeLabel = document.getElementById('time-label');
+const timeInput = document.getElementById('time-input');
 
 // Retrieving the 2D rendering context
 const ctx = canvas.getContext('2d');
@@ -16,6 +20,7 @@ let ballArray = [];  // Array to store balls
 let chosenColor = ''; // Default color
 let chosenText = ''; // Default text
 let colorIndex = 0; // Index for cycling through colors in theme arrays
+let chosenTime = 0; // Default time
 let chosenDiff = '1'; // Default difficulty level
 let gravity = 0.3; // Acceleration due to gravity
 let friction = 0.9; // Friction coefficient
@@ -35,6 +40,15 @@ const possibleDiff = {
     '1': 'Normal',
     '2': 'Hard'
 };
+
+// Possible time depending on value
+const possibleTime = {
+    '0': '1 minute',
+    '1': '2 minute',
+    '2': '3 minute',
+    '3': '4 minute',
+    '4': '5 minute'
+}
 
 // Create and insert balls in ballArray
 function createBall() {
@@ -114,15 +128,31 @@ window.onload = () => {
     chosenColor = localStorage.getItem('color') || 'red';
     chosenText = localStorage.getItem('text') || 'shrek';
     chosenDiff = localStorage.getItem('diff') || '1';
+    chosenTime = localStorage.getItem('time') || '2';
 
     // Check chosen customisation
     document.getElementById(chosenColor).checked = true;
     document.getElementById(chosenText).checked = true;
-    document.getElementById('difficulty').value = chosenDiff;
-    document.getElementById('difficulty-text').textContent = possibleDiff[chosenDiff];
+    document.getElementById('title').style.color = themes[chosenColor][themes[chosenColor].length - 1];
+    difficultyInput.value = chosenDiff;
+    difficultyLabel.textContent = possibleDiff[chosenDiff];
+    timeLabel.textContent = possibleTime[chosenTime];
+    timeInput.value = chosenTime;
 
-    // Get highscore from localStorage
-    document.getElementById('highscore').textContent = `${localStorage.getItem('highscore') || 0} points`
+    // Get array of score from local storage
+    let storedScores = JSON.parse(localStorage.getItem('score')) || [];
+
+    // Check if array isnt empty
+    if (storedScores.length > 0) {
+        // Get biggest score
+        const biggestScore = Math.max(...storedScores);
+
+        // Display biggest score
+        document.getElementById('highscore').textContent = `${biggestScore} points`;
+    } else {
+        // Display 0 score
+        document.getElementById('highscore').textContent = `0 points`;
+    }
 
     createBall(); // Start createBall() loop
     animate(); // Start animate() loop
@@ -149,12 +179,20 @@ document.querySelectorAll('.text-option').forEach(option => {
 })
 
 // Difficulty selection
-document.getElementById('difficulty').addEventListener('input', () => {
-    chosenDiff = difficulty.value; // Set chosenDiff to the value of difficulty range input
+difficultyInput.addEventListener('input', (event) => {
+    chosenDiff = event.target.value; // Set chosenDiff to the value chosen
 
     // Set text for difficulty
-    document.getElementById('difficulty-text').textContent = possibleDiff[chosenDiff];
+    difficultyLabel.textContent = possibleDiff[chosenDiff];
 });
+
+// Time selection
+timeInput.addEventListener('input', (event) => {
+    chosenTime = event.target.value; // Set chosenTim to the value chosen
+
+    // Set text for time
+    timeLabel.textContent = possibleTime[chosenTime];
+})
 
 // Set elements to their respective place when <Esc> is pressed
 window.addEventListener('keydown', (e) => {
@@ -174,6 +212,7 @@ document.getElementById('play-button').addEventListener('click', () => {
     localStorage.setItem('text', chosenText);
     localStorage.setItem('color', chosenColor);
     localStorage.setItem('diff', chosenDiff);
+    localStorage.setItem('time', chosenTime);
 
     // Redirect page
     window.location.href = './game.html';

@@ -31,8 +31,8 @@ body {
 
 h1 {
     font-size: 10rem;
-    color: #2a2a2a;
-    transition: color 2s; /* Smooth color transition */
+    color: #000000;
+    transition: color 2.5s; /* Smooth color transition */
 }
 
 /* Play Button style */
@@ -120,17 +120,18 @@ h1 {
     font-weight: 600;
 }
 
-#difficulty-text-container {
+#difficulty-label-container {
     width: 50px;
 }
 
-#difficulty-container > #difficulty-text-container > p, .theme-wrapper > label {
+#difficulty-container > #difficulty-label-container > label, .theme-wrapper > label {
     font-size: 2rem;
     font-weight: bold;
 }
 
 #divider {
     border: 1px solid white;
+    margin-top: 20px;
 }
 
 /* Setting Button for mobile styles*/
@@ -170,8 +171,13 @@ h1 {
     color: #55a630;
 }
 
-/* Text/script selection section styles */
-#text-section {
+/* Text/script selection and time section styles */
+#additonal-info-article {
+    display: flex;
+    flex-direction: row;
+}
+
+#text-section, #time-section {
     border-top: 1px solid white;
     width: 100%;
     display: flex;
@@ -181,7 +187,7 @@ h1 {
     border-bottom: 1px solid white;
 }
 
-#text-section > label {
+#text-section > label, #time-section > label {
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
@@ -192,7 +198,7 @@ h1 {
     justify-content: flex-start;
     flex-wrap: wrap;
     padding: 20px;
-    width: 50%;
+    width: 55%;
 }
 
 .text-wrapper {
@@ -217,6 +223,22 @@ h1 {
 
 #bible-label {
     color: #9d4edd;
+}
+
+#time-container {
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#time-container > label {
+    font-size: 2rem;
+}
+
+#time-input {
+    margin-bottom: 20px;
 }
 
 /* Footer styles */

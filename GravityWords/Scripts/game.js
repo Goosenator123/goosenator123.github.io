@@ -2,6 +2,7 @@
 const canvas = document.getElementById('canvas');  // Reference to the canvas element
 const userInput = document.getElementById('typing-area');  // Reference to the user input element
 const cover = document.getElementById('cover');  // Reference to the cover element
+const timerBar = document.getElementById('timer-bar'); // Reference to the timer bar element
 
 // Retrieving the 2D rendering context
 const ctx = canvas.getContext('2d');
@@ -25,7 +26,8 @@ let chosenText;  // Chosen text for word generation
 let spawnRate = 0; // Ball spawn rate
 let zPosition = 100; // Z-index position
 let chosenWord = ''; // Random chosen word
-let addPoints = 100;
+let addPoints = 100; // Points added per word typed
+let targetPoints = 0;
 
 // Ball Array
 let ballArray = [];
@@ -50,6 +52,15 @@ const possibleDiff = {
     '0': 2000,
     '1': 1400,
     '2': 800
+}
+
+// Possible time depending on value
+const possibleTime = {
+    '0': 60,
+    '1': 120,
+    '2': 180,
+    '3': 240,
+    '4': 300
 }
 
 // Randomly generate word with the text the user chose
@@ -89,6 +100,7 @@ function animate() {
         for (let i = 0; i < ballArray.length; i++) {
             ballArray[i].update(ballArray); // Update ball coordinates
         }
+        console.log('running')
     }
 }
 
@@ -123,28 +135,62 @@ window.onload = () => {
     chosenTheme = localStorage.getItem('color');
     difficulty = localStorage.getItem('diff');
     chosenText = localStorage.getItem('text');
+    let initialTimer = possibleTime[localStorage.getItem('time') || '2'];
+    let timer = initialTimer;
 
     // Setting word spawn rate depending on difficulty
     spawnRate = possibleDiff[difficulty];
-    
+
+    // Update timer display and progress bar
+    const updateTimer = () => {
+        let minute = Math.floor(timer / 60); // Get minute
+        let second = timer % 60; // Get second
+        let secondString = second < 10 ? `0${second}` : second; // Turn second into 2 digits if it's below 10
+        document.getElementById('time').textContent = `${minute}:${secondString}`; // Show
+        let barLength = (timer / initialTimer) * 100;
+        timerBar.style.width = `${barLength}%`;
+    };
+    updateTimer(); // Set timer initially
+
     // Start canvas animation
     animate();
 
-    // Delete a word each time a word gets generated
+    // Generate word and delete word
     setInterval(() => {
         // Check if paused or there are at least 6 words on the screen
         if (condition === 1 && ballArray.length >= 6 ) {
             ballArray.shift();
         }
-    }, spawnRate);
 
-    // Start generating word
-    setInterval(() => {
         // Check if paused
         if (condition === 1) {
+            //  Generating word
             generateWord();
         }
     }, spawnRate);
+
+    // Change time per second
+    setInterval(() => {
+        // Update timer
+        if (condition === 1 && timer > 0) {
+            timer -= 1; // Reduce timer by 1
+            updateTimer();
+
+            // Handle game over scenario
+        } else if (timer === 0) {
+            // Get array of existing scores
+            let storedScores = JSON.parse(localStorage.getItem('score')) || [];
+
+            // Store new score in the array
+            storedScores.push(points);
+
+            // Set score array back to local storage with the help of JSON.stringify
+            localStorage.setItem('score', JSON.stringify(storedScores));
+
+            // Redirect if timer hits 0
+            window.location.href = './index.html'
+        }
+    }, 1000); // Per second
 }
 
 // Resetting canvas size upon page resize
@@ -155,13 +201,32 @@ window.addEventListener('resize', () => {
 
 // Submit word from input box if <Space> or <Enter> keys are pressed
 document.addEventListener('keydown', function(event) {
+    // Space or Enter key is pressed
     if (event.key === ' ' || event.key === 'Enter') {
-        // Space or Enter key is pressed
+        // Cycle through all the words inside array
         for (let i = 0; i < ballArray.length; i++) {
+            // Check if submitted word is inside array
             if (userInput.value.trim() === ballArray[i].text) {
+                // Delete the word
                 ballArray.splice(i, 1);
+
+                // Add points
                 points += addPoints;
-                localStorage.setItem('highscore', points);
+
+                // Show score over an interval
+                const setPoints = setInterval(() => {
+                    // Check if target reached the point earned
+                    if (targetPoints !== points) {
+                        // Add 1 to target
+                        targetPoints += 1;
+
+                        // Show score
+                        document.getElementById('score').textContent = `${targetPoints} points`;
+                    } else {
+                        // Clear interval if target reached point earned
+                        clearInterval(setPoints);
+                    }
+                }, 1);
             }
         }
 
@@ -183,5 +248,4 @@ window.addEventListener('keydown', (e) => {
 document.getElementById('info-button').addEventListener('click', () => {
     putBack();
     condition = -condition;
-    
 });

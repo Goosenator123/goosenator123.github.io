@@ -159,8 +159,8 @@ footer > p {
 /* Highscore Styles */
 #score-section {
     position: fixed;
-    bottom: 5%;
-    left: 80%;
+    top: 3%;
+    left: 85%;
     transform: translate(-50%);
     background-color: rgba(42, 42, 42, 0.582);
     backdrop-filter: blur(20px);
@@ -179,16 +179,56 @@ footer > p {
 }
 
 #score-section > header > h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
 }
 
 
 #score-container {
     text-align: center;
-    padding-top: 5px;
 }
 
 #score-container > p {
-    font-size: 1.6rem;
+    font-size: 2rem;
+}
+
+#timer-section {
+    position: fixed;
+    top: 2%;
+    left: 2%;
+    background-color: rgba(42, 42, 42, 0.582);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    color: white;
+    padding: 20px;
+    width: 60%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#time-container {
+    border-right: 1px solid white;
+    width: fit-content;
+    padding-right: 20px;
+}
+
+#time {
+    font-size: 3rem;
+}
+
+#timer-bar-container {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    padding-left: 20px;
+}
+
+#timer-bar {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    border-radius: 10px;
+    transition: 1s ease-out;
 }
