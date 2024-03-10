@@ -34,9 +34,9 @@ let ballArray = [];
 
 // Color Arrays
 const themes = {
-    'red': ['#9d0208', '#d00000', '#e85d04', '#f48c06', '#ffba08'],
-    'blue': ['#6930c3', '#5e60ce', '#4ea8de', '#56cfe1', '#64dfdf'],
-    'green': ['#004b23', '#007200', '#38b000', '#70e000', '#ccff33']
+    'red': ['#6a040f', '#9d0208', '#e85d04', '#f48c06', '#faa307'],
+    'blue': ['#03045e', '#0077b6', '#0096c7', '#00b4d8', '#ade8f4'],
+    'green': ['#004b23', '#006400', '#008000', '#38b000', '#70e000']
 };
 
 // Text array
@@ -149,6 +149,7 @@ window.onload = () => {
         document.getElementById('time').textContent = `${minute}:${secondString}`; // Show
         let barLength = (timer / initialTimer) * 100;
         timerBar.style.width = `${barLength}%`;
+        timerBar.style.backgroundColor = `hsl(${barLength}, 100%, 41%)`;
     };
     updateTimer(); // Set timer initially
 

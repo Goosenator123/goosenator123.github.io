@@ -22,7 +22,7 @@ function Ball(x, y, dx, dy, radius, color, text = '', preventOutOfBounds = false
         ctx.fillStyle = this.color;
         ctx.stroke();
         ctx.fill();
-        ctx.font = '48px Arial';
+        ctx.font = '48px Madimi One';
         ctx.closePath();
         if (this.text !== '') {
             ctx.fillStyle = 'white';

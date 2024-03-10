@@ -25,13 +25,13 @@ let chosenDiff = '1'; // Default difficulty level
 let gravity = 0.3; // Acceleration due to gravity
 let friction = 0.9; // Friction coefficient
 let zPosition = 100; // Z-index position
-let spawnRate = 300; // Set spawn rate for balls to (0.3s)
+let spawnRate = 200; // Set spawn rate for balls to (0.2s)
 
 // Color Arrays
 const themes = {
-    'red': ['#9d0208', '#d00000', '#e85d04', '#f48c06', '#ffba08'],
-    'blue': ['#6930c3', '#5e60ce', '#4ea8de', '#56cfe1', '#64dfdf'],
-    'green': ['#004b23', '#007200', '#38b000', '#70e000', '#ccff33']
+    'red': ['#6a040f', '#9d0208', '#e85d04', '#f48c06', '#faa307'],
+    'blue': ['#03045e', '#0077b6', '#0096c7', '#00b4d8', '#ade8f4'],
+    'green': ['#004b23', '#006400', '#008000', '#38b000', '#70e000']
 };
 
 // Possible difficulty depending on value
@@ -91,7 +91,7 @@ const titleColorChange = setInterval(() => {
         document.getElementById('title').style.color = theme[colorIndex % theme.length];
         colorIndex++;
     }
-}, 1000);
+}, 800);
 
 // Animate canvas
 function animate() {
