@@ -5,7 +5,8 @@
     font-family: 'Madimi One', sans-serif;
     font-size: 10px;
     letter-spacing: 1.15px;
-    user-select: none; /* Disable text selection */
+    user-select: none;
+    color: white;
 }
 
 /* Body Styles */
@@ -22,6 +23,138 @@ body {
     left: 0;
     background-color: black;
     z-index: -1;
-    border-bottom: 5px solid white;
+}
+
+/* Game Over Section Styles */
+#game-over-section {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    max-width: 900px;
+    max-height: 700px;
+    min-width: 500px;
+    min-height: 300px;
+    padding: 60px;
     box-sizing: border-box;
+    background-color: rgba(61, 61, 61, 0.334);
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+}
+
+/* Header Styles */
+#game-over-section > #header {
+    margin: auto;
+    text-align: center;
+}
+
+/* Text Styles */
+h1 {
+    font-size: 9rem;
+    transition: color 2.5s ease-out; /* Smooth color transition */
+}
+
+/* Result Section Styles */
+#result {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    min-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Score Container Styles */
+#score-container {
+    width: 80%;
+    max-width: 600px;
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+}
+
+/* Configuration Section Styles */
+#configuration {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Configuration Item Styles */
+#configuration > div {
+    width: 40%;
+    max-width: 300px;
+    padding: 20px;
+    border-bottom: 1px solid white;
+    box-sizing: border-box;
+}
+
+/* Timer Container Styles */
+#configuration > #timer-container {
+    border-right: 1px solid white;
+}
+
+/* Paragraph Styles */
+p {
+    font-size: 3rem;
+}
+
+/* Button Container Styles */
+#button-container {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+/* Button Styles */
+button {
+    width: 120px;
+    height: 70px;
+    border-radius: 10px;
+    background-color: black;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+/* Button Hover Styles */
+button:hover {
+    background-color: rgb(58, 58, 58);
+}
+
+/* Icon Button Styles */
+.material-symbols-outlined.icon-button1,
+.material-symbols-outlined.icon-button2 {
+    font-size: 50px;
+    transition: font-weight 0.3s, transform 0.3s ease-out;
+}
+
+/* Menu Hover Styles */
+#menu:hover .material-symbols-outlined.icon-button1 {
+    font-weight: 800;
+    margin: 0;
+    padding: 0;
+}
+
+/* Try Again Hover Styles */
+#try-again:hover .material-symbols-outlined.icon-button2 {
+    font-weight: 800;
+    transform: rotate(-45deg);
 }

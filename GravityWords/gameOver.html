@@ -16,8 +16,44 @@
 
     <!-- Linked font-family -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap">
+
+    <!-- Linked to google icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
 </head>
 <body>
+    <section id="game-over-section">
+        <header id="header">
+            <h1 id="title">Game Over!</h1>
+        </header>
+        <article id="result">
+            <div id="score-container">
+                <p id="score">0 points</p>
+            </div>
+            <div id="configuration">
+                <div id="timer-container">
+                    <p id="timer">0 minutes</p>
+                </div>
+                <div id="difficulty-container">
+                    <p id="difficulty">Normal</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Restart/Menu buttons -->
+        <div id="button-container">
+            <button id="menu">
+                <span class="material-symbols-outlined icon-button1">
+                    list
+                </span>
+            </button>
+            <button id="try-again">
+                <span class="material-symbols-outlined icon-button2">
+                    restart_alt
+                </span>
+            </button>
+        </div>
+    </section>
+
 
     <!-- Canvas for background rendering -->
     <canvas class="canvas" id="canvas"></canvas>

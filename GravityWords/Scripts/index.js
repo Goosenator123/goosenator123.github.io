@@ -25,7 +25,7 @@ let chosenDiff = '1'; // Default difficulty level
 let gravity = 0.3; // Acceleration due to gravity
 let friction = 0.9; // Friction coefficient
 let zPosition = 100; // Z-index position
-let spawnRate = 200; // Set spawn rate for balls to (0.2s)
+let spawnRate = 100; // Set spawn rate for balls to (0.1s)
 
 // Color Arrays
 const themes = {

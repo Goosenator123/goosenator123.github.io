@@ -199,10 +199,10 @@ h1 {
     flex-wrap: wrap;
     padding: 20px;
     width: 55%;
+    min-width: 210px;
 }
 
 .text-wrapper {
-    margin-right: 20px;
     margin-bottom: 10px;
 }
 .text-wrapper > label {

@@ -189,7 +189,7 @@ window.onload = () => {
             localStorage.setItem('score', JSON.stringify(storedScores));
 
             // Redirect if timer hits 0
-            window.location.href = './index.html'
+            window.location.href = './gameOver.html'
         }
     }, 1000); // Per second
 }
