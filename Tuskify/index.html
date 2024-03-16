@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuskify</title>
+
+  <!-- Linked CSS files -->
+  <link rel="stylesheet" href="./Styles/styles.css">
+
+  <!-- Linked font-family -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Madimi+One&display=swap">
+</head>
+<body>
+  <main id="schedule-planner-main">
+    <!-- Header Section -->
+    <header id="main-header">
+      <h1 id="main-title">Configure Your Schedule!</h1>
+    </header>
+
+    <!-- Configuration Section -->
+    <section id="configuration-section">
+      <!-- Wake up / Sleep configuration -->
+      <article id="wake-sleep">
+        <div class="time-container">
+          <label for="wake-up" class="time-label">When do you plan to wake up?</label>
+          <input type="time" class="time-input" id="wake-up">
+        </div>
+        <div class="time-container">
+          <label for="sleep" class="time-label">When do you plan to sleep?</label>
+          <input type="time" class="time-input" id="sleep">
+        </div>
+      </article>
+
+      <div class="divider"></div>
+
+      <!-- Outside Work configuration -->
+      <article id="outside-work">
+        <header class="sub-header">
+          <h2 class="sub-title">Do you have school / work?</h2>
+          <label class="container">
+            <input type="checkbox" id="work-checkbox">
+            <svg viewBox="0 0 64 64" height="2em" width="2em">
+              <path d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16" pathLength="575.0541381835938" class="path"></path>
+            </svg>
+          </label>
+        </header>
+
+        <div id="work-time-container-container">
+          <div class="time-container">
+            <label class="time-label work" for="start-work">When do you start working?</label>
+            <input type="time" class="time-input" id="start-work">
+          </div>
+          <div class="time-container">
+            <label class="time-label work" for="end-work">When do you end work?</label>
+            <input type="time" class="time-input" id="end-work">
+          </div>
+
+          <div class="work-time-container">
+            <input required="" type="text" id="travel-time" autocomplete="off" class="input">
+            <label class="user-label" for="travel-time">How long does it take you to go to work?</label>
+          </div>
+        </div>
+      </article>
+
+      <div class="divider"></div>
+
+      <!-- Other Info configuration -->
+      <article id="other-info">
+        <header class="sub-header">
+          <h2 class="sub-title">Other activities:</h2>
+        </header>
+
+        <div id="info-container">
+          <input type="text" class="info" placeholder="Enter activities:">
+        </div>
+      </article>
+    </section>
+
+    <div id="warning-container">
+      <p id="warning"></p>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+      <button class="button" id="submit-button">
+        <p id="button-name">Submit</p>
+      </button>
+    </footer>
+  </main>
+
+  <!-- Linked JS files -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./Scripts/index.js"></script>
+</body>
+</html>

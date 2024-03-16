@@ -9,6 +9,7 @@
   - [QuackIn](#QuackIn)
   - [CodeGuide](#CodeGuide)
   - [RockPaperScissors](#RockPaperScissors)
+  - [Tuskify](#tuskify)
 
 ## Introduction
 
@@ -50,5 +51,8 @@ CodeGuide is an intricately crafted documentation hub for HTML, CSS, Python, Jav
 
 ### [RockPaperScissors](./RockPaperScissors)
 
-
 RockPaperScissors is a timeless rendition of the classic game, crafted using HTML, CSS, and JavaScript. Engage in exhilarating matches across three distinct difficulty levels. Utilize JavaScript's localStorage feature to seamlessly track and monitor your progress, ensuring your victories are immortalized in your high scores.
+
+### [Tuskify](./Tuskify/)
+
+Tuskify is a user-friendly web application that harnesses the capabilities of the GPT-3.5 API to generate personalized schedules based on user input. By providing information such as wake-up and sleep times, work or school schedules, and additional activities, users receive optimized schedules tailored to their preferences and commitments. With Tuskify, organizing daily tasks becomes effortless, empowering users to maximize productivity and efficiency in their day-to-day activities.
