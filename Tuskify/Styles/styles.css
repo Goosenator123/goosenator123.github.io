@@ -335,6 +335,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 #ai-section > h1 {
     font-size: 4rem;
+    margin-bottom: 20px;
 }
 
 .ai-text {
