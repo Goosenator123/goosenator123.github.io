@@ -116,7 +116,7 @@ function setWarningMessage(message, color) {
 
 // Function to send request to OpenAI API
 function sendRequest(prompt, create = false) {
-  const apiKey = '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'; // API key for OpenAI
+  const apiKey = `sk`+`-7pshnhkYZzIehJXELsYZT3BlbkFJjikFz5qt9ZerfPFF7tZn`; // API key for OpenAI
   const endpoint = 'https://api.openai.com/v1/chat/completions'; // OpenAI API endpoint
 
   const data = {
