@@ -160,6 +160,7 @@ window.onload = () => {
     setInterval(() => {
         // Check if paused or there are at least 6 words on the screen
         if (condition === 1 && ballArray.length >= 6 ) {
+            timer -= 3; // Penality
             ballArray.shift();
         }
 
@@ -189,7 +190,7 @@ window.onload = () => {
             localStorage.setItem('score', JSON.stringify(storedScores));
 
             // Redirect if timer hits 0
-            window.location.href = './gameOver.html'
+            window.location.href = './gameOver.html';
         }
     }, 1000); // Per second
 }
@@ -245,8 +246,16 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
-// Set elements to their respective place when button is pressed
-document.getElementById('info-button').addEventListener('click', () => {
-    putBack();
-    condition = -condition;
+// Set elements to their respective place when specific buttons are pressed
+const resumeButtons = ['info-button', 'resume-button'];
+resumeButtons.forEach(id => {
+    document.getElementById(id).addEventListener('click', () => {
+        putBack();
+        condition = -condition;
+    });
+});
+
+// Return to menu when button is pressed
+document.getElementById('menu-button').addEventListener('click', () => {
+    window.location.href = './index.html'
 });
