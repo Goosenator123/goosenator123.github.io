@@ -9,7 +9,8 @@
   - [QuackIn](#QuackIn)
   - [CodeGuide](#CodeGuide)
   - [RockPaperScissors](#RockPaperScissors)
-  - [Tuskify](#tuskify)
+  - [Tuskify](#Tuskify)
+  - [GravityWords](#GravityWords)
 
 ## Introduction
 
@@ -59,4 +60,4 @@ Tuskify is a user-friendly web application that harnesses the capabilities of th
 
 ### [GravityWords](./GravityWords/)
 
-GravityWords presents a captivating word-typing experience, leveraging elastic collision simulation for realistic gameplay dynamics. Challenge your typing skills by adjusting difficulty levels in the menu, and track of your high scores with the help of JavaScript's localStorage feature. Test your mettle in GravityWords and see how far your typing prowess can take you!
+GravityWords presents a captivating word-typing experience, leveraging elastic collision simulation for realistic gameplay dynamics. Challenge your typing skills by adjusting difficulty levels in the menu, and keep track of your high scores with the help of JavaScript's localStorage feature. Test your mettle in GravityWords and see how far your typing prowess can take you!
