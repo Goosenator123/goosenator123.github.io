@@ -27,6 +27,10 @@ let spawnRate = 100;
 let gravity = 0.3;
 let friction = 0.9; 
 
+// Set audio
+let gameOverSound = new Audio('./Assets/gameOverSound.wav'); // Set game over sound
+gameOverSound.play(); // Play sound
+
 // Theme colors
 const themes = {
     'red': ['#6a040f', '#9d0208', '#e85d04', '#f48c06', '#faa307'],

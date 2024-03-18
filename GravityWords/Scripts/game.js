@@ -29,6 +29,15 @@ let chosenWord = ''; // Random chosen word
 let addPoints = 100; // Points added per word typed
 let targetPoints = 0;
 
+// Set Audio
+let bgMusic = new Audio('./Assets/gameMusic.mp3'); // Set background music
+let correctSound = new Audio('./Assets/goodWord.mp3'); // Set sound for correct words
+let penalitySound = new Audio('./Assets/penality.mp3'); // Set penality sound
+bgMusic.volume = 0.2; // Set volume to 20%
+correctSound.volume = 0.5; // Set volume to 50%
+penalitySound.volume = 0.5; // Set volume to 50%
+bgMusic.loop = true; // Loops bgMusic
+
 // Ball Array
 let ballArray = [];
 
@@ -100,7 +109,6 @@ function animate() {
         for (let i = 0; i < ballArray.length; i++) {
             ballArray[i].update(ballArray); // Update ball coordinates
         }
-        console.log('running')
     }
 }
 
@@ -121,6 +129,19 @@ function getRandomWord(sentence) {
         const randomIndex = Math.floor(Math.random() * words.length);  // Generate random index
         chosenWord = words[randomIndex];  // Set chosen word
     } while (chosenWord.length > 10);  // Ensure chosen word is not too long
+}
+
+// Function to handle actions when pausing or unpausing
+function togglePause() {
+    putBack();
+    condition = -condition;
+
+    // Check if pause or unpaused
+    if (condition === 1) {
+        bgMusic.play(); // Play bgMusic when user unpauses
+    } else {
+        bgMusic.pause(); // Pause music when user pauses
+    }
 }
 
 //! Event listener
@@ -161,7 +182,9 @@ window.onload = () => {
         // Check if paused or there are at least 6 words on the screen
         if (condition === 1 && ballArray.length >= 6 ) {
             timer -= 3; // Penality
-            ballArray.shift();
+            penalitySound.currentTime = 0; // Set sound effect to beginning
+            penalitySound.play(); // Play sound
+            ballArray.shift(); // Remove word
         }
 
         // Check if paused
@@ -179,7 +202,7 @@ window.onload = () => {
             updateTimer();
 
             // Handle game over scenario
-        } else if (timer === 0) {
+        } else if (timer <= 0) {
             // Get array of existing scores
             let storedScores = JSON.parse(localStorage.getItem('score')) || [];
 
@@ -212,6 +235,10 @@ document.addEventListener('keydown', function(event) {
                 // Delete the word
                 ballArray.splice(i, 1);
 
+                // Play sound effect
+                correctSound.currentTime = 0; // Set sound effect to beginning
+                correctSound.play(); // Play the sound
+
                 // Add points
                 points += addPoints;
 
@@ -237,23 +264,20 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Set elements to their respective place when <Esc> is pressed
+// Event listener for the Escape key
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') { // Check if the key code is equal to the keycode of the "Escape" key
-        putBack();
-        condition = -condition;
+        togglePause();
         userInput.focus(); // Make user select input element
     }
 });
 
-// Set elements to their respective place when specific buttons are pressed
+// Event listeners for resume buttons
 const resumeButtons = ['info-button', 'resume-button'];
 resumeButtons.forEach(id => {
-    document.getElementById(id).addEventListener('click', () => {
-        putBack();
-        condition = -condition;
-    });
+    document.getElementById(id).addEventListener('click', togglePause); // Pause/unpause game
 });
+
 
 // Return to menu when button is pressed
 document.getElementById('menu-button').addEventListener('click', () => {

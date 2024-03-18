@@ -27,6 +27,11 @@ let friction = 0.9; // Friction coefficient
 let zPosition = 100; // Z-index position
 let spawnRate = 100; // Set spawn rate for balls to (0.1s)
 
+// Set Audio
+let bgMusic = new Audio('./Assets/menuMusic.mp3'); // Set background music
+bgMusic.volume = 0.2; // Set volume to 20% of its original volume
+bgMusic.loop = true; // Make bgMusic loop
+
 // Color Arrays
 const themes = {
     'red': ['#6a040f', '#9d0208', '#e85d04', '#f48c06', '#faa307'],
@@ -115,11 +120,12 @@ function putBack() {
 // Execute upon page load
 window.onload = () => {
     ballArray = []; // Clear all balls in array
+    bgMusic.play();
 
     // Delete balls to prevent overload
     setInterval(() => {
-        // Check if there are 30 generated
-        if (ballArray.length >= 30) {
+        // Check if there are 69 balls generated
+        if (ballArray.length >= 69) {
             ballArray.shift();
         }
     }, spawnRate);
