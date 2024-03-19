@@ -139,8 +139,10 @@ function togglePause() {
     // Check if pause or unpaused
     if (condition === 1) {
         bgMusic.play(); // Play bgMusic when user unpauses
+        userInput.focus(); // Make user select input element
     } else {
         bgMusic.pause(); // Pause music when user pauses
+        userInput.blur(); // Make user unselect the input element
     }
 }
 
@@ -268,7 +270,6 @@ document.addEventListener('keydown', function(event) {
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') { // Check if the key code is equal to the keycode of the "Escape" key
         togglePause();
-        userInput.focus(); // Make user select input element
     }
 });
 
