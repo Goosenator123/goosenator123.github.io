@@ -142,7 +142,7 @@ function togglePause() {
         userInput.focus(); // Make user select input element
     } else {
         bgMusic.pause(); // Pause music when user pauses
-        userInput.blur(); // Make user unselect the input element
+        userInput.blur(); // Make user unselect input element
     }
 }
 
