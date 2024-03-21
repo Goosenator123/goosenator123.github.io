@@ -12,11 +12,11 @@ function setCanvasSize() {
     canvas.width = innerWidth;
     canvas.height = (innerHeight * 0.8);
 }
-setCanvasSize(); // Set canvas size initially
+setCanvasSize(); // Set canvas size initiallyg
 
 // Declaring variables
 let condition = 1;  // Game condition variable
-let gravity = 0.1; // Acceleration due to gravity
+let gravity = (performance.now()/3000); // Acceleration due to gravity
 let friction = 0.65; // Friction coefficient
 let points = 0; // Player points
 let inputPosition = 90; // Default user input position
@@ -284,3 +284,5 @@ resumeButtons.forEach(id => {
 document.getElementById('menu-button').addEventListener('click', () => {
     window.location.href = './index.html'
 });
+
+// Segs are my favourite part or geometry
