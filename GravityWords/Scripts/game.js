@@ -3,6 +3,7 @@ const canvas = document.getElementById('canvas');  // Reference to the canvas el
 const userInput = document.getElementById('typing-area');  // Reference to the user input element
 const cover = document.getElementById('cover');  // Reference to the cover element
 const timerBar = document.getElementById('timer-bar'); // Reference to the timer bar element
+const instructionSection = document.getElementById('instruction-section'); // Reference to the instruction-section element
 
 // Retrieving the 2D rendering context
 const ctx = canvas.getContext('2d');
@@ -25,6 +26,7 @@ let chosenTheme;  // Chosen theme color
 let chosenText;  // Chosen text for word generation
 let spawnRate = 0; // Ball spawn rate
 let zPosition = 100; // Z-index position
+let opacity = 1; // Set opacity
 let chosenWord = ''; // Random chosen word
 let addPoints = 100; // Points added per word typed
 let targetPoints = 0;
@@ -108,7 +110,9 @@ function animate() {
 function putBack () {
     zPosition = -zPosition
     inputPosition = -inputPosition
-    document.getElementById('instruction-section').style.zIndex = zPosition; // Set z-index to a value that places the element behind others
+    opacity = opacity === 1 ? 0 : 1
+    instructionSection.style.zIndex = zPosition; // Set z-index to a value that places the element behind others
+    instructionSection.style.opacity = opacity; // Make the instruction section invisible
     cover.style.zIndex = zPosition;
     userInput.style.top = -inputPosition + '%';
 }
