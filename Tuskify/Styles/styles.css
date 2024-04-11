@@ -1,0 +1,344 @@
+/* Root variable */
+:root {
+    --body-bg-color: #232634;
+    --font-color: #dce0e8;
+    --font-color2: #181926;
+    --main-bg-color: #303446;
+    --time-input-color: #e78284;
+    --text-input-color: #f5a97f;
+    --info-input-color: #eed49f;
+    --button-color1: #8aadf4;
+    --button-color2: #91d7e3;
+    --ai-font-color: #f5e0dc;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Madimi One', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1.15px;
+    user-select: none; /* Disable text selection */
+    color: var(--font-color);
+}
+
+body {
+    background-color: var(--body-bg-color);
+}
+
+/* Main */
+main {
+    margin: 20px auto;
+    background-color: var(--main-bg-color);
+    width: 80%;
+    padding: 50px 80px;
+    border-radius: 20px;
+}
+
+/* Header */
+#main-header {
+    text-align: center;
+}
+
+#main-title {
+    font-size: 8rem;
+}
+
+/* Configuration Section */
+#configuration-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.divider {
+    border-right: 1px solid var(--font-color);
+}
+
+/* Wake/Sleep Configuration */
+#wake-sleep {
+    width: 30%;
+}
+
+/* Outside Work Configuration */
+#outside-work {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    padding: 0 30px;
+}
+
+#outside-work > .sub-header {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#outside-work > .sub-header > .sub-title {
+    margin-right: 30px;
+}
+
+/* Other Info Configuration */
+#other-info {
+    width: 25%;
+    padding: 0 30px;
+}
+
+/* Work Time Container */
+#work-time-container-container {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height 0.8s ease-out, padding 0.8s ease-in;
+}
+
+/* Info Container styles */
+#info-container {
+    margin-top: 30px;
+}
+
+#other-info > header {
+    width: 100%;
+    text-align: center;
+}
+
+.info {
+    width: 100%;
+    height: fit-content;
+    font-size: 3rem;
+    border-radius: 20px;
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--info-input-color);
+    margin-bottom: 10px;
+}
+
+.info::placeholder {
+    color: var(--font-color);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Warning styles */
+#warning-container {
+    text-align: center;
+    padding-top: 50px;
+}
+#warning {
+    font-size: 2rem;
+    color: var(--time-input-color);
+}
+
+/* Time input styles */
+.sub-title {
+    font-size: 4rem;
+}
+
+.time-container {
+    position: relative;
+    width: 100%;
+}
+
+.time-input {
+    width: 90%;
+    height: fit-content;
+    font-size: 2.4rem;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 50px;
+    border-radius: 30px;
+    box-sizing: border-box;
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--time-input-color);
+}
+
+.time-label {
+    position: absolute;
+    left: 10px;
+    font-size: 2.4rem;
+    transform: translateY(-50%) scale(0.8);
+    background-color: var(--main-bg-color);
+    padding: 0 0.5rem;
+}
+
+.time-label.work {
+    left: 25px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.5); /* Invert the color to change its color */
+}
+
+/* Checkbox input styles */
+.container {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.container input {
+    display: none;
+}
+
+.container svg {
+    overflow: visible;
+}
+
+.path {
+    fill: none;
+    stroke: var(--font-color);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-dasharray 0.5s ease, stroke-dashoffset 0.5s ease;
+    stroke-dasharray: 241 9999999;
+    stroke-dashoffset: 0;
+}
+
+.container input:checked ~ svg .path {
+    stroke-dasharray: 70.5096664428711 9999999;
+    stroke-dashoffset: -262.2723388671875;
+}
+
+/* Text input styles */
+.work-time-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    border-radius: 30px;
+    background: none;
+    padding: 1rem 2rem;
+    font-size: 3rem;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    border: 2px solid var(--text-input-color);
+}
+
+.user-label {
+    position: absolute;
+    top: 5px;
+    left: 30px;
+    font-size: 2.4rem;
+    pointer-events: none;
+    transform: translateY(1rem);
+    transition: 500ms cubic-bezier(0.4,0,0.2,1);
+}
+
+.input:focus, input:valid {
+    outline: none;
+}
+
+.input:focus ~ label, input:valid ~ label {
+    transform: translateY(-50%) scale(0.8);
+    background-color: var(--main-bg-color);
+    padding: 0 .2em;
+}
+
+/* Submit Button Style */
+.button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0.6em 2em;
+    border: var(--body-bg-color) solid 0.15em;
+    border-radius: 0.25em;
+    color: var(--font-color);
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border 300ms, color 300ms;
+    user-select: none;
+}
+
+.button p {
+    z-index: 1;
+    font-size: 2rem;
+    transition: color 0.5s;
+}
+
+.button:hover p {
+    color: var(--font-color2);
+}
+
+.button:hover::before,
+.button:hover::after {
+    background-color: var(--button-color2); /* Your desired color */
+    opacity: 1;
+}
+
+
+.button:active {
+    border-color: var(--button-color1);
+}
+
+.button::after, .button::before {
+    content: "";
+    position: absolute;
+    width: 9em;
+    aspect-ratio: 1;
+    background: var(--button-color1);
+    opacity: 50%;
+    border-radius: 50%;
+    transition: transform 500ms, background 300ms, opacity 800ms;
+}
+
+.button::before {
+    left: 0;
+    transform: translateX(-8em);
+}
+
+.button::after {
+    right: 0;
+    transform: translateX(8em);
+}
+
+.button:hover:before {
+    transform: translateX(-1em);
+}
+
+.button:hover:after {
+    transform: translateX(1em);
+}
+
+
+/* Ai styles */
+#ai-section {
+    width: 80%;
+    margin-top: 50px;
+    border-radius: 20px;
+    background-color: var(--main-bg-color);
+    margin: auto;
+    padding: 50px 80px;
+}
+
+#ai-section > h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.ai-text {
+    font-size: 2.4rem;
+    color: var(--ai-font-color);
+}

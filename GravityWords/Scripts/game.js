@@ -13,11 +13,11 @@ function setCanvasSize() {
     canvas.width = innerWidth;
     canvas.height = (innerHeight * 0.8);
 }
-setCanvasSize(); // Set canvas size initially
+setCanvasSize(); // Set canvas size initiallyg
 
 // Declaring variables
 let condition = 1;  // Game condition variable
-let gravity = 0.1; // Acceleration due to gravity
+let gravity = (performance.now()/3000); // Acceleration due to gravity
 let friction = 0.65; // Friction coefficient
 let points = 0; // Player points
 let inputPosition = 90; // Default user input position
@@ -30,6 +30,15 @@ let opacity = 1; // Set opacity
 let chosenWord = ''; // Random chosen word
 let addPoints = 100; // Points added per word typed
 let targetPoints = 0;
+
+// Set Audio
+let bgMusic = new Audio('./Assets/gameMusic.mp3'); // Set background music
+let correctSound = new Audio('./Assets/goodWord.mp3'); // Set sound for correct words
+let penalitySound = new Audio('./Assets/penality.mp3'); // Set penality sound
+bgMusic.volume = 0.2; // Set volume to 20%
+correctSound.volume = 0.5; // Set volume to 50%
+penalitySound.volume = 0.5; // Set volume to 50%
+bgMusic.loop = true; // Loops bgMusic
 
 // Ball Array
 let ballArray = [];
@@ -102,7 +111,6 @@ function animate() {
         for (let i = 0; i < ballArray.length; i++) {
             ballArray[i].update(ballArray); // Update ball coordinates
         }
-        console.log('running')
     }
 }
 
@@ -125,6 +133,21 @@ function getRandomWord(sentence) {
         const randomIndex = Math.floor(Math.random() * words.length);  // Generate random index
         chosenWord = words[randomIndex];  // Set chosen word
     } while (chosenWord.length > 10);  // Ensure chosen word is not too long
+}
+
+// Function to handle actions when pausing or unpausing
+function togglePause() {
+    putBack();
+    condition = -condition;
+
+    // Check if pause or unpaused
+    if (condition === 1) {
+        bgMusic.play(); // Play bgMusic when user unpauses
+        userInput.focus(); // Make user select input element
+    } else {
+        bgMusic.pause(); // Pause music when user pauses
+        userInput.blur(); // Make user unselect input element
+    }
 }
 
 //! Event listener
@@ -164,7 +187,10 @@ window.onload = () => {
     setInterval(() => {
         // Check if paused or there are at least 6 words on the screen
         if (condition === 1 && ballArray.length >= 6 ) {
-            ballArray.shift();
+            timer -= 3; // Penality
+            penalitySound.currentTime = 0; // Set sound effect to beginning
+            penalitySound.play(); // Play sound
+            ballArray.shift(); // Remove word
         }
 
         // Check if paused
@@ -182,7 +208,7 @@ window.onload = () => {
             updateTimer();
 
             // Handle game over scenario
-        } else if (timer === 0) {
+        } else if (timer <= 0) {
             // Get array of existing scores
             let storedScores = JSON.parse(localStorage.getItem('score')) || [];
 
@@ -193,7 +219,7 @@ window.onload = () => {
             localStorage.setItem('score', JSON.stringify(storedScores));
 
             // Redirect if timer hits 0
-            window.location.href = './gameOver.html'
+            window.location.href = './gameOver.html';
         }
     }, 1000); // Per second
 }
@@ -214,6 +240,10 @@ document.addEventListener('keydown', function(event) {
             if (userInput.value.trim() === ballArray[i].text) {
                 // Delete the word
                 ballArray.splice(i, 1);
+
+                // Play sound effect
+                correctSound.currentTime = 0; // Set sound effect to beginning
+                correctSound.play(); // Play the sound
 
                 // Add points
                 points += addPoints;
@@ -240,17 +270,23 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Set elements to their respective place when <Esc> is pressed
+// Event listener for the Escape key
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') { // Check if the key code is equal to the keycode of the "Escape" key
-        putBack();
-        condition = -condition;
-        userInput.focus(); // Make user select input element
+        togglePause();
     }
 });
 
-// Set elements to their respective place when button is pressed
-document.getElementById('info-button').addEventListener('click', () => {
-    putBack();
-    condition = -condition;
+// Event listeners for resume buttons
+const resumeButtons = ['info-button', 'resume-button'];
+resumeButtons.forEach(id => {
+    document.getElementById(id).addEventListener('click', togglePause); // Pause/unpause game
 });
+
+
+// Return to menu when button is pressed
+document.getElementById('menu-button').addEventListener('click', () => {
+    window.location.href = './index.html'
+});
+
+// Segs are my favourite part or geometry

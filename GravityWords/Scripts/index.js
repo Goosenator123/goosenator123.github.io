@@ -22,10 +22,15 @@ let chosenText = ''; // Default text
 let colorIndex = 0; // Index for cycling through colors in theme arrays
 let chosenTime = 0; // Default time
 let chosenDiff = '1'; // Default difficulty level
-let gravity = 0.3; // Acceleration due to gravity
+let gravity = (performance.now()/3000); // Acceleration due to gravity
 let friction = 0.9; // Friction coefficient
 let zPosition = 100; // Z-index position
 let spawnRate = 100; // Set spawn rate for balls to (0.1s)
+
+// Set Audio
+let bgMusic = new Audio('./Assets/menuMusic.mp3'); // Set background music
+bgMusic.volume = 0.2; // Set volume to 20% of its original volume
+bgMusic.loop = true; // Make bgMusic loop
 
 // Color Arrays
 const themes = {
@@ -115,11 +120,12 @@ function putBack() {
 // Execute upon page load
 window.onload = () => {
     ballArray = []; // Clear all balls in array
+    bgMusic.play();
 
     // Delete balls to prevent overload
     setInterval(() => {
-        // Check if there are 30 generated
-        if (ballArray.length >= 30) {
+        // Check if there are 69 balls generated
+        if (ballArray.length >= 69) {
             ballArray.shift();
         }
     }, spawnRate);

@@ -103,8 +103,6 @@ li {
 
 /* Footer Styles */
 footer {
-    border-top: 1px solid white;
-    margin-top: 20px;
     width: 100%;
     text-align: center;
 }
@@ -112,9 +110,10 @@ footer {
 /* Footer Paragraph Styles */
 footer > p {
     font-size: 1.6rem;
+    margin-top: 10px;
 }
 
-/* Information Button Styles */
+/* Button Styles */
 #info-button {
     position: fixed;
     bottom: 0;
@@ -142,6 +141,37 @@ footer > p {
 /* Animation Styles */
 #info-button:hover #info-icon {
     transform: rotate3d(0, 1, 0, 540deg); /* Apply the spin animation to the icon when the button is hovered */
+}
+
+/* Instructions' button container styles */
+#button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 1px solid white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Button container's buttons styles */
+#button-container > button {
+    width: 30%;
+    height: fit-content;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* Resume, Menu button hover styles */
+#button-container > button:hover {
+    background-color: rgba(255, 255, 255, 0.237);
+}
+
+/* Menu, resume icon styles */
+#menu-icon, #resume-icon {
+    color: white;
+    font-size: 4rem;
 }
 
 /* Cover Styles */
