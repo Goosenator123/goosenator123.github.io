@@ -5,22 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape The Lab</title>
 
+    <!-- Link to external CSS -->
     <link rel="stylesheet" href="./styles/index.css">
 </head>
 <body>
+    <!-- Background Canvas -->
     <canvas id="backgroundCanvas"></canvas>
+    
+    <!-- Overlay -->
     <div id="overlay"></div>
+    
+    <!-- Introduction Container -->
     <div id="intro-container">
         <p class="intro-paragraph" id="intro1"></p>
         <p class="intro-paragraph" id="intro2"></p>
         <p class="intro-paragraph" id="intro3"></p>
         <p class="intro-paragraph" id="intro4"></p>
     </div>
+    
+    <!-- Start Button -->
     <button id="startBtn">Button</button>
+    
+    <!-- Skip Introduction Button -->
     <button id="skip-intro-btn">Skip</button>
 
+    <!-- Instructions -->
     <div id="instructions">
-        <h2 class="subtitle">Intructions</h2>
+        <h2 class="subtitle">Instructions</h2>
         <ul>
             <li>Press left and right arrow to move around</li>
             <li>Hover over objects to check if they can be interacted with</li>
@@ -28,6 +39,7 @@
         <div class="divider"></div>
         <h2 class="subtitle">Go to:</h2>
         <div id="area-container">
+            <!-- Image Containers -->
             <div class="img-container" id="lab1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
                     <image href="./assets/lab1.svg" width="200" height="80"/>
@@ -51,10 +63,10 @@
                     <image href="./assets/exit2.svg" width="200" height="80"/>
                 </svg>
             </div>
-            
         </div>
     </div>
 
+    <!-- Link to external JavaScript -->
     <script src="./scripts/index.js"></script>
 </body>
 </html>
