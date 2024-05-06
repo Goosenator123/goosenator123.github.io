@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'Terminal';
+    src: url('../assets/_decterm.ttf') format('truetype');
+}
+
+* {
+    font-size: 10px;
+    font-family: 'Terminal';
+    letter-spacing: 1.15px;
+    word-spacing: 1.15px;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+#backgroundCanvas {
+    background-color: black;
+    z-index: -100;
+    position: fixed;
+    top: 0;
+}
+
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 0, 0, 0.8); */
+    z-index: -1;
+    top: 0;
+}
+
+#intro-container {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+}
+
+.intro-paragraph {
+    font-size: 3rem;
+    color: #00FF00;
+}
+
+#testing {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border: 5px solid white;
+    width: 50px;
+    height: 50px;
+}
+
+#instructions {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    background-color: rgba(0, 0, 0, 0.69);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    min-width: 800px;
+    z-index: -1000;
+}
+
+.subtitle {
+    color: white;
+    font-size: 6rem;
+    margin-bottom: 20px;
+}
+
+/* Unordered List Styles */
+ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* List Item Styles */
+li {
+    font-size: 2.5rem;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+
+#area-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.img-container {
+    width: 400px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-container:hover {
+    border: 5px dashed white;
+}
+
+.divider {
+    border-bottom: 1px solid white;
+    width: 100%;
+}
