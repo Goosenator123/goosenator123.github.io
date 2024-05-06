@@ -35,7 +35,7 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    /* background-color: rgba(0, 0, 0, 0.8); */
     z-index: -1;
     top: 0;
 }
@@ -131,4 +131,62 @@ li {
 .divider {
     border-bottom: 1px solid white;
     width: 100%;
+}
+
+.interactive-box {
+    position: fixed;
+    border: 5px solid white;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.interactive-box:hover {
+    opacity: 1;
+}
+
+#lab1-box1 {
+    top: 785px;
+    left: 415px;
+    width: 85px;
+    height: 75px;
+}
+
+#lab1-box2 {
+    top: 100px;
+    left: 100px;
+    width: 100px;
+    height: 100px;
+}
+
+button {
+    position: fixed;
+}
+
+#skip-intro-btn {
+    top: 1%;
+    right: 1%;
+    width: 100px;
+    height: 50px;
+    font-size: 3rem;
+    color: #00FF00;
+    background-color: transparent;
+    border: 1px solid #00FF00;
+    font-weight: bold;
+    transition: background-color 0.5s;
+    z-index: -1000;
+}
+
+#skip-intro-btn:hover {
+    background-color: #00ff0029;
+}
+
+#display-content {
+    width: fit-content;
+    height: fit-content;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
 }

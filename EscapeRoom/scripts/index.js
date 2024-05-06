@@ -17,11 +17,11 @@ const introElement = {
 
 // Image data
 const images = {
-    menu: { src: './assets/main.svg', scale: 2, offset: -810, max: -630 },
-    lab1: { src: './assets/lab1.svg', scale: 1.5, offset: -500, max: 0 },
-    lab2: { src: './assets/lab2.svg', scale: 1.82, offset: -710, max: -410 },
-    lab3: { src: './assets/lab3.svg', scale: 1.7, offset: -640, max: -250 },
-    exit: { src: './assets/exit2.svg', scale: 1.8, offset: -700, max: -380 }
+    menu: { src: './assets/menu.png', width: 1600 * 2.5, height: 590 * 2.5, boxes: [] },
+    lab1: { src: './assets/lab1.png', width: 1854 * 2, height: 918 * 2, boxes: ['lab1-box1'] },
+    lab2: { src: './assets/lab2.png', width: 1603 * 2.5, height: 627 * 2.5, boxes: [] },
+    lab3: { src: './assets/lab3.png', width: 1602 * 2.5, height: 685 * 2.5, boxes: [] },
+    exit: { src: './assets/exit.png', width: 1790 * 2.5, height: 635 * 2.5, boxes: [] }
 };
 
 // Introduction text
@@ -34,11 +34,21 @@ const introTexts = [
 
 // Animation variables
 let x = 0;
+let y = 0;
 let speed = -1;
-let position = -1000;
+let instructionPosition = -1000;
+let skipButtonPosition = -1000;
+let interactiveBoxPosition = 1000;
 let overlayOpacity = 0.8;
-let currentImg = images['menu'];
+let currentImg = images['exit'];
 let lastRefreshRate = 0;
+let imageScale = 1.5;
+
+// Key state variables
+let leftArrowPressed = false;
+let rightArrowPressed = false;
+let upArrowPressed = false;
+let downArrowPressed = false;
 
 // Game state variables
 let atMainPage = true;
@@ -46,6 +56,7 @@ let atIntro = false;
 let atInstruction = false;
 let atGame = false;
 let initialInstructions = true;
+let hasDisplayedContent = false;
 
 // Set canvas size to full screen function
 function setCanvasSize() {
@@ -58,9 +69,7 @@ setCanvasSize();
 function renderImage(targetImage) {
     const image = new Image();
     image.src = targetImage.src;
-    let newWidth = image.width * targetImage.scale;
-    let newHeight = image.height * targetImage.scale;
-    ctx.drawImage(image, x, targetImage.offset, newWidth, newHeight);
+    ctx.drawImage(image, x, y, targetImage.width, targetImage.height);
 }
 
 // Function to load text letter by letter
@@ -91,6 +100,7 @@ function loadIntroTextSequentially(currentIndex) {
             atIntro = !atIntro;
             atGame = !atGame;
             startBtn.disabled = true;
+            skipBtn.style.zIndex = -skipButtonPosition;
         }, 5000);
 
         // If currentIndex is greater than or equal to the length, stop recursion
@@ -110,10 +120,63 @@ function loadIntroTextSequentially(currentIndex) {
     }, 2000);
 }
 
+// Function that loads other HTML files
+function loadContent(content) {
+    // Create a new XMLHttpRequest object
+    const xhr = new XMLHttpRequest();
+
+    // Define the file you want to load
+    const fileUrl = './morseCodeChart.html';
+
+    // Make a GET request to fetch the HTML content
+    xhr.open('GET', fileUrl, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // On successful request, insert the HTML content into the specified div
+            document.getElementById('display-content').innerHTML = xhr.responseText;
+            hasDisplayedContent = !hasDisplayedContent;
+        }
+    };
+    xhr.send();
+}
+
+// Function that displays interactive boxes
+function displayBoxes(currentImg) {
+    const boxes = currentImg.boxes;
+    const elementArray = [];
+    boxes.forEach(element => {
+        elementArray.push(document.getElementById(element));
+    })
+    // console.log(elementArray);
+}
+
 // Function to toggle pause
 function togglePause() {
-    position = -position;
-    instructionPage.style.zIndex = position;
+    instructionPosition = -instructionPosition;
+    instructionPage.style.zIndex = instructionPosition;
+}
+
+function moveBackground(targetImage) {
+    let dx = 0;
+    let dy = 0;
+    let borderX = (canvas.width - targetImage.width);
+    let borderY = (canvas.height - targetImage.height);
+
+    if (leftArrowPressed && x < 0) {
+        dx += 20;
+    }
+    if (rightArrowPressed && x > borderX) {
+        dx -= 20;
+    }
+    if (upArrowPressed && y < 0) {
+        dy += 20;
+    }
+    if (downArrowPressed && y > borderY) {
+        dy -= 20;
+    }
+
+    x += dx;
+    y += dy;
 }
 
 // Function for Main page
@@ -122,7 +185,7 @@ function mainPageFunction(deltaTime) {
     if (x > 0 || x < currentImg.max) {
         speed = -speed;
     }
-    x += speed * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
+    // x += speed * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
 }
 
 // Function for Introduction
@@ -132,6 +195,7 @@ function introductionFunction(deltaTime) {
         overlayOpacity += 0.005 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else {
         x = 0;
+        y = 0;
         currentImg = images['lab1'];
     }
 }
@@ -167,9 +231,13 @@ function animate(timestamp) {
         introductionFunction(deltaTime);
     } else if (atInstruction) {
         instructionsFunction(deltaTime);
+    } else if (atGame) {
+        moveBackground(currentImg);
     }
 
     renderImage(currentImg);
+    displayBoxes(currentImg);
+    moveBackground(currentImg);
 }
 animate(1); // Start animation loop
 
@@ -178,8 +246,10 @@ startBtn.addEventListener('click', () => {
     atMainPage = !atMainPage;
     atIntro = !atIntro;
     loadIntroTextSequentially(0)
-    skipBtn.disabled = false;
-})
+    setTimeout(() => {
+        skipBtn.style.zIndex = -skipButtonPosition;
+    }, 2000);
+});
 
 skipBtn.addEventListener('click', () => {
     atInstruction = !atInstruction;
@@ -187,20 +257,32 @@ skipBtn.addEventListener('click', () => {
     atGame = !atGame;
     startBtn.disabled = true;
     skipBtn.disabled = true;
-})
+    skipBtn.style.zIndex = skipButtonPosition;
+});
 
-window.addEventListener('keydown', (event) => {
-    // Check if game state is at game
-    if (!atGame) {
-        return; // Interrupt function if not
+window.addEventListener('keydown', function(event) {
+    if (event.key === 'ArrowLeft') {
+        leftArrowPressed = true;
+    } else if (event.key === 'ArrowRight') {
+        rightArrowPressed = true;
+    } else if (event.key === 'ArrowUp') {
+        upArrowPressed = true;
+    } else if (event.key === 'ArrowDown') {
+        downArrowPressed = true;
     }
-    
-    if (event.key === 'ArrowLeft' && x < 0) {
-        x += 10;
-    } else if (event.key === 'ArrowRight' && x > currentImg.max) {
-        x -= 10;
+  });
+  
+window.addEventListener('keyup', function(event) {
+    if (event.key === 'ArrowLeft') {
+        leftArrowPressed = false;
+    } else if (event.key === 'ArrowRight') {
+        rightArrowPressed = false;
+    }else if (event.key === 'ArrowUp') {
+        upArrowPressed = false;
+    } else if (event.key === 'ArrowDown') {
+        downArrowPressed = false;
     }
-})
+});
 
 // Event listener for the Escape key
 window.addEventListener('keydown', (e) => {
@@ -215,4 +297,19 @@ Object.keys(images).slice(1).forEach(key => {
         x = 0;
         currentImg = images[key];
     });
+});
+
+document.getElementById('lab1-box1').addEventListener('click', () => {
+    loadContent();
+});
+
+window.addEventListener('mousedown', () => {
+    if (hasDisplayedContent) {
+        document.getElementById('display-content').innerHTML = '';
+        hasDisplayedContent = !hasDisplayedContent;
+    }
+});
+
+window.addEventListener('resize', () => {
+    setCanvasSize();
 });
