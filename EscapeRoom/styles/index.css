@@ -136,9 +136,10 @@ li {
 .interactive-box {
     position: fixed;
     border: 5px solid white;
+    background-color: rgba(255, 255, 255, 0.358);
     opacity: 0;
     transition: opacity 0.3s;
-    z-index: 1;
+    z-index: -1000;
 }
 
 .interactive-box:hover {
@@ -146,17 +147,17 @@ li {
 }
 
 #lab1-box1 {
-    top: 785px;
-    left: 415px;
-    width: 85px;
-    height: 75px;
+    top: 1375px;
+    left: 850px;
+    width: 160px;
+    height: 120px;
 }
 
 #lab1-box2 {
-    top: 100px;
-    left: 100px;
-    width: 100px;
-    height: 100px;
+    top: 950px;
+    left: 3365px;
+    width: 435px;
+    height: 340px;
 }
 
 button {

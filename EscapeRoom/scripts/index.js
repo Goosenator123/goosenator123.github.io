@@ -17,10 +17,10 @@ const introElement = {
 
 // Image data
 const images = {
-    menu: { src: './assets/menu.png', width: 1600 * 2.5, height: 590 * 2.5, boxes: [] },
-    lab1: { src: './assets/lab1.png', width: 1854 * 2, height: 918 * 2, boxes: ['lab1-box1'] },
-    lab2: { src: './assets/lab2.png', width: 1603 * 2.5, height: 627 * 2.5, boxes: [] },
-    lab3: { src: './assets/lab3.png', width: 1602 * 2.5, height: 685 * 2.5, boxes: [] },
+    menu: { src: './assets/menu.png', width: 1590 * 2.5, height: 580 * 2.5, boxes: [] },
+    lab1: { src: './assets/lab1.png', width: 1900 * 2, height: 800 * 2, boxes: ['lab1-box1', 'lab1-box2'] },
+    lab2: { src: './assets/lab2.png', width: 1600 * 2.5, height: 627 * 2.5, boxes: [] },
+    lab3: { src: './assets/lab3.png', width: 1600 * 2.5, height: 675 * 2.5, boxes: [] },
     exit: { src: './assets/exit.png', width: 1790 * 2.5, height: 635 * 2.5, boxes: [] }
 };
 
@@ -32,15 +32,22 @@ const introTexts = [
     'Time ticks away as you delve into the mysteries lurking within these forsaken walls, your very survival hanging in the balance.'
 ];
 
+// Initial coordinates of interactive boxes
+let initialBoxCoodinate = {
+    'lab1-box1': { topValue: 1375, leftValue: 850},
+    'lab1-box2': { topValue: 950, leftValue: 3365}
+}
+
 // Animation variables
 let x = 0;
 let y = 0;
-let speed = -1;
-let instructionPosition = -1000;
+let menuDeltaX = -3;
+let menuDeltaY = -3;
+let instructionPosition = -2000;
 let skipButtonPosition = -1000;
 let interactiveBoxPosition = 1000;
 let overlayOpacity = 0.8;
-let currentImg = images['exit'];
+let currentImg = images['menu'];
 let lastRefreshRate = 0;
 let imageScale = 1.5;
 
@@ -63,7 +70,6 @@ function setCanvasSize() {
     canvas.width = innerWidth;
     canvas.height = innerHeight;
 }
-setCanvasSize();
 
 // Function to render image
 function renderImage(targetImage) {
@@ -82,6 +88,71 @@ function loadText(text, element) {
     }, 50);
 }
 
+// Function that loads other HTML files
+function loadContent(content) {
+    // Create a new XMLHttpRequest object
+    const xhr = new XMLHttpRequest();
+
+    // Define the file you want to load
+    const fileUrl = './morseCodeChart.html';
+
+    // Make a GET request to fetch the HTML content
+    xhr.open('GET', fileUrl, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            // On successful request, insert the HTML content into the specified div
+            document.getElementById(content).innerHTML = xhr.responseText;
+            hasDisplayedContent = !hasDisplayedContent;
+        }
+    };
+    xhr.send();
+}
+
+// Function that moves the background and the interactive boxes of the associated background
+function moveBackground(targetImage) {
+    let dx = 0;
+    let dy = 0;
+    let borderX = (canvas.width - targetImage.width);
+    let borderY = (canvas.height - targetImage.height);
+
+    if (leftArrowPressed && x < 0) {
+        dx += 20;
+    }
+    if (rightArrowPressed && x > borderX) {
+        dx -= 20;
+    }
+    if (upArrowPressed && y < 0) {
+        dy += 20;
+    }
+    if (downArrowPressed && y > borderY) {
+        dy -= 20;
+    }
+
+    // Move interactive boxes along with the background
+    const boxElement = targetImage.boxes;
+    boxElement.forEach(element => {
+        // Get the element
+        const targetElement = document.getElementById(element);
+
+        // Get the computed style of the element
+        const computedStyle = window.getComputedStyle(targetElement);
+
+        // Get the value of the 'top' and 'left' style property
+        let topValue = parseInt(computedStyle.getPropertyValue('top'));
+        let leftValue = parseInt(computedStyle.getPropertyValue('left'));
+
+        // Move
+        topValue += dy;
+        leftValue += dx;
+
+        targetElement.style.top = `${topValue}px`;
+        targetElement.style.left = `${leftValue}px`;
+    });
+
+    x += dx;
+    y += dy;
+}
+
 // Function that loads intro text sequentially
 function loadIntroTextSequentially(currentIndex) {
     // Check if game is at Intro
@@ -98,7 +169,6 @@ function loadIntroTextSequentially(currentIndex) {
         setTimeout(() => {
             atInstruction = !atInstruction;
             atIntro = !atIntro;
-            atGame = !atGame;
             startBtn.disabled = true;
             skipBtn.style.zIndex = -skipButtonPosition;
         }, 5000);
@@ -120,34 +190,19 @@ function loadIntroTextSequentially(currentIndex) {
     }, 2000);
 }
 
-// Function that loads other HTML files
-function loadContent(content) {
-    // Create a new XMLHttpRequest object
-    const xhr = new XMLHttpRequest();
+// Function to toggle display of interactive boxes
+function toggleBoxes(currentImg, show) {
+    const boxElement = currentImg.boxes;
+    const zIndex = show ? 1000 : -1000;
+    boxElement.forEach(element => {
+        const currentElement = document.getElementById(element);
+        currentElement.style.zIndex = zIndex;
 
-    // Define the file you want to load
-    const fileUrl = './morseCodeChart.html';
-
-    // Make a GET request to fetch the HTML content
-    xhr.open('GET', fileUrl, true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            // On successful request, insert the HTML content into the specified div
-            document.getElementById('display-content').innerHTML = xhr.responseText;
-            hasDisplayedContent = !hasDisplayedContent;
+        if (atGame) {
+            currentElement.style.top = `${initialBoxCoodinate[element].topValue}px`;
+            currentElement.style.left = `${initialBoxCoodinate[element].leftValue}px`;
         }
-    };
-    xhr.send();
-}
-
-// Function that displays interactive boxes
-function displayBoxes(currentImg) {
-    const boxes = currentImg.boxes;
-    const elementArray = [];
-    boxes.forEach(element => {
-        elementArray.push(document.getElementById(element));
-    })
-    // console.log(elementArray);
+    });
 }
 
 // Function to toggle pause
@@ -156,36 +211,18 @@ function togglePause() {
     instructionPage.style.zIndex = instructionPosition;
 }
 
-function moveBackground(targetImage) {
-    let dx = 0;
-    let dy = 0;
-    let borderX = (canvas.width - targetImage.width);
-    let borderY = (canvas.height - targetImage.height);
-
-    if (leftArrowPressed && x < 0) {
-        dx += 20;
-    }
-    if (rightArrowPressed && x > borderX) {
-        dx -= 20;
-    }
-    if (upArrowPressed && y < 0) {
-        dy += 20;
-    }
-    if (downArrowPressed && y > borderY) {
-        dy -= 20;
-    }
-
-    x += dx;
-    y += dy;
-}
-
 // Function for Main page
 function mainPageFunction(deltaTime) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (x > 0 || x < currentImg.max) {
-        speed = -speed;
+    if (x > 0 || x < (canvas.width - currentImg.width)) {
+        menuDeltaX = -menuDeltaX;
     }
-    // x += speed * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
+
+    if (y > 0 || y < (canvas.height - currentImg.height)) {
+        menuDeltaY = -menuDeltaY;
+    }
+    x += menuDeltaX * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
+    y += menuDeltaY * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
 }
 
 // Function for Introduction
@@ -212,6 +249,9 @@ function instructionsFunction(deltaTime) {
         overlayOpacity -= 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (initialInstructions) {
         togglePause();
+        toggleBoxes(currentImg, true);
+        atGame = !atGame;
+        atInstruction = !atInstruction;
         introContainer.style.zIndex = -100;
         initialInstructions = !initialInstructions;
     }
@@ -236,12 +276,18 @@ function animate(timestamp) {
     }
 
     renderImage(currentImg);
-    displayBoxes(currentImg);
-    moveBackground(currentImg);
+    // moveBackground(currentImg);
+    // toggleBoxes(currentImg, true); // For Testing purposes
+    // console.log(x, y)
+
 }
 animate(1); // Start animation loop
 
 // Event Listeners
+window.onload = () => {
+    setCanvasSize();
+}
+
 startBtn.addEventListener('click', () => {
     atMainPage = !atMainPage;
     atIntro = !atIntro;
@@ -254,7 +300,6 @@ startBtn.addEventListener('click', () => {
 skipBtn.addEventListener('click', () => {
     atInstruction = !atInstruction;
     atIntro = !atIntro;
-    atGame = !atGame;
     startBtn.disabled = true;
     skipBtn.disabled = true;
     skipBtn.style.zIndex = skipButtonPosition;
@@ -295,12 +340,20 @@ window.addEventListener('keydown', (e) => {
 Object.keys(images).slice(1).forEach(key => {
     document.getElementById(key).addEventListener('click', () => {
         x = 0;
+        y = 0;
+        toggleBoxes(currentImg, false);
         currentImg = images[key];
+        toggleBoxes(currentImg, true);
     });
 });
 
+// Event Listener for resize canvas
+window.addEventListener('resize', () => {
+    setCanvasSize();
+});
+
 document.getElementById('lab1-box1').addEventListener('click', () => {
-    loadContent();
+    loadContent('display-content');
 });
 
 window.addEventListener('mousedown', () => {
@@ -308,8 +361,4 @@ window.addEventListener('mousedown', () => {
         document.getElementById('display-content').innerHTML = '';
         hasDisplayedContent = !hasDisplayedContent;
     }
-});
-
-window.addEventListener('resize', () => {
-    setCanvasSize();
 });
