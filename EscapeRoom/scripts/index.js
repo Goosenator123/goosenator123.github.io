@@ -33,22 +33,20 @@ const introTexts = [
 ];
 
 // Initial coordinates of interactive boxes
-let initialBoxCoodinate = {
-    'lab1-box1': { topValue: 1375, leftValue: 850},
-    'lab1-box2': { topValue: 950, leftValue: 3365}
+const interactiveBoxData = {
+    'lab1-box1': { topValue: 1375, leftValue: 850, src: './assets/morseCodeChart.jpg', imageWidth: 800, imageHeight: 600 },
+    'lab1-box2': { topValue: 950, leftValue: 3365, src: './assets/bombing.png', imageWidth: 1200, imageHeight: 600 }
 }
 
 // Animation variables
-let x = 0;
-let y = 0;
-let menuDeltaX = -3;
-let menuDeltaY = -3;
-let instructionPosition = -2000;
-let skipButtonPosition = -1000;
-let interactiveBoxPosition = 1000;
-let overlayOpacity = 0.8;
+let x = 0, y = 0; 
 let currentImg = images['menu'];
 let lastRefreshRate = 0;
+let overlayOpacity = 0.8, introductionOpacity = 1;
+
+let menuDeltaX = -3;
+let menuDeltaY = -1;
+let instructionPosition = -2000;
 let imageScale = 1.5;
 
 // Key state variables
@@ -62,6 +60,7 @@ let atMainPage = true;
 let atIntro = false;
 let atInstruction = false;
 let atGame = false;
+let initialIntroduction = true;
 let initialInstructions = true;
 let hasDisplayedContent = false;
 
@@ -88,45 +87,39 @@ function loadText(text, element) {
     }, 50);
 }
 
-// Function that loads other HTML files
+// Function to load content into a container
 function loadContent(content) {
-    // Create a new XMLHttpRequest object
-    const xhr = new XMLHttpRequest();
+    // Create an image element
+    const img = document.createElement('img');
+    
+    // Get the container where the content will be displayed
+    const container = document.getElementById('display-content');
 
-    // Define the file you want to load
-    const fileUrl = './morseCodeChart.html';
+    // Get the Image data
+    const imageData = interactiveBoxData[content];
 
-    // Make a GET request to fetch the HTML content
-    xhr.open('GET', fileUrl, true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            // On successful request, insert the HTML content into the specified div
-            document.getElementById(content).innerHTML = xhr.responseText;
-            hasDisplayedContent = !hasDisplayedContent;
-        }
-    };
-    xhr.send();
+    // Set the image source and dimensions
+    img.src = imageData.src;
+    img.width = imageData.imageWidth;
+    img.height = imageData.imageHeight;
+
+    // Append the image to the container
+    container.appendChild(img);
+
+    // Update the state to indicate content has been displayed
+    hasDisplayedContent = !hasDisplayedContent;
 }
 
 // Function that moves the background and the interactive boxes of the associated background
 function moveBackground(targetImage) {
-    let dx = 0;
-    let dy = 0;
+    let dx = 0, dy = 0;
     let borderX = (canvas.width - targetImage.width);
     let borderY = (canvas.height - targetImage.height);
 
-    if (leftArrowPressed && x < 0) {
-        dx += 20;
-    }
-    if (rightArrowPressed && x > borderX) {
-        dx -= 20;
-    }
-    if (upArrowPressed && y < 0) {
-        dy += 20;
-    }
-    if (downArrowPressed && y > borderY) {
-        dy -= 20;
-    }
+    if (leftArrowPressed && x < 0) dx += 20;
+    if (rightArrowPressed && x > borderX) dx -= 20;
+    if (upArrowPressed && y < 0) dy += 20;
+    if (downArrowPressed && y > borderY) dy -= 20;
 
     // Move interactive boxes along with the background
     const boxElement = targetImage.boxes;
@@ -156,9 +149,7 @@ function moveBackground(targetImage) {
 // Function that loads intro text sequentially
 function loadIntroTextSequentially(currentIndex) {
     // Check if game is at Intro
-    if (!atIntro) {
-        return;
-    }
+    if (!atIntro) return;
 
     // Get the length of the introText object by counting its keys
     const introTextLength = introTexts.length;
@@ -167,10 +158,10 @@ function loadIntroTextSequentially(currentIndex) {
     if (currentIndex >= introTextLength) {
         // Change scene
         setTimeout(() => {
-            atInstruction = !atInstruction;
-            atIntro = !atIntro;
+            atInstruction = true;
+            atIntro = false;
             startBtn.disabled = true;
-            skipBtn.style.zIndex = -skipButtonPosition;
+            skipBtn.style.zIndex = -2000;
         }, 5000);
 
         // If currentIndex is greater than or equal to the length, stop recursion
@@ -183,10 +174,7 @@ function loadIntroTextSequentially(currentIndex) {
         loadText(introTexts[currentIndex], introElement[currentIndex + 1]);
         
         // Set a timout to let loadText() finish loading the text
-        setTimeout(() => {
-            // Call the function recursively for the next index
-            loadIntroTextSequentially(currentIndex + 1); // Call the function recursively for the next index
-        }, 5000);
+        setTimeout(() => loadIntroTextSequentially(currentIndex + 1), 5000);
     }, 2000);
 }
 
@@ -199,8 +187,9 @@ function toggleBoxes(currentImg, show) {
         currentElement.style.zIndex = zIndex;
 
         if (atGame) {
-            currentElement.style.top = `${initialBoxCoodinate[element].topValue}px`;
-            currentElement.style.left = `${initialBoxCoodinate[element].leftValue}px`;
+            const { topValue, leftValue } = interactiveBoxData[element];
+            currentElement.style.top = `${topValue}px`;
+            currentElement.style.left = `${leftValue}px`;
         }
     });
 }
@@ -214,13 +203,8 @@ function togglePause() {
 // Function for Main page
 function mainPageFunction(deltaTime) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (x > 0 || x < (canvas.width - currentImg.width)) {
-        menuDeltaX = -menuDeltaX;
-    }
-
-    if (y > 0 || y < (canvas.height - currentImg.height)) {
-        menuDeltaY = -menuDeltaY;
-    }
+    if (x > 0 || x < (canvas.width - currentImg.width)) menuDeltaX = -menuDeltaX;
+    if (y > 0 || y < (canvas.height - currentImg.height)) menuDeltaY = -menuDeltaY;
     x += menuDeltaX * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
     y += menuDeltaY * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
 }
@@ -230,30 +214,37 @@ function introductionFunction(deltaTime) {
     if (overlayOpacity < 1) {
         overlay.style.backgroundColor = `rgba(0, 0, 0, ${overlayOpacity})`;
         overlayOpacity += 0.005 * (deltaTime / 16); // Scale opacity change by deltaTime
-    } else {
+    } else if (initialIntroduction) {
         x = 0;
         y = 0;
         currentImg = images['lab1'];
+        togglePause();
+        initialIntroduction = false;
     }
 }
 
 // Function for Instructions
 function instructionsFunction(deltaTime) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (overlayOpacity > 0) {
-        overlay.style.backgroundColor = `rgba(0, 0, 0, ${overlayOpacity})`;
+    if (introductionOpacity > 0) {
         for (let key in introElement) {
-            introElement[key].style.opacity = overlayOpacity;
+            introElement[key].style.opacity = introductionOpacity;
         }
-        
+        startBtn.disabled = true;
+        skipBtn.disabled = true;
+        skipBtn.style.opacity = introductionOpacity
+        introductionOpacity -= 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
+    } else if (overlayOpacity > 0) {
+        overlay.style.backgroundColor = `rgba(0, 0, 0, ${overlayOpacity})`;
         overlayOpacity -= 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (initialInstructions) {
-        togglePause();
         toggleBoxes(currentImg, true);
-        atGame = !atGame;
-        atInstruction = !atInstruction;
-        introContainer.style.zIndex = -100;
-        initialInstructions = !initialInstructions;
+        atGame = true;
+        atInstruction = false;
+        overlay.style.zIndex = -1;
+        introContainer.style.zIndex = -3000;
+        initialInstructions = false;
+        skipBtn.style.zIndex = -2000;
     }
 }
 
@@ -265,67 +256,73 @@ function animate(timestamp) {
     const deltaTime = timestamp - lastRefreshRate;
     lastRefreshRate = timestamp;
     
-    if (atMainPage) {
-        mainPageFunction(deltaTime);
-    } else if (atIntro) {
-        introductionFunction(deltaTime);
-    } else if (atInstruction) {
-        instructionsFunction(deltaTime);
-    } else if (atGame) {
-        moveBackground(currentImg);
-    }
+    if (atMainPage) mainPageFunction(deltaTime);
+    else if (atIntro) introductionFunction(deltaTime);
+    else if (atInstruction) instructionsFunction(deltaTime);
+    else if (atGame) moveBackground(currentImg);
 
     renderImage(currentImg);
-    // moveBackground(currentImg);
+    // moveBackground(currentImg); // For Testing purposes
     // toggleBoxes(currentImg, true); // For Testing purposes
-    // console.log(x, y)
+    // console.log(x, y) // For Testing purposes
 
 }
-animate(1); // Start animation loop
 
 // Event Listeners
 window.onload = () => {
     setCanvasSize();
+    animate(1); // Start animation loop
 }
 
 startBtn.addEventListener('click', () => {
-    atMainPage = !atMainPage;
-    atIntro = !atIntro;
+    atMainPage = false;
+    atIntro = true;
+    overlay.style.zIndex = 3000;
+    introContainer.style.zIndex = 3000;
     loadIntroTextSequentially(0)
     setTimeout(() => {
-        skipBtn.style.zIndex = -skipButtonPosition;
+        skipBtn.style.zIndex = 3000;
     }, 2000);
 });
 
 skipBtn.addEventListener('click', () => {
-    atInstruction = !atInstruction;
-    atIntro = !atIntro;
+    atInstruction = true;
+    atIntro = false;
     startBtn.disabled = true;
     skipBtn.disabled = true;
-    skipBtn.style.zIndex = skipButtonPosition;
 });
 
 window.addEventListener('keydown', function(event) {
-    if (event.key === 'ArrowLeft') {
-        leftArrowPressed = true;
-    } else if (event.key === 'ArrowRight') {
-        rightArrowPressed = true;
-    } else if (event.key === 'ArrowUp') {
-        upArrowPressed = true;
-    } else if (event.key === 'ArrowDown') {
-        downArrowPressed = true;
+    switch (event.key) {
+        case 'ArrowLeft':
+            leftArrowPressed = true;
+            break;
+        case 'ArrowRight':
+            rightArrowPressed = true;
+            break;
+        case 'ArrowUp':
+            upArrowPressed = true;
+            break;
+        case 'ArrowDown':
+            downArrowPressed = true;
+            break;
     }
   });
   
 window.addEventListener('keyup', function(event) {
-    if (event.key === 'ArrowLeft') {
-        leftArrowPressed = false;
-    } else if (event.key === 'ArrowRight') {
-        rightArrowPressed = false;
-    }else if (event.key === 'ArrowUp') {
-        upArrowPressed = false;
-    } else if (event.key === 'ArrowDown') {
-        downArrowPressed = false;
+    switch (event.key) {
+        case 'ArrowLeft':
+            leftArrowPressed = false;
+            break;
+        case 'ArrowRight':
+            rightArrowPressed = false;
+            break;
+        case 'ArrowUp':
+            upArrowPressed = false;
+            break;
+        case 'ArrowDown':
+            downArrowPressed = false;
+            break;
     }
 });
 
@@ -344,6 +341,7 @@ Object.keys(images).slice(1).forEach(key => {
         toggleBoxes(currentImg, false);
         currentImg = images[key];
         toggleBoxes(currentImg, true);
+        togglePause();
     });
 });
 
@@ -352,9 +350,11 @@ window.addEventListener('resize', () => {
     setCanvasSize();
 });
 
-document.getElementById('lab1-box1').addEventListener('click', () => {
-    loadContent('display-content');
-});
+Object.keys(interactiveBoxData).forEach(key => {
+    document.getElementById(key).addEventListener('click', () => {
+        loadContent(key);
+    });
+})
 
 window.addEventListener('mousedown', () => {
     if (hasDisplayedContent) {

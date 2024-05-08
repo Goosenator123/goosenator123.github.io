@@ -33,7 +33,7 @@
     <div id="instructions">
         <h2 class="subtitle">Instructions</h2>
         <ul>
-            <li>Press left and right arrow to move around</li>
+            <li>Press arrow keys to move around</li>
             <li>Hover over objects to check if they can be interacted with</li>
         </ul>
         <div class="divider"></div>
@@ -41,29 +41,33 @@
         <div id="area-container">
             <!-- Image Containers -->
             <div class="img-container" id="lab1">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
                     <image href="./assets/lab1.svg" width="200" height="80"/>
                 </svg>
             </div>
             
             <div class="img-container" id="lab2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
                     <image href="./assets/lab2.svg" width="200" height="80"/>
                 </svg>
             </div>
             
             <div class="img-container" id="lab3">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
                     <image href="./assets/lab3.svg" width="200" height="80"/>
                 </svg>
             </div>
             
             <div class="img-container" id="exit">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
                     <image href="./assets/exit2.svg" width="200" height="80"/>
                 </svg>
             </div>
         </div>
+        <div class="divider"></div>
+        <footer>
+            <p>Press &lt;Esc&gt; to hide/show instructions</p>
+        </footer>
     </div>
 
     <div class="interactive-box" id="lab1-box1"></div>
@@ -71,7 +75,6 @@
     <div id="display-content"></div>
 
     <!-- Link to external JavaScript -->
-    <script src="./scripts/toolBox.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 </html>

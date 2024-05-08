@@ -1,10 +1,10 @@
-/* Font face for custom Terminal font */
+/* Fonts */
 @font-face {
     font-family: 'Terminal';
     src: url('../assets/_decterm.ttf') format('truetype');
 }
 
-/* Global styles */
+/* Global Styles */
 * {
     font-size: 10px;
     font-family: 'Terminal';
@@ -14,7 +14,7 @@
     user-select: none;
 }
 
-/* Body styles */
+/* Layout */
 body {
     padding: 0;
     margin: 0;
@@ -22,7 +22,7 @@ body {
     position: relative;
 }
 
-/* Background Canvas */
+/* Background */
 #backgroundCanvas {
     background-color: black;
     z-index: -100;
@@ -35,12 +35,12 @@ body {
     position: fixed;
     width: 100%;
     height: 100%;
-    /* background-color: rgba(0, 0, 0, 0.8); */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: -1;
     top: 0;
 }
 
-/* Introduction Container */
+/* Introduction */
 #intro-container {
     position: fixed;
     top: 40%;
@@ -49,13 +49,12 @@ body {
     width: 50%;
 }
 
-/* Introduction Paragraph */
 .intro-paragraph {
     font-size: 3rem;
     color: #00FF00;
 }
 
-/* Testing Element */
+/* Testing */
 #testing {
     position: fixed;
     top: 50%;
@@ -71,68 +70,81 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white; 
-    background-color: rgba(0, 0, 0, 0.69);
+    color: #00FF00; 
+    background-color: rgb(0, 0, 0);
     padding: 30px 20px;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+    text-align: center;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    min-width: 800px;
-    z-index: -1000;
+    flex-direction: column;
 }
 
-/* Subtitle */
 .subtitle {
-    color: white;
+    color: #00FF00;
     font-size: 6rem;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
-/* Unordered List Container */
+/* Lists */
 ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    min-width: fit-content;
+    margin: auto;
+    width: 1%;
 }
 
-/* List Item */
 li {
     font-size: 2.5rem;
     margin-left: 30px;
     margin-bottom: 10px;
 }
 
-/* Area Container */
+/* Image Containers */
 #area-container {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 50%;
+    gap: 40px;
+    height: fit-content;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin: auto;
 }
 
-/* Image Container */
 .img-container {
-    width: 400px;
-    height: 100px;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-/* Image Container Hover */
-.img-container:hover {
-    border: 5px dashed white;
+svg {
+    width: fit-content;
+    transition: width 0.1s, height 0.1s;
+    width: 300px;
+}
+
+.img-container:hover > svg {
+    width:  350px;
 }
 
 /* Divider */
 .divider {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #00FF00;
     width: 100%;
+    margin: 40px 0;
 }
 
+/* Interactive Boxes */
 .interactive-box {
     position: fixed;
     border: 5px solid white;
@@ -160,6 +172,13 @@ li {
     height: 340px;
 }
 
+/* Footer */
+footer > p {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+/* Buttons */
 button {
     position: fixed;
 }
@@ -190,4 +209,5 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
+    z-index: 2000;
 }
