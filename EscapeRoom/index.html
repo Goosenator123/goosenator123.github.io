@@ -7,6 +7,9 @@
 
     <!-- Link to external CSS -->
     <link rel="stylesheet" href="./styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Background Canvas -->
@@ -30,41 +33,35 @@
     <button id="skip-intro-btn">Skip</button>
 
     <!-- Instructions -->
-    <div id="instructions">
-        <h2 class="subtitle">Instructions</h2>
-        <ul>
-            <li>Press arrow keys to move around</li>
-            <li>Hover over objects to check if they can be interacted with</li>
-        </ul>
-        <div class="divider"></div>
-        <h2 class="subtitle">Go to:</h2>
-        <div id="area-container">
-            <!-- Image Containers -->
-            <div class="img-container" id="lab1">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
-                    <image href="./assets/lab1.svg" width="200" height="80"/>
-                </svg>
+    <div id="instruction-container">
+        <section id="intructions">
+            <h2 class="subtitle">Instructions</h2>
+            <ul>
+                <li>Press arrow keys to move around</li>
+                <li>Hover over objects to check if they can be interacted with</li>
+            </ul>
+        </section>
+        <section id="locations">
+            <h2 class="subtitle">Go to:</h2>
+            <div id="area-container">
+                <!-- Image Containers -->
+                <div class="img-container" id="lab1">
+                    <img src="./assets/lab1.png" class="area-img" width="200" height="80"/>
+                </div>
+                
+                <div class="img-container" id="lab2">
+                    <img src="./assets/lab2.png" class="area-img" width="200" height="80"/>
+                </div>
+                
+                <div class="img-container" id="lab3">
+                    <img src="./assets/lab3.png" class="area-img" width="200" height="80"/>
+                </div>
+                
+                <div class="img-container" id="exit">
+                    <img src="./assets/exit.png" class="area-img" width="200" height="80"/>
+                </div>
             </div>
-            
-            <div class="img-container" id="lab2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
-                    <image href="./assets/lab2.svg" width="200" height="80"/>
-                </svg>
-            </div>
-            
-            <div class="img-container" id="lab3">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
-                    <image href="./assets/lab3.svg" width="200" height="80"/>
-                </svg>
-            </div>
-            
-            <div class="img-container" id="exit">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
-                    <image href="./assets/exit2.svg" width="200" height="80"/>
-                </svg>
-            </div>
-        </div>
-        <div class="divider"></div>
+        </section>
         <footer>
             <p>Press &lt;Esc&gt; to hide/show instructions</p>
         </footer>
@@ -72,6 +69,13 @@
 
     <div class="interactive-box" id="lab1-box1"></div>
     <div class="interactive-box" id="lab1-box2"></div>
+    <div class="interactive-box" id="lab2-box1"></div>
+    <div class="interactive-box" id="lab2-box2"></div>
+    <div class="interactive-box" id="lab2-box3"></div>
+    <div class="interactive-box" id="lab3-box1"></div>
+    <div class="interactive-box" id="lab3-box2"></div>
+    <div class="interactive-box" id="exit-box1"></div>
+    <div class="interactive-box" id="exit-box2"></div>
     <div id="display-content"></div>
 
     <!-- Link to external JavaScript -->

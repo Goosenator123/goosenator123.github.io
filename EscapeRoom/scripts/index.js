@@ -7,7 +7,7 @@ const startBtn = document.getElementById('startBtn');
 const skipBtn = document.getElementById('skip-intro-btn');
 const overlay = document.getElementById('overlay');
 const introContainer = document.getElementById('intro-container');
-const instructionPage = document.getElementById('instructions');
+const instructionPage = document.getElementById('instruction-container');
 const introElement = {
     1: document.getElementById('intro1'),
     2: document.getElementById('intro2'),
@@ -19,9 +19,9 @@ const introElement = {
 const images = {
     menu: { src: './assets/menu.png', width: 1590 * 2.5, height: 580 * 2.5, boxes: [] },
     lab1: { src: './assets/lab1.png', width: 1900 * 2, height: 800 * 2, boxes: ['lab1-box1', 'lab1-box2'] },
-    lab2: { src: './assets/lab2.png', width: 1600 * 2.5, height: 627 * 2.5, boxes: [] },
-    lab3: { src: './assets/lab3.png', width: 1600 * 2.5, height: 675 * 2.5, boxes: [] },
-    exit: { src: './assets/exit.png', width: 1790 * 2.5, height: 635 * 2.5, boxes: [] }
+    lab2: { src: './assets/lab2.png', width: 1600 * 2.5, height: 627 * 2.5, boxes: ['lab2-box1', 'lab2-box2', 'lab2-box3'] },
+    lab3: { src: './assets/lab3.png', width: 1600 * 2.5, height: 675 * 2.5, boxes: ['lab3-box1', 'lab3-box2'] },
+    exit: { src: './assets/exit.png', width: 1790 * 2.5, height: 635 * 2.5, boxes: ['exit-box1', 'exit-box2'] }
 };
 
 // Introduction text
@@ -34,11 +34,18 @@ const introTexts = [
 
 // Initial coordinates of interactive boxes
 const interactiveBoxData = {
-    'lab1-box1': { topValue: 1375, leftValue: 850, src: './assets/morseCodeChart.jpg', imageWidth: 800, imageHeight: 600 },
-    'lab1-box2': { topValue: 950, leftValue: 3365, src: './assets/bombing.png', imageWidth: 1200, imageHeight: 600 }
+    'lab1-box1': { topValue: 1375, leftValue: 850, src: './assets/morseCodeChart.jpg', imageWidth: 650, imageHeight: 450 },
+    'lab1-box2': { topValue: 950, leftValue: 3365, src: './assets/bombing.png', imageWidth: 850, imageHeight: 400 },
+    'lab2-box1': { topValue: 900, leftValue: 45, src: './assets/accelerationGravity.png', imageWidth: 900, imageHeight: 500 },
+    'lab2-box2': { topValue: 80, leftValue: 1050, src: './assets/morseCode.png', imageWidth: 1000, imageHeight: 150 },
+    'lab2-box3': { topValue: 925, leftValue: 2980, src: './assets/baseOfAllLife.png', imageWidth: 850, imageHeight: 650 },
+    'lab3-box1': { topValue: 1010, leftValue: 3600, src: './assets/carbonAtom.jpg', imageWidth: 500, imageHeight: 500 },
+    'lab3-box2': { topValue: 1410, leftValue: 410, src: './assets/harness.png', imageWidth: 850, imageHeight: 650 },
+    'exit-box1': { topValue: 785, leftValue: 1085, src: './assets/morseCodeDate.png', imageWidth: 850, imageHeight: 400 },
+    'exit-box2': { topValue: 905, leftValue: 2310, src: './assets/u235.png', imageWidth: 850, imageHeight: 650 },
 }
 
-// Animation variables
+// Animation variables850
 let x = 0, y = 0; 
 let currentImg = images['menu'];
 let lastRefreshRate = 0;
@@ -161,7 +168,6 @@ function loadIntroTextSequentially(currentIndex) {
             atInstruction = true;
             atIntro = false;
             startBtn.disabled = true;
-            skipBtn.style.zIndex = -2000;
         }, 5000);
 
         // If currentIndex is greater than or equal to the length, stop recursion
@@ -348,6 +354,10 @@ Object.keys(images).slice(1).forEach(key => {
 // Event Listener for resize canvas
 window.addEventListener('resize', () => {
     setCanvasSize();
+    x = 0;
+    y = 0;
+    toggleBoxes(currentImg, false);
+    toggleBoxes(currentImg, true);
 });
 
 Object.keys(interactiveBoxData).forEach(key => {
