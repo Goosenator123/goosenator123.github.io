@@ -14,8 +14,10 @@ const introElement = {
     3: document.getElementById('intro3'),
     4: document.getElementById('intro4')
 }
+const combinationLockContainer = document.getElementById('combination-lock-container');
 const lockElement = document.querySelectorAll('.lock');
 const unlockElement = document.querySelectorAll('.unlock');
+const gameOverScreen = document.getElementById('game-over-screen')
 
 // Image data
 const images = {
@@ -51,13 +53,15 @@ const interactiveBoxData = {
 // Animation variables850
 let x = 0, y = 0; 
 let currentImg = images['menu'];
-let lastRefreshRate = 0;
-let overlayOpacity = 0.8, introductionOpacity = 1;
+let overlayOpacity = 0.8, introductionOpacity = 1, lockOpacity = 1;
 let overlayZindex = 3000;
-let menuDeltaX = -3;
-let menuDeltaY = -1;
 let instructionPosition = -2000;
-let imageScale = 1.5;
+let lastRefreshRate = 0;
+let particles;
+const menuDeltaX = -3;
+const menuDeltaY = -1;
+const gravity = 0.03;
+const friction = 0.99;
 
 // Key state variables
 let leftArrowPressed = false;
@@ -74,11 +78,40 @@ let atEnd = false;
 let initialIntroduction = true;
 let initialInstructions = true;
 let hasDisplayedContent = false;
+let celebration = false;
 
-// Set canvas size to full screen function
+// Set initial position of mouse
+const mouse = {
+    x: innerWidth / 2,
+    y: innerHeight / 2
+};
+
+// Color Array
+let colorArray = [
+    '#9d0208',
+    '#d00000',
+    '#dc2f02',
+    '#f48c06',
+    '#f48c06'
+];
+
+// Function that sets canvas size to full viewport
 function setCanvasSize() {
     canvas.width = innerWidth;
     canvas.height = innerHeight;
+}
+
+// Function that clears canvas
+function clearScreen() {
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(0, 0, 0, 0.05)`;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.closePath();
+}
+
+// Function that gets random integer from give range
+function randomIntFromRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // Function to render image
@@ -258,7 +291,7 @@ function mainPageFunction(deltaTime) {
 function introductionFunction(deltaTime) {
     if (overlayOpacity < 1) {
         overlay.style.backgroundColor = `rgba(0, 0, 0, ${overlayOpacity})`;
-        overlayOpacity += 0.005 * (deltaTime / 16); // Scale opacity change by deltaTime
+        overlayOpacity += 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (initialIntroduction) {
         x = 0;
         y = 0;
@@ -282,7 +315,7 @@ function instructionsFunction(deltaTime) {
         introductionOpacity -= 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (overlayOpacity > 0) {
         overlay.style.backgroundColor = `rgba(0, 0, 0, ${overlayOpacity})`;
-        overlayOpacity -= 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
+        overlayOpacity -= 0.02 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (initialInstructions) {
         toggleBoxes(currentImg, true);
         atGame = true;
@@ -294,7 +327,37 @@ function instructionsFunction(deltaTime) {
     }
 }
 
-// Animation Loop
+// Function of the end of the game
+function gameEndFunction(deltaTime) {
+    clearScreen();
+    if (overlayOpacity < 1) {
+        gameOverScreen.style.zIndex = 3000;
+        gameOverScreen.style.opacity = overlayOpacity;
+        combinationLockContainer.style.opacity = lockOpacity;
+        overlayOpacity += 0.01 * (deltaTime / 16);
+        lockOpacity -= 0.02 * (deltaTime / 16);
+    } else if (!celebration) {
+        combinationLockContainer.style.zIndex = -3000;
+        canvas.style.zIndex = 1;
+        celebration = true;
+    } else {
+        particles.forEach((particle, index) => {
+            // Check if particle is no longer visible
+            if (particle.opacity > 0) {
+                particle.update(); // Update
+            } else {
+                particles.splice(index, 1); // Erase particle from array
+            }
+        });
+    }
+}
+
+
+// Implementation
+function init() {
+    particles = []; // Clear particles
+}
+
 function animate(timestamp) {
     requestAnimationFrame(animate); // Loop animation
 
@@ -306,9 +369,11 @@ function animate(timestamp) {
     else if (atIntro) introductionFunction(deltaTime);
     else if (atInstruction) instructionsFunction(deltaTime);
     else if (atGame) moveBackground(currentImg);
-    else if (atEnd) console.log('Game Ended');
+    else if (atEnd) gameEndFunction(deltaTime);
 
-    renderImage(currentImg);
+    if (!atEnd) {
+        renderImage(currentImg);
+    }
     // moveBackground(currentImg); // For Testing purposes
     // toggleBoxes(currentImg, true); // For Testing purposes
     // console.log(x, y) // For Testing purposes
@@ -318,6 +383,7 @@ function animate(timestamp) {
 window.onload = () => {
     setCanvasSize();
     animate(1); // Start animation loop
+    init();
 }
 
 startBtn.addEventListener('click', () => {
@@ -393,7 +459,8 @@ Object.keys(images).slice(1).forEach(key => {
 
 // Event Listener for resize canvas
 window.addEventListener('resize', () => {
-    setCanvasSize();
+    setCanvasSize(); // Resize
+    init(); // Re-initiate
     x = 0;
     y = 0;
     toggleBoxes(currentImg, false);
@@ -404,7 +471,7 @@ Object.keys(interactiveBoxData).forEach(key => {
     document.getElementById(key).addEventListener('click', () => {
         loadContent(key);
     });
-})
+});
 
 window.addEventListener('mousedown', (event) => {
     const combinationLock = document.getElementById('combination-lock-container');
@@ -412,5 +479,37 @@ window.addEventListener('mousedown', (event) => {
         document.getElementById('display-content').innerHTML = '';
         combinationLock.style.zIndex = -2000;
         hasDisplayedContent = !hasDisplayedContent;
+    }
+});
+
+// Refresh page upon restart
+document.getElementById('restart').addEventListener('click', () => {
+    window.location.reload();
+});
+
+// Execute upon user click
+window.addEventListener('click', (event) => {
+    // Set mouse coordinates
+    mouse.x = event.x;
+    mouse.y = event.y;
+
+    // Set variables
+    const particleCount = 1000;
+    const angleIncrement = (Math.PI * 2) / particleCount;
+    const power = 15;
+
+    // Check if arrived at celebration
+    if (celebration) {
+        // Generate particles
+        for (let i = 0; i < particleCount; i++) {
+            // Set random color
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`
+
+            // Assign particle properties
+            particles.push(new Particle(mouse.x, mouse.y, 5, color, { 
+                x: Math.cos(angleIncrement * i) * Math.random() * power, 
+                y: Math.sin(angleIncrement * i) * Math.random() * power
+            }, Math.random()));
+        }
     }
 });

@@ -390,12 +390,28 @@ input[type="number"]::placeholder {
     transform: translate(-50%, -50%);
 }
 
+/* GameOver Screen styles */
+#game-over-screen {
+    position: fixed;
+    z-index: -3000;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    color: #00b700;
+    opacity: 0;
+}
+
+h2 {
+    text-align: center;
+    font-size: 5vh;
+}
+
 /* Buttons */
 button {
     position: fixed;
 }
 
-#startBtn {
+#startBtn, #restart {
     width: 30vh;
     height: 10vh;
     top: 60%;
@@ -408,11 +424,11 @@ button {
     transition: background-color 0.3s;
 }
 
-#startBtn:hover {
+#startBtn:hover, #restart:hover {
     background-color: #171c24;
 }
 
-#startBtn:active {
+#startBtn:active, #restart:active {
     border-color: white;
 }
 
