@@ -14,6 +14,8 @@ const introElement = {
     3: document.getElementById('intro3'),
     4: document.getElementById('intro4')
 }
+const lockElement = document.querySelectorAll('.lock');
+const unlockElement = document.querySelectorAll('.unlock');
 
 // Image data
 const images = {
@@ -21,7 +23,7 @@ const images = {
     lab1: { src: './assets/lab1.png', width: 1900 * 2, height: 800 * 2, boxes: ['lab1-box1', 'lab1-box2'] },
     lab2: { src: './assets/lab2.png', width: 1600 * 2.5, height: 627 * 2.5, boxes: ['lab2-box1', 'lab2-box2', 'lab2-box3'] },
     lab3: { src: './assets/lab3.png', width: 1600 * 2.5, height: 675 * 2.5, boxes: ['lab3-box1', 'lab3-box2'] },
-    exit: { src: './assets/exit.png', width: 1790 * 2.5, height: 635 * 2.5, boxes: ['exit-box1', 'exit-box2'] }
+    exit: { src: './assets/exit.png', width: 1790 * 2.5, height: 635 * 2.5, boxes: ['exit-box1', 'exit-box2', 'exit-box3'] }
 };
 
 // Introduction text
@@ -43,6 +45,7 @@ const interactiveBoxData = {
     'lab3-box2': { topValue: 1410, leftValue: 410, src: './assets/harness.png', imageWidth: 850, imageHeight: 650 },
     'exit-box1': { topValue: 785, leftValue: 1085, src: './assets/morseCodeDate.png', imageWidth: 850, imageHeight: 400 },
     'exit-box2': { topValue: 905, leftValue: 2310, src: './assets/u235.png', imageWidth: 850, imageHeight: 650 },
+    'exit-box3': { topValue: 1055, leftValue: 4250, src: 'combinationLock' },
 }
 
 // Animation variables850
@@ -50,7 +53,6 @@ let x = 0, y = 0;
 let currentImg = images['menu'];
 let lastRefreshRate = 0;
 let overlayOpacity = 0.8, introductionOpacity = 1;
-
 let menuDeltaX = -3;
 let menuDeltaY = -1;
 let instructionPosition = -2000;
@@ -67,9 +69,52 @@ let atMainPage = true;
 let atIntro = false;
 let atInstruction = false;
 let atGame = false;
+let atEnd = false;
 let initialIntroduction = true;
 let initialInstructions = true;
 let hasDisplayedContent = false;
+
+// Combination Lock Object
+const combinationLock = {
+    // The combination of the lock
+    combination: 6983,
+    // Indicates whether the lock is currently locked or not
+    locked: true,
+    // An array representing the wheels of the combination lock
+    wheels: [0, 0, 0, 0],
+    // Method to increment the value of a wheel of the lock
+    increment: function(wheel) {
+        // If the value of the wheel is 9, reset it to 0
+        if (this.wheels[wheel] === 9) {
+            this.wheels[wheel] = 0;
+        } else {
+            // Otherwise, increment the value of the wheel by 1
+            this.wheels[wheel]++;
+        }
+    },
+    // Method to decrement the value of a wheel of the lock
+    decrement: function(wheel) {
+        // If the value of the wheel is 0, set it to 9
+        if (this.wheels[wheel] === 0) {
+            this.wheels[wheel] = 9;
+        } else {
+            // Otherwise, decrement the value of the wheel by 1
+            this.wheels[wheel]--;
+        }
+    },
+    // Method to check if the lock is opened
+    check: function() {
+        // Join the values of the wheels and convert them to an integer
+        const currentCombination = parseInt(this.wheels.join(''));
+        // If the current combination matches the preset combination, unlock the lock
+        if (this.combination === currentCombination) {
+            this.locked = false;
+        } else {
+            // Otherwise, keep the lock locked
+            this.locked = true;
+        }
+    }
+}
 
 // Set canvas size to full screen function
 function setCanvasSize() {
@@ -96,22 +141,27 @@ function loadText(text, element) {
 
 // Function to load content into a container
 function loadContent(content) {
-    // Create an image element
-    const img = document.createElement('img');
-    
-    // Get the container where the content will be displayed
-    const container = document.getElementById('display-content');
+    // Check if it is combination lock
+    if (interactiveBoxData[content].src === 'combinationLock') {
+        document.getElementById('combination-lock-container').style.zIndex = 4000;
+    } else {
+        // Create an image element
+        const img = document.createElement('img');
+        
+        // Get the container where the content will be displayed
+        const container = document.getElementById('display-content');
 
-    // Get the Image data
-    const imageData = interactiveBoxData[content];
+        // Get the Image data
+        const imageData = interactiveBoxData[content];
 
-    // Set the image source and dimensions
-    img.src = imageData.src;
-    img.width = imageData.imageWidth;
-    img.height = imageData.imageHeight;
+        // Set the image source and dimensions
+        img.src = imageData.src;
+        img.width = imageData.imageWidth;
+        img.height = imageData.imageHeight;
 
-    // Append the image to the container
-    container.appendChild(img);
+        // Append the image to the container
+        container.appendChild(img);
+    }
 
     // Update the state to indicate content has been displayed
     hasDisplayedContent = !hasDisplayedContent;
@@ -206,6 +256,36 @@ function togglePause() {
     instructionPage.style.zIndex = instructionPosition;
 }
 
+// Function that checks the lock status and updates the UI accordingly
+function checkLock() {
+    // Check the lock status
+    combinationLock.check();
+    
+    // If the lock is unlocked
+    if (combinationLock.locked === false) {
+        // Move lock elements off screen to simulate unlocking
+        lockElement.forEach(element => {
+            element.style.transform = 'translate(0%, -50%)';
+        });
+        // Move unlock elements off screen to simulate unlocking
+        unlockElement.forEach(element => {
+            element.style.transform = 'translate(0%, -100%)';
+        });
+        // Update game status flags
+        atGame = false;
+        atEnd = true;
+    } else { // If the lock is still locked
+        // Reset lock elements to their original position
+        lockElement.forEach(element => {
+            element.style.transform = 'translate(0%, 0%)';
+        });
+        // Reset unlock elements to their original position
+        unlockElement.forEach(element => {
+            element.style.transform = 'translate(0%, 0%)';
+        });
+    }
+}
+
 // Function for Main page
 function mainPageFunction(deltaTime) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -266,6 +346,7 @@ function animate(timestamp) {
     else if (atIntro) introductionFunction(deltaTime);
     else if (atInstruction) instructionsFunction(deltaTime);
     else if (atGame) moveBackground(currentImg);
+    else if (atEnd) console.log('Game Ended');
 
     renderImage(currentImg);
     // moveBackground(currentImg); // For Testing purposes
@@ -366,9 +447,45 @@ Object.keys(interactiveBoxData).forEach(key => {
     });
 })
 
-window.addEventListener('mousedown', () => {
-    if (hasDisplayedContent) {
+window.addEventListener('mousedown', (event) => {
+    const combinationLock = document.getElementById('combination-lock-container');
+    if (hasDisplayedContent && !combinationLock.contains(event.target)) {
         document.getElementById('display-content').innerHTML = '';
+        combinationLock.style.zIndex = -3000;
         hasDisplayedContent = !hasDisplayedContent;
     }
 });
+
+// Event listeners for increment buttons
+const increments = document.getElementsByClassName('increment');
+
+// Loop through all increment buttons
+for (var i = 0; i < increments.length; i++) {
+    increments[i].addEventListener('click', function(){
+        // Get the wheel index from the 'index' attribute of the button
+        let wheelIndex = parseInt(this.getAttribute('index'));
+        // Increment the corresponding wheel of the combination lock
+        combinationLock.increment(wheelIndex);
+        // Update the value displayed in the UI for the corresponding wheel
+        document.querySelectorAll('.digit')[wheelIndex].value = combinationLock.wheels[wheelIndex];
+        // Check the lock status after the increment
+        checkLock();
+    });
+}
+
+// Event listeners for decrement buttons
+const decrements = document.getElementsByClassName('decrement');
+
+// Loop through all decrement buttons
+for (var i = 0; i < decrements.length; i++) {
+    decrements[i].addEventListener('click', function(){
+        // Get the wheel index from the 'index' attribute of the button
+        let wheelIndex = parseInt(this.getAttribute('index'));
+        // Decrement the corresponding wheel of the combination lock
+        combinationLock.decrement(wheelIndex);
+        // Update the value displayed in the UI for the corresponding wheel
+        document.querySelectorAll('.digit')[wheelIndex].value = combinationLock.wheels[wheelIndex];
+        // Check the lock status after the decrement
+        checkLock();
+    });
+}

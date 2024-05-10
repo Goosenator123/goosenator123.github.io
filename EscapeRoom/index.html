@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape The Lab</title>
 
-    <!-- Link to external CSS -->
+    <!-- External Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- External CSS -->
     <link rel="stylesheet" href="./styles/index.css">
+    
+    <!-- Preconnect Links -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Background Canvas -->
@@ -48,15 +53,12 @@
                 <div class="img-container" id="lab1">
                     <img src="./assets/lab1.png" class="area-img" width="200" height="80"/>
                 </div>
-                
                 <div class="img-container" id="lab2">
                     <img src="./assets/lab2.png" class="area-img" width="200" height="80"/>
                 </div>
-                
                 <div class="img-container" id="lab3">
                     <img src="./assets/lab3.png" class="area-img" width="200" height="80"/>
                 </div>
-                
                 <div class="img-container" id="exit">
                     <img src="./assets/exit.png" class="area-img" width="200" height="80"/>
                 </div>
@@ -67,6 +69,7 @@
         </footer>
     </div>
 
+    <!-- Interactive Boxes -->
     <div class="interactive-box" id="lab1-box1"></div>
     <div class="interactive-box" id="lab1-box2"></div>
     <div class="interactive-box" id="lab2-box1"></div>
@@ -76,9 +79,48 @@
     <div class="interactive-box" id="lab3-box2"></div>
     <div class="interactive-box" id="exit-box1"></div>
     <div class="interactive-box" id="exit-box2"></div>
+    <div class="interactive-box" id="exit-box3"></div>
+    
+    <!-- Display Content -->
     <div id="display-content"></div>
+    
+    <!-- Combination Lock Container -->
+    <div id="combination-lock-container">
+        <div class="indicator" id="left-indicator">
+            <div class="lock"><i class="material-icons lock-icon">lock</i></div>
+            <div class="unlock"><i class="material-icons lock-icon">lock_open</i></div>
+        </div>
+        <div id="combination-lock">
+            <!-- Combination Lock Wheels -->
+            <div class="wheel">
+                <div class="increment" index="0"><i class="material-icons icon">keyboard_arrow_up</i></div>
+                <input class="digit" type="number" placeholder="0" min="0" max="9" value="0" index="0" disabled>
+                <div class="decrement" index="0"><i class="material-icons icon">keyboard_arrow_down</i></div>
+            </div>
+            <div class="wheel">
+                <div class="increment" index="1"><i class="material-icons icon">keyboard_arrow_up</i></div>
+                <input class="digit" type="number" placeholder="0" min="0" max="9" value="0" index="1" disabled>
+                <div class="decrement" index="1"><i class="material-icons icon">keyboard_arrow_down</i></div>
+            </div>
+            <div class="wheel">
+                <div class="increment" index="2"><i class="material-icons icon">keyboard_arrow_up</i></div>
+                <input class="digit" type="number" placeholder="0" min="0" max="9" value="0" index="2" disabled>
+                <div class="decrement" index="2"><i class="material-icons icon">keyboard_arrow_down</i></div>
+            </div>
+            <div class="wheel">
+                <div class="increment" index="3"><i class="material-icons icon">keyboard_arrow_up</i></div>
+                <input class="digit" type="number" placeholder="0" min="0" max="9" value="0" index="3" disabled>
+                <div class="decrement" index="3"><i class="material-icons icon">keyboard_arrow_down</i></div>
+            </div>
+            <!-- Repeat for other wheels -->
+        </div>
+        <div class="indicator" id="right-indicator">
+            <div class="lock"><i class="material-icons lock-icon">lock</i></div>
+            <div class="unlock"><i class="material-icons lock-icon">lock_open</i></div>
+        </div>
+    </div>
 
-    <!-- Link to external JavaScript -->
+    <!-- External JavaScript -->
     <script src="./scripts/index.js"></script>
 </body>
 </html>
