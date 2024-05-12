@@ -26,9 +26,21 @@
             <h1>Escape the Laboratory</h1>
         </header>
 
+        <!-- Highscore Section -->
+        <section id="highscore-section">
+            <header>
+                <h2>Fastest Completion</h2>
+            </header>
+            <article id="highscore-container">
+                <p id="highscore">Never Completed</p>
+            </article>
+        </section>
+
         <!-- Start Button -->
         <button id="startBtn">Start</button>
     </section>
+
+
     
     <!-- Overlay -->
     <div id="overlay"></div>
@@ -75,6 +87,11 @@
             <p>Press &lt;Esc&gt; to hide/show instructions</p>
         </footer>
     </div>
+
+    <!-- Timer -->
+    <section id="timer-section">
+        <p id="time">0:00</p>
+    </section>
 
     <!-- Interactive Boxes -->
     <div class="interactive-box" id="lab1-box1"></div>
@@ -132,6 +149,16 @@
             <h1>You've Escaped!</h1>
             <h2>Press the screen to celebrate!</h2>
         </header>
+
+        <div id="completion-time-section">
+            <header>
+                <h2>Completion Time</h2>
+            </header>
+            <article id="highscore-container">
+                <p id="completion-time">0:00</p>
+            </article>
+        </div>
+
         <button id="restart">Restart</button>
     </div>
 
@@ -140,5 +167,6 @@
     <script src="./scripts/checkCode.js"></script>
     <script src="./scripts/fireworkClass.js"></script>
     <script src="./scripts/eventListeners.js"></script>
+    <script src="./scripts/timer.js"></script>
 </body>
 </html>

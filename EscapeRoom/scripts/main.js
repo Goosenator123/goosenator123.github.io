@@ -58,8 +58,8 @@ let overlayZindex = 3000;
 let instructionPosition = -2000;
 let lastRefreshRate = 0;
 let particles;
-const menuDeltaX = -3;
-const menuDeltaY = -1;
+let menuDeltaX = -3;
+let menuDeltaY = -1;
 const gravity = 0.03;
 const friction = 0.99;
 
@@ -79,6 +79,7 @@ let initialIntroduction = true;
 let initialInstructions = true;
 let hasDisplayedContent = false;
 let celebration = false;
+let isPaused = false;
 
 // Set initial position of mouse
 const mouse = {
@@ -246,36 +247,12 @@ function toggleBoxes(currentImg, show) {
 function togglePause() {
     instructionPosition = -instructionPosition;
     instructionPage.style.zIndex = instructionPosition;
-}
 
-// Function that checks the lock status and updates the UI accordingly
-function checkLock() {
-    // Check the lock status
-    combinationLock.check();
-    
-    // If the lock is unlocked
-    if (combinationLock.locked === false) {
-        // Move lock elements off screen to simulate unlocking
-        lockElement.forEach(element => {
-            element.style.transform = 'translate(0%, -50%)';
-        });
-        // Move unlock elements off screen to simulate unlocking
-        unlockElement.forEach(element => {
-            element.style.transform = 'translate(0%, -100%)';
-        });
-        // Update game status flags
-        atGame = false;
-        atEnd = true;
-    } else { // If the lock is still locked
-        // Reset lock elements to their original position
-        lockElement.forEach(element => {
-            element.style.transform = 'translate(0%, 0%)';
-        });
-        // Reset unlock elements to their original position
-        unlockElement.forEach(element => {
-            element.style.transform = 'translate(0%, 0%)';
-        });
+    if (isPaused) {
+        isPaused = false;
+        return;
     }
+    isPaused = true;
 }
 
 // Function for Main page
@@ -324,6 +301,7 @@ function instructionsFunction(deltaTime) {
         introContainer.style.zIndex = -3000;
         initialInstructions = false;
         skipBtn.style.zIndex = -2000;
+        timerContainer.style.zIndex = 1000;
     }
 }
 
@@ -334,10 +312,12 @@ function gameEndFunction(deltaTime) {
         gameOverScreen.style.zIndex = 3000;
         gameOverScreen.style.opacity = overlayOpacity;
         combinationLockContainer.style.opacity = lockOpacity;
+        timerContainer.style.opacity = lockOpacity;
         overlayOpacity += 0.01 * (deltaTime / 16);
         lockOpacity -= 0.02 * (deltaTime / 16);
     } else if (!celebration) {
         combinationLockContainer.style.zIndex = -3000;
+        timerContainer.style.zIndex = -3000;
         canvas.style.zIndex = 1;
         celebration = true;
     } else {
@@ -368,13 +348,17 @@ function animate(timestamp) {
     if (atMainPage) mainPageFunction(deltaTime);
     else if (atIntro) introductionFunction(deltaTime);
     else if (atInstruction) instructionsFunction(deltaTime);
-    else if (atGame) moveBackground(currentImg);
-    else if (atEnd) gameEndFunction(deltaTime);
+    else if (atGame) {
+        moveBackground(currentImg); 
+        updateTime();
+    } else if (atEnd) gameEndFunction(deltaTime);
 
     if (!atEnd) {
         renderImage(currentImg);
     }
+    updateTime();
     // moveBackground(currentImg); // For Testing purposes
     // toggleBoxes(currentImg, true); // For Testing purposes
     // console.log(x, y) // For Testing purposes
+    console.log(isPaused);
 }

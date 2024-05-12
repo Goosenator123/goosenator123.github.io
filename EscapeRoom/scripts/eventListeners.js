@@ -3,6 +3,14 @@ window.onload = () => {
     setCanvasSize();
     animate(1); // Start animation loop
     init();
+    displayHighscore();
+
+    setInterval(() => {
+        if (!isPaused && atGame) {
+            time += 1;
+            console.log(time)
+        }
+    }, 1000);
 }
 
 startBtn.addEventListener('click', () => {

@@ -73,3 +73,39 @@ for (var i = 0; i < decrements.length; i++) {
         checkLock();
     });
 }
+
+// Function that checks the lock status and updates the UI accordingly
+function checkLock() {
+    // Check the lock status
+    combinationLock.check();
+    
+    // If the lock is unlocked
+    if (combinationLock.locked === false) {
+        // Move lock elements off screen to simulate unlocking
+        lockElement.forEach(element => {
+            element.style.transform = 'translate(0%, -50%)';
+        });
+        // Move unlock elements off screen to simulate unlocking
+        unlockElement.forEach(element => {
+            element.style.transform = 'translate(0%, -100%)';
+        });
+
+        saveTime(); // Save completion time
+        displayCompletionTime(); // Display completion time
+        atGame = false;
+
+        setTimeout(() => {
+            // Update game status flags
+            atEnd = true;
+        }, 1000);
+    } else { // If the lock is still locked
+        // Reset lock elements to their original position
+        lockElement.forEach(element => {
+            element.style.transform = 'translate(0%, 0%)';
+        });
+        // Reset unlock elements to their original position
+        unlockElement.forEach(element => {
+            element.style.transform = 'translate(0%, 0%)';
+        });
+    }
+}
