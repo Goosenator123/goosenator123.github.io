@@ -87,15 +87,6 @@ const mouse = {
     y: innerHeight / 2
 };
 
-// Color Array
-let colorArray = [
-    '#9d0208',
-    '#d00000',
-    '#dc2f02',
-    '#f48c06',
-    '#f48c06'
-];
-
 // Function that sets canvas size to full viewport
 function setCanvasSize() {
     canvas.width = innerWidth;
@@ -108,11 +99,6 @@ function clearScreen() {
     ctx.fillStyle = `rgba(0, 0, 0, 0.05)`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.closePath();
-}
-
-// Function that gets random integer from give range
-function randomIntFromRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 // Function to render image
@@ -130,70 +116,6 @@ function loadText(text, element) {
         index++;
         if (index >= text.length) clearInterval(interval);
     }, 50);
-}
-
-// Function to load content into a container
-function loadContent(content) {
-    // Check if it is combination lock
-    if (interactiveBoxData[content].src === 'combinationLock') {
-        document.getElementById('combination-lock-container').style.zIndex = 1999;
-    } else {
-        // Create an image element
-        const img = document.createElement('img');
-        
-        // Get the container where the content will be displayed
-        const container = document.getElementById('display-content');
-
-        // Get the Image data
-        const imageData = interactiveBoxData[content];
-
-        // Set the image source and dimensions
-        img.src = imageData.src;
-        img.width = imageData.imageWidth;
-        img.height = imageData.imageHeight;
-
-        // Append the image to the container
-        container.appendChild(img);
-    }
-
-    // Update the state to indicate content has been displayed
-    hasDisplayedContent = !hasDisplayedContent;
-}
-
-// Function that moves the background and the interactive boxes of the associated background
-function moveBackground(targetImage) {
-    let dx = 0, dy = 0;
-    let borderX = (canvas.width - targetImage.width);
-    let borderY = (canvas.height - targetImage.height);
-
-    if (leftArrowPressed && x < 0) dx += 20;
-    if (rightArrowPressed && x > borderX) dx -= 20;
-    if (upArrowPressed && y < 0) dy += 20;
-    if (downArrowPressed && y > borderY) dy -= 20;
-
-    // Move interactive boxes along with the background
-    const boxElement = targetImage.boxes;
-    boxElement.forEach(element => {
-        // Get the element
-        const targetElement = document.getElementById(element);
-
-        // Get the computed style of the element
-        const computedStyle = window.getComputedStyle(targetElement);
-
-        // Get the value of the 'top' and 'left' style property
-        let topValue = parseInt(computedStyle.getPropertyValue('top'));
-        let leftValue = parseInt(computedStyle.getPropertyValue('left'));
-
-        // Move
-        topValue += dy;
-        leftValue += dx;
-
-        targetElement.style.top = `${topValue}px`;
-        targetElement.style.left = `${leftValue}px`;
-    });
-
-    x += dx;
-    y += dy;
 }
 
 // Function that loads intro text sequentially
@@ -227,14 +149,86 @@ function loadIntroTextSequentially(currentIndex) {
     }, 2000);
 }
 
+// Function to load content into a container
+function loadContent(content) {
+    // Check if it is combination lock
+    if (interactiveBoxData[content].src === 'combinationLock') {
+        document.getElementById('combination-lock-container').style.zIndex = 1999;
+    } else {
+        // Create an image element
+        const img = document.createElement('img');
+        
+        // Get the container where the content will be displayed
+        const container = document.getElementById('display-content');
+
+        // Get the Image data
+        const imageData = interactiveBoxData[content];
+
+        // Set the image source and dimensions
+        img.src = imageData.src;
+        img.width = imageData.imageWidth;
+        img.height = imageData.imageHeight;
+
+        // Append the image to the container
+        container.appendChild(img);
+    }
+
+    // Update the state to indicate content has been displayed
+    hasDisplayedContent = !hasDisplayedContent;
+}
+
+// Function that moves the background and the interactive boxes of the associated background
+function moveBackground(targetImage) {
+    // Set variables
+    let dx = 0, dy = 0;
+    let borderX = (canvas.width - targetImage.width);
+    let borderY = (canvas.height - targetImage.height);
+
+    // Add direction if respective keys are pressed
+    if (leftArrowPressed && x < 0) dx += 20;
+    if (rightArrowPressed && x > borderX) dx -= 20;
+    if (upArrowPressed && y < 0) dy += 20;
+    if (downArrowPressed && y > borderY) dy -= 20;
+
+    // Move interactive boxes along with the background
+    const boxElement = targetImage.boxes;
+    boxElement.forEach(element => {
+        // Get the element
+        const targetElement = document.getElementById(element);
+
+        // Get the computed style of the element
+        const computedStyle = window.getComputedStyle(targetElement);
+
+        // Get the value of the 'top' and 'left' style property
+        let topValue = parseInt(computedStyle.getPropertyValue('top'));
+        let leftValue = parseInt(computedStyle.getPropertyValue('left'));
+
+        // Move
+        topValue += dy;
+        leftValue += dx;
+
+        targetElement.style.top = `${topValue}px`;
+        targetElement.style.left = `${leftValue}px`;
+    });
+
+    // Move
+    x += dx;
+    y += dy;
+}
+
 // Function to toggle display of interactive boxes
 function toggleBoxes(currentImg, show) {
+    // Set variables
     const boxElement = currentImg.boxes;
     const zIndex = show ? 1000 : -1000;
+
+    // Cycle through each element in boxElement
     boxElement.forEach(element => {
+        // Set variables
         const currentElement = document.getElementById(element);
         currentElement.style.zIndex = zIndex;
 
+        // Set box initial box coordinates
         if (atGame) {
             const { topValue, leftValue } = interactiveBoxData[element];
             currentElement.style.top = `${topValue}px`;
@@ -245,9 +239,11 @@ function toggleBoxes(currentImg, show) {
 
 // Function to toggle pause
 function togglePause() {
+    // Show or hide instruction
     instructionPosition = -instructionPosition;
     instructionPage.style.zIndex = instructionPosition;
 
+    // Change pause to true or false
     if (isPaused) {
         isPaused = false;
         return;
@@ -257,7 +253,10 @@ function togglePause() {
 
 // Function for Main page
 function mainPageFunction(deltaTime) {
+    // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Change direction if coordinates touch the border
     if (x > 0 || x < (canvas.width - currentImg.width)) menuDeltaX = -menuDeltaX;
     if (y > 0 || y < (canvas.height - currentImg.height)) menuDeltaY = -menuDeltaY;
     x += menuDeltaX * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
@@ -266,13 +265,19 @@ function mainPageFunction(deltaTime) {
 
 // Function for Introduction
 function introductionFunction(deltaTime) {
+    // Gradually increase opacity value until it reaches 1
     if (overlayOpacity < 1) {
         overlay.style.backgroundColor = `rgba(0, 0, 0, ${overlayOpacity})`;
         overlayOpacity += 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (initialIntroduction) {
+        // Reset coordinates
         x = 0;
         y = 0;
+
+        // Hide main menu
         document.getElementById('main-menu').style.zIndex = -2000;
+
+        // Set background for game
         currentImg = images['lab1'];
         togglePause();
         initialIntroduction = false;
@@ -281,19 +286,27 @@ function introductionFunction(deltaTime) {
 
 // Function for Instructions
 function instructionsFunction(deltaTime) {
+    // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Decrease opacity until it is 0
     if (introductionOpacity > 0) {
+        // Reduce opacity for each element in introElement
         for (let key in introElement) {
             introElement[key].style.opacity = introductionOpacity;
         }
+
+        // Disable buttons and hide them
         startBtn.disabled = true;
         skipBtn.disabled = true;
         skipBtn.style.opacity = introductionOpacity
         introductionOpacity -= 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (overlayOpacity > 0) {
+        // Gradually hide overlay by decreasing its opacity
         overlay.style.backgroundColor = `rgba(0, 0, 0, ${overlayOpacity})`;
         overlayOpacity -= 0.02 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (initialInstructions) {
+        // Set values to start game
         toggleBoxes(currentImg, true);
         atGame = true;
         atInstruction = false;
@@ -307,20 +320,26 @@ function instructionsFunction(deltaTime) {
 
 // Function of the end of the game
 function gameEndFunction(deltaTime) {
+    // Clear screen
     clearScreen();
+
+    // Increase opacity if below 1
     if (overlayOpacity < 1) {
+        // Set values for game over
         gameOverScreen.style.zIndex = 3000;
         gameOverScreen.style.opacity = overlayOpacity;
         combinationLockContainer.style.opacity = lockOpacity;
         timerContainer.style.opacity = lockOpacity;
-        overlayOpacity += 0.01 * (deltaTime / 16);
-        lockOpacity -= 0.02 * (deltaTime / 16);
+        overlayOpacity += 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
+        lockOpacity -= 0.02 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (!celebration) {
+        // Set game over page
         combinationLockContainer.style.zIndex = -3000;
         timerContainer.style.zIndex = -3000;
         canvas.style.zIndex = 1;
         celebration = true;
     } else {
+        // Update each particles of fireworks
         particles.forEach((particle, index) => {
             // Check if particle is no longer visible
             if (particle.opacity > 0) {
@@ -336,6 +355,8 @@ function gameEndFunction(deltaTime) {
 // Implementation
 function init() {
     particles = []; // Clear particles
+    setCanvasSize();
+    animate(1); // Start animation loop
 }
 
 function animate(timestamp) {
@@ -345,6 +366,7 @@ function animate(timestamp) {
     const deltaTime = timestamp - lastRefreshRate;
     lastRefreshRate = timestamp;
     
+    // Execute depending on game state
     if (atMainPage) mainPageFunction(deltaTime);
     else if (atIntro) introductionFunction(deltaTime);
     else if (atInstruction) instructionsFunction(deltaTime);
@@ -357,8 +379,4 @@ function animate(timestamp) {
         renderImage(currentImg);
     }
     updateTime();
-    // moveBackground(currentImg); // For Testing purposes
-    // toggleBoxes(currentImg, true); // For Testing purposes
-    // console.log(x, y) // For Testing purposes
-    console.log(isPaused);
 }
