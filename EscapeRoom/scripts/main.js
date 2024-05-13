@@ -21,11 +21,11 @@ const gameOverScreen = document.getElementById('game-over-screen')
 
 // Image data
 const images = {
-    menu: { src: './assets/menu.png', width: 1590 * 2.5, height: 580 * 2.5, boxes: [] },
-    lab1: { src: './assets/lab1.png', width: 1900 * 2, height: 800 * 2, boxes: ['lab1-box1', 'lab1-box2'] },
-    lab2: { src: './assets/lab2.png', width: 1600 * 2.5, height: 627 * 2.5, boxes: ['lab2-box1', 'lab2-box2', 'lab2-box3'] },
-    lab3: { src: './assets/lab3.png', width: 1600 * 2.5, height: 675 * 2.5, boxes: ['lab3-box1', 'lab3-box2'] },
-    exit: { src: './assets/exit.png', width: 1790 * 2.5, height: 635 * 2.5, boxes: ['exit-box1', 'exit-box2', 'exit-box3'] }
+    menu: { src: './assets/images/menu.png', width: 1590 * 2.5, height: 580 * 2.5, boxes: [] },
+    lab1: { src: './assets/images/lab1.png', width: 1900 * 2, height: 800 * 2, boxes: ['lab1-box1', 'lab1-box2'] },
+    lab2: { src: './assets/images/lab2.png', width: 1600 * 2.5, height: 627 * 2.5, boxes: ['lab2-box1', 'lab2-box2', 'lab2-box3'] },
+    lab3: { src: './assets/images/lab3.png', width: 1600 * 2.5, height: 675 * 2.5, boxes: ['lab3-box1', 'lab3-box2'] },
+    exit: { src: './assets/images/exit.png', width: 1790 * 2.5, height: 635 * 2.5, boxes: ['exit-box1', 'exit-box2', 'exit-box3'] }
 };
 
 // Introduction text
@@ -38,15 +38,15 @@ const introTexts = [
 
 // Initial coordinates of interactive boxes
 const interactiveBoxData = {
-    'lab1-box1': { topValue: 1375, leftValue: 850, src: './assets/morseCodeChart.jpg', imageWidth: 650, imageHeight: 450 },
-    'lab1-box2': { topValue: 950, leftValue: 3365, src: './assets/bombing.png', imageWidth: 850, imageHeight: 400 },
-    'lab2-box1': { topValue: 900, leftValue: 45, src: './assets/accelerationGravity.png', imageWidth: 900, imageHeight: 500 },
-    'lab2-box2': { topValue: 80, leftValue: 1050, src: './assets/morseCode.png', imageWidth: 1000, imageHeight: 150 },
-    'lab2-box3': { topValue: 925, leftValue: 2980, src: './assets/baseOfAllLife.png', imageWidth: 850, imageHeight: 650 },
-    'lab3-box1': { topValue: 1010, leftValue: 3600, src: './assets/carbonAtom.jpg', imageWidth: 500, imageHeight: 500 },
-    'lab3-box2': { topValue: 1410, leftValue: 410, src: './assets/harness.png', imageWidth: 850, imageHeight: 650 },
-    'exit-box1': { topValue: 785, leftValue: 1085, src: './assets/morseCodeDate.png', imageWidth: 850, imageHeight: 400 },
-    'exit-box2': { topValue: 905, leftValue: 2310, src: './assets/u235.png', imageWidth: 850, imageHeight: 650 },
+    'lab1-box1': { topValue: 1375, leftValue: 850, src: './assets/images/morseCodeChart.jpg', imageWidth: 650, imageHeight: 450 },
+    'lab1-box2': { topValue: 950, leftValue: 3365, src: './assets/images/bombing.png', imageWidth: 850, imageHeight: 400 },
+    'lab2-box1': { topValue: 900, leftValue: 45, src: './assets/images/accelerationGravity.png', imageWidth: 900, imageHeight: 500 },
+    'lab2-box2': { topValue: 80, leftValue: 1050, src: './assets/images/morseCode.png', imageWidth: 1000, imageHeight: 150 },
+    'lab2-box3': { topValue: 925, leftValue: 2980, src: './assets/images/baseOfAllLife.png', imageWidth: 850, imageHeight: 650 },
+    'lab3-box1': { topValue: 1010, leftValue: 3600, src: './assets/images/carbonAtom.jpg', imageWidth: 500, imageHeight: 500 },
+    'lab3-box2': { topValue: 1410, leftValue: 410, src: './assets/images/harness.png', imageWidth: 850, imageHeight: 650 },
+    'exit-box1': { topValue: 785, leftValue: 1085, src: './assets/images/morseCodeDate.png', imageWidth: 850, imageHeight: 400 },
+    'exit-box2': { topValue: 905, leftValue: 2310, src: './assets/images/u235.png', imageWidth: 850, imageHeight: 650 },
     'exit-box3': { topValue: 1055, leftValue: 4250, src: 'combinationLock' },
 }
 
