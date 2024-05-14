@@ -60,6 +60,7 @@ let lastRefreshRate = 0;
 let particles;
 let menuDeltaX = -3;
 let menuDeltaY = -1;
+let particleDrawCooldown = 0;
 const gravity = 0.03;
 const friction = 0.99;
 
@@ -256,6 +257,35 @@ function togglePause() {
     isPaused = true;
 }
 
+// Function that draws particle
+function drawParticle() {
+    // Set mouse coordinates
+    mouse.x = event.x;
+    mouse.y = event.y;
+
+    // Set variables
+    const particleCount = 1000;
+    const angleIncrement = (Math.PI * 2) / particleCount;
+    const power = 15;
+
+    // Check if arrived at celebration
+    if (celebration) {
+        // Generate particles
+        for (let i = 0; i < particleCount; i++) {
+            // Set random color
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`
+
+            // Assign particle properties
+            particles.push(new Particle(mouse.x, mouse.y, 5, color, { 
+                x: Math.cos(angleIncrement * i) * Math.random() * power, 
+                y: Math.sin(angleIncrement * i) * Math.random() * power
+            }, Math.random()));
+        }
+
+        playFireworkSound();
+    }
+}
+
 // Function for Main page
 function mainPageFunction(deltaTime) {
     // Clear canvas
@@ -347,6 +377,9 @@ function gameEndFunction(deltaTime) {
         canvas.style.zIndex = 1;
         celebration = true;
     } else {
+        // Decrease cooldown count by 1 each loop
+        if (particleDrawCooldown > 0) particleDrawCooldown--;
+
         // Update each particles of fireworks
         particles.forEach((particle, index) => {
             // Check if particle is no longer visible
@@ -387,4 +420,5 @@ function animate(timestamp) {
         renderImage(currentImg);
     }
     updateTime();
+    console.log(particles.length)
 }

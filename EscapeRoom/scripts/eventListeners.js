@@ -160,29 +160,9 @@ window.addEventListener('mousedown', (event) => {
         hasDisplayedContent = !hasDisplayedContent;
     }
 
-    // Set mouse coordinates
-    mouse.x = event.x;
-    mouse.y = event.y;
-
-    // Set variables
-    const particleCount = 1000;
-    const angleIncrement = (Math.PI * 2) / particleCount;
-    const power = 15;
-
-    // Check if arrived at celebration
-    if (celebration) {
-        // Generate particles
-        for (let i = 0; i < particleCount; i++) {
-            // Set random color
-            let color = `hsl(${Math.random() * 360}, 50%, 50%)`
-
-            // Assign particle properties
-            particles.push(new Particle(mouse.x, mouse.y, 5, color, { 
-                x: Math.cos(angleIncrement * i) * Math.random() * power, 
-                y: Math.sin(angleIncrement * i) * Math.random() * power
-            }, Math.random()));
-        }
-
-        playFireworkSound();
+    // Execute when cooldown is 0
+    if (particleDrawCooldown <= 0 && atEnd) {
+        drawParticle(); // Draw particle
+        particleDrawCooldown = 50;
     }
 });
