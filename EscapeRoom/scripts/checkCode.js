@@ -92,7 +92,9 @@ function checkLock() {
 
         saveTime(); // Save completion time
         displayCompletionTime(); // Display completion time
-        atGame = false;
+        atGame = false; // Set game state
+        playPauseAudio('gameBg', false); // Stop game music
+        playPauseAudio('success', true, 0.6); // Play success sound effect
 
         setTimeout(() => {
             // Update game status flags

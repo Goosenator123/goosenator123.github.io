@@ -114,7 +114,10 @@ function loadText(text, element) {
     const interval = setInterval(() => {
         element.textContent += text[index];
         index++;
-        if (index >= text.length) clearInterval(interval);
+        if (index >= text.length) {
+            playPauseAudio('key', false); // Stop typing sound when text is finished
+            clearInterval(interval);
+        }
     }, 50);
 }
 
@@ -143,6 +146,8 @@ function loadIntroTextSequentially(currentIndex) {
     setTimeout(() => {
         // Load text corresponding to the current index using the loadText function
         loadText(introTexts[currentIndex], introElement[currentIndex + 1]);
+
+        playPauseAudio('key', true, 1); // Play typing sound
         
         // Set a timout to let loadText() finish loading the text
         setTimeout(() => loadIntroTextSequentially(currentIndex + 1), 5000);
@@ -302,6 +307,8 @@ function instructionsFunction(deltaTime) {
         skipBtn.style.opacity = introductionOpacity
         introductionOpacity -= 0.01 * (deltaTime / 16); // Scale opacity change by deltaTime
     } else if (overlayOpacity > 0) {
+        playPauseAudio('key', false); // Play select sound
+
         // Gradually hide overlay by decreasing its opacity
         overlay.style.backgroundColor = `rgba(0, 0, 0, ${overlayOpacity})`;
         overlayOpacity -= 0.02 * (deltaTime / 16); // Scale opacity change by deltaTime
@@ -315,6 +322,7 @@ function instructionsFunction(deltaTime) {
         initialInstructions = false;
         skipBtn.style.zIndex = -2000;
         timerContainer.style.zIndex = 1000;
+        playPauseAudio('gameBg', true, 0.8); // Play game music
     }
 }
 

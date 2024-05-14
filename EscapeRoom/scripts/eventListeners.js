@@ -2,6 +2,7 @@
 window.onload = () => {
     init();
     displayHighscore();
+    playPauseAudio('menuBg', true, 0.5); // Play menu bg music
 
     // Increase time each seconds during game or when it is not paused
     setInterval(() => {
@@ -20,6 +21,9 @@ startBtn.addEventListener('click', () => {
     // Load intro text letter by letter
     loadIntroTextSequentially(0)
 
+    playPauseAudio('menuBg', false); // Stop menu music
+    playPauseAudio('select', true, 0.6); // Play select sound
+
     // Show skip button to skip intro
     setTimeout(() => {
         skipBtn.style.zIndex = 3000;
@@ -35,6 +39,8 @@ skipBtn.addEventListener('click', () => {
     // Make start and skip button disabled to avoid accidentle clicks
     startBtn.disabled = true;
     skipBtn.disabled = true;
+
+    playPauseAudio('select', true, 0.6); // Play select sound
 });
 
 // Execute when WASD or arrow key are pressed for movement
@@ -109,8 +115,8 @@ Object.keys(images).slice(1).forEach(key => {
         currentImg = images[key];
         toggleBoxes(currentImg, true);
 
-        // Unpause the game
-        togglePause();
+        togglePause(); // Unpause the game
+        playPauseAudio('select', true, 0.6); // Play select sound
     });
 });
 
@@ -133,6 +139,7 @@ Object.keys(interactiveBoxData).forEach(key => {
     // Event listeners to load content of the box clicked in the interactiveBoxData
     document.getElementById(key).addEventListener('click', () => {
         loadContent(key); // Load the content of the box
+        playPauseAudio('select', true, 0.6); // Play select sound
     });
 });
 
@@ -175,5 +182,7 @@ window.addEventListener('mousedown', (event) => {
                 y: Math.sin(angleIncrement * i) * Math.random() * power
             }, Math.random()));
         }
+
+        playFireworkSound();
     }
 });
