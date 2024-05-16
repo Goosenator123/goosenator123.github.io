@@ -36,6 +36,11 @@ function playPauseAudio(audio, play = true, volume = 1) {
         audioElements[audio].playbackRate = 2;
     }
 
+    // If the audio is background music, put it on loop
+    if (audio === 'menuBg' || audio === 'gameBg') {
+        audioElements[audio].loop = true;
+    }
+
     // Set volume, reset currentTime, and play the audio
     audioElements[audio].volume = volume;
     audioElements[audio].currentTime = 0;
