@@ -52,12 +52,25 @@ backgroundElement.style.backgroundImage = `url(${background})`;
 // });
 
 // Event listener for arrow keys
+let isScrolling = false; // Flag to prevent multiple key presses
 window.addEventListener('keydown', (e) => {
+    if (isScrolling) {
+        return;
+    }
+
     if (e.key === 'ArrowDown') {
         const mainSection = document.getElementById('main');
         mainSection.scrollIntoView({ behavior: 'smooth' });
+        isScrolling = true;
+        setTimeout(() => {
+            isScrolling = false;
+        }, 500);
     } else if (e.key === 'ArrowUp') {
         const headerSection = document.getElementById('header');
         headerSection.scrollIntoView({ behavior: 'smooth' });
+        isScrolling = true;
+        setTimeout(() => {
+            isScrolling = false;
+        }, 500);
     }
 });
