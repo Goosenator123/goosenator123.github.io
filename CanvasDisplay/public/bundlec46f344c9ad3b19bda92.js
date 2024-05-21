@@ -68,38 +68,35 @@ header {
 }
 
 main {
+    position: relative;
     height: 100vh;
     width: 100vw;
-    overflow-y: scroll;
+}
+
+#displayTitle {
+    position: absolute;
+    top: 3%;
+    left: 1%;
+    width: 20vw;
+    height: 5vh;
+    min-width: fit-content;
+    min-height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(25, 25, 25, 0.50);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 2vh;
+    padding: 1vh 10vw;
 }
 
 #mainCanvas {
     background-color: rgb(0, 0, 0);
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    position: relative;
     z-index: -1;
 }
-
-.project {
-    border: 5px solid black;
-    padding: 1vw;
-    font-size: 1.5vw;
-    transition: background-color 0.5s;
-    cursor: default;
-    width: 1000px;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-}
-
-.project:hover {
-    background-color: rgba(174, 174, 178, 0.227);
-}
-
-`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,iCAAiC;IACjC,YAAY;IACZ,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;IACI,kBAAkB;IAClB,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,sBAAsB;IACtB,2BAA2B;IAC3B,4BAA4B;IAC5B,WAAW;AACf;;AAEA;IACI,YAAY;IACZ,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,2CAA2C;AAC/C;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,WAAW;AACf;;AAEA;IACI,aAAa;IACb,YAAY;IACZ,kBAAkB;AACtB;;AAEA;IACI,8BAA8B;IAC9B,kBAAkB;IAClB,WAAW;IACX,YAAY;IACZ,WAAW;AACf;;AAEA;IACI,uBAAuB;IACvB,YAAY;IACZ,gBAAgB;IAChB,iCAAiC;IACjC,eAAe;IACf,aAAa;IACb,aAAa;IACb,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,YAAY;AAChB;;AAEA;IACI,4CAA4C;AAChD","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: black;\r\n    overflow: hidden;\r\n    scroll-behavior: smooth;\r\n}\r\n\r\n#background {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    z-index: -1;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 2.5vw;\r\n    height: 100vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-bottom: 1vh solid rgb(255, 255, 255);\r\n}\r\n\r\n#headerCanvas {\r\n    background-color: black;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    z-index: -1;\r\n}\r\n\r\nmain {\r\n    height: 100vh;\r\n    width: 100vw;\r\n    overflow-y: scroll;\r\n}\r\n\r\n#mainCanvas {\r\n    background-color: rgb(0, 0, 0);\r\n    position: absolute;\r\n    width: 100%;\r\n    height: 100%;\r\n    z-index: -1;\r\n}\r\n\r\n.project {\r\n    border: 5px solid black;\r\n    padding: 1vw;\r\n    font-size: 1.5vw;\r\n    transition: background-color 0.5s;\r\n    cursor: default;\r\n    width: 1000px;\r\n    height: 100vh;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    color: black;\r\n}\r\n\r\n.project:hover {\r\n    background-color: rgba(174, 174, 178, 0.227);\r\n}\r\n\r\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,iCAAiC;IACjC,YAAY;IACZ,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;IACI,kBAAkB;IAClB,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,sBAAsB;IACtB,2BAA2B;IAC3B,4BAA4B;IAC5B,WAAW;AACf;;AAEA;IACI,YAAY;IACZ,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,2CAA2C;AAC/C;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,aAAa;IACb,YAAY;AAChB;;AAEA;IACI,kBAAkB;IAClB,OAAO;IACP,QAAQ;IACR,WAAW;IACX,WAAW;IACX,sBAAsB;IACtB,uBAAuB;IACvB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,wCAAwC;IACxC,2BAA2B;IAC3B,YAAY;IACZ,cAAc;IACd,iBAAiB;AACrB;;AAEA;IACI,8BAA8B;IAC9B,kBAAkB;IAClB,WAAW;AACf","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: black;\r\n    overflow: hidden;\r\n    scroll-behavior: smooth;\r\n}\r\n\r\n#background {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    z-index: -1;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 2.5vw;\r\n    height: 100vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-bottom: 1vh solid rgb(255, 255, 255);\r\n}\r\n\r\n#headerCanvas {\r\n    background-color: black;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    z-index: -1;\r\n}\r\n\r\nmain {\r\n    position: relative;\r\n    height: 100vh;\r\n    width: 100vw;\r\n}\r\n\r\n#displayTitle {\r\n    position: absolute;\r\n    top: 3%;\r\n    left: 1%;\r\n    width: 20vw;\r\n    height: 5vh;\r\n    min-width: fit-content;\r\n    min-height: fit-content;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    background-color: rgba(25, 25, 25, 0.50);\r\n    backdrop-filter: blur(10px);\r\n    color: white;\r\n    font-size: 2vh;\r\n    padding: 1vh 10vw;\r\n}\r\n\r\n#mainCanvas {\r\n    background-color: rgb(0, 0, 0);\r\n    position: relative;\r\n    z-index: -1;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -556,6 +553,170 @@ function styleTagTransform(css, styleElement) {
 }
 module.exports = styleTagTransform;
 
+/***/ }),
+
+/***/ "./src/scripts/animations.js":
+/*!***********************************!*\
+  !*** ./src/scripts/animations.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   bouncingCircles: () => (/* binding */ bouncingCircles),
+/* harmony export */   circularMotion: () => (/* binding */ circularMotion),
+/* harmony export */   dynamicCollision: () => (/* binding */ dynamicCollision),
+/* harmony export */   galacticLight: () => (/* binding */ galacticLight),
+/* harmony export */   gravityCircles: () => (/* binding */ gravityCircles),
+/* harmony export */   interactiveBouncingCircles: () => (/* binding */ interactiveBouncingCircles),
+/* harmony export */   realisticFireworks: () => (/* binding */ realisticFireworks),
+/* harmony export */   sineWaves: () => (/* binding */ sineWaves),
+/* harmony export */   staticCollision: () => (/* binding */ staticCollision),
+/* harmony export */   updateObjectArray: () => (/* binding */ updateObjectArray)
+/* harmony export */ });
+/* harmony import */ var _classes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes.js */ "./src/scripts/classes.js");
+// Get canvas context and element
+
+
+// Get canvas context and element
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+
+// Object Array to store different 2D elements
+let objectArray = [];
+
+// Function that updateObjectArray
+function updateObjectArray() {
+    objectArray = [];
+}
+
+// Function for bouncing circles
+function bouncingCircles() {
+    // Check if initialGeneration is true
+    if (objectArray.length === 0) {
+
+        // Create circles
+        for (let i = 0; i < 100; i++) {
+            // Declaring variable
+            let radius = 50; // Set radius
+            let x = Math.random() * (canvas.width - radius * 2) + radius; // Set x coordinate
+            let y = Math.random() * (canvas.height - radius * 2) + radius; // Set y coordinate
+            let dx = Math.floor((Math.random() - 0.5) * 100) / 10; // Set x velocity
+            let dy = Math.floor((Math.random() - 0.5) * 100) / 10; // Set y velocity
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`
+
+            objectArray.push(new _classes_js__WEBPACK_IMPORTED_MODULE_0__["default"](x, y, dx, dy, radius, color));
+        }
+    }
+
+    // Animates the circles
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (let i = 0; i < objectArray.length; i++) {
+        objectArray[i].update();
+    }
+}
+
+// Function for circular motion
+function circularMotion() {
+
+}
+
+// Function for dynamic collision
+function dynamicCollision() {
+
+}
+
+// Function for galactic light
+function galacticLight() {
+
+}
+
+// Function for gravity circles
+function gravityCircles() {
+
+}
+
+// Function for interactive bouncing circles
+function interactiveBouncingCircles() {
+
+}
+
+// Function for realistic fireworks
+function realisticFireworks() {
+
+}
+
+// Function for sine waves
+function sineWaves() {
+
+}
+
+// Function for static collision
+function staticCollision() {
+
+}
+
+// Export functions
+
+
+/***/ }),
+
+/***/ "./src/scripts/classes.js":
+/*!********************************!*\
+  !*** ./src/scripts/classes.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// Get canvas context and element
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+
+// BouncingCircles class
+class BouncingCircles {
+    constructor(x, y, dx, dy, radius, color) {
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.radius = radius;
+        this.color = color;
+    }
+
+    draw() {
+        // Drawing a circle
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        ctx.strokeStyle = this.color;
+        ctx.fillStyle = this.color;
+        ctx.stroke();
+        ctx.fill();
+    }
+
+    update() {
+        // Check if circle hit the side of the screen
+        if (this.x > (canvas.width - this.radius) || this.x < (0 + this.radius)) {
+            this.dx = -this.dx;
+        }
+
+        if (this.y > (canvas.height - this.radius) || this.y < (0 + this.radius)) {
+            this.dy = -this.dy;
+        }
+
+        // Modify x coordinate
+        this.x += this.dx;
+        this.y += this.dy;
+
+        // Call Circle.draw() function;
+        this.draw();
+    }
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BouncingCircles);
+
 /***/ })
 
 /******/ 	});
@@ -675,58 +836,67 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/index.css */ "./src/styles/index.css");
 /* harmony import */ var _assets_headerBg_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/headerBg.svg */ "./src/assets/headerBg.svg");
+/* harmony import */ var _animations_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animations.js */ "./src/scripts/animations.js");
 // Imports
+
 
 
 
 // HTML element
 const backgroundElement = document.getElementById('background');
-const main = document.getElementById('main');
+const canvas = document.getElementById('mainCanvas');
+
+// Get canvas context
+const ctx = canvas.getContext('2d');
+
+// Function to set the size of the canvas to match the window size
+function setCanvasSize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+setCanvasSize(); // Call the function to set the initial canvas size
 
 // Set background image using style.backgroundImage
 backgroundElement.style.backgroundImage = `url(${_assets_headerBg_svg__WEBPACK_IMPORTED_MODULE_1__["default"]})`;
 
-// // Project list
-// const projects = [
-//     { title: 'BouncingCircles' },
-//     { title: 'CircularMotion' },
-//     { title: 'DynamicCollision' },
-//     { title: 'GalacticLight' },
-//     { title: 'GravityCircles' },
-//     { title: 'InteractiveBouncingCircles' },
-//     { title: 'RealisticFireworks' },
-//     { title: 'SineWaves' },
-//     { title: 'StaticCollision' },
-// ];
+// Variables
+let atMain = false;
+let index = 0;
 
-// // Create element for each project
-// projects.forEach(project => {
-//     const projectElement = document.createElement('div');
-//     projectElement.classList.add('project');
-//     projectElement.innerHTML = project.title;
-//     main.appendChild(projectElement);
-// });
+// Project list
+const projects = [
+    { title: 'BouncingCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.bouncingCircles },
+    { title: 'CircularMotion', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.circularMotion },
+    { title: 'DynamicCollision', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.dynamicCollision },
+    { title: 'GalacticLight', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.galacticLight },
+    { title: 'GravityCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.gravityCircles },
+    { title: 'InteractiveBouncingCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.interactiveBouncingCircles },
+    { title: 'RealisticFireworks', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.realisticFireworks },
+    { title: 'SineWaves', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.sineWaves },
+    { title: 'StaticCollision', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.staticCollision },
+];
 
-// // Event listeners for each project
-// const projectElements = document.querySelectorAll('.project');
-// projectElements.forEach((projectElement, index) => {
-//     projectElement.addEventListener('click', () => {
-//         switch (index) {
-//             case 0:
-//                 console.log('yes')
-//                 break;
-//             case 1:
-//                 // Code for handling the second project
-//                 break;
-//             case 2:
-//                 // Code for handling the third project
-//                 break;
-//             // Add more cases for handling other projects
-//             default:
-//                 alert('Project not found!');
-//         };
-//     });
-// });
+// Animate function
+function animate() {
+    // Make a loop
+    requestAnimationFrame(animate);
+
+    if (!atMain) {
+        // Clear canvas
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        return;
+    }
+    
+    // Check if at project index for each project in projects array
+    projects.forEach((project, projectIndex) => {
+        if (index === projectIndex) {
+            const displayTitle = document.getElementById('displayTitle');
+            displayTitle.textContent = project.title;
+            project.function();
+        }
+    });
+}
+animate(); // Call animate function
 
 // Event listener for arrow keys
 let isScrolling = false; // Flag to prevent multiple key presses
@@ -735,24 +905,52 @@ window.addEventListener('keydown', (e) => {
         return;
     }
 
-    if (e.key === 'ArrowDown') {
-        const mainSection = document.getElementById('main');
-        mainSection.scrollIntoView({ behavior: 'smooth' });
-        isScrolling = true;
-        setTimeout(() => {
-            isScrolling = false;
-        }, 500);
-    } else if (e.key === 'ArrowUp') {
-        const headerSection = document.getElementById('header');
-        headerSection.scrollIntoView({ behavior: 'smooth' });
-        isScrolling = true;
-        setTimeout(() => {
-            isScrolling = false;
-        }, 500);
+    // Execute code based on key pressed
+    switch (e.key) {
+        case 'ArrowDown':
+            const mainSection = document.getElementById('main');
+            mainSection.scrollIntoView({ behavior: 'smooth' });
+            isScrolling = true;
+            setTimeout(() => {
+                isScrolling = false;
+                atMain = true;
+            }, 1000);
+            break;
+        case 'ArrowUp':
+            const headerSection = document.getElementById('header');
+            headerSection.scrollIntoView({ behavior: 'smooth' });
+            isScrolling = true;
+            setTimeout(() => {
+                isScrolling = false;
+                atMain = false;
+            }, 1000);
+            break;
+        case 'ArrowRight':
+            if (atMain && index < projects.length - 1) {
+                ctx.clearRect(0, 0, innerWidth, innerHeight);
+                (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.updateObjectArray)();
+                index++;
+            }
+            break;
+        case 'ArrowLeft':
+            if (atMain && index > 0) {
+                ctx.clearRect(0, 0, innerWidth, innerHeight);
+                (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.updateObjectArray)();
+                index--;
+            }
+            break;
     }
+});
+
+// Event listener for resize
+window.addEventListener('resize', () => {
+    const headerSection = document.getElementById('header');
+    headerSection.scrollIntoView({ behavior: 'smooth' });
+    setCanvasSize();
+    atMain = false;
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundleded2ca297abe7a3ab3b5.js.map
+//# sourceMappingURL=bundlec46f344c9ad3b19bda92.js.map
