@@ -28,7 +28,17 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
-            }
+            },
+            {
+                test: /\.svg$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name][contenthash].[ext]',
+                        outputPath: 'assets',
+                    },
+                },
+            },
         ],
     },
     plugins: [

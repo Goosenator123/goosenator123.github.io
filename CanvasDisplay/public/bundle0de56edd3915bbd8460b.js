@@ -25,35 +25,86 @@ ___CSS_LOADER_EXPORT___.push([module.id, `* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #000103;
-    color: #fffffa;
+    color: black;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
 }
 
 header {
     margin: auto;
-    font-size: 5vh;
-    text-align: center;
-    margin-bottom: 2vh;
+    font-size: 2.5vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1vh solid rgb(255, 255, 255);
 }
 
-aside {
-    float: left;
-    width: 30%;
-}
-
-aside > header, main > header {
-    font-size: 3vh;
-    text-align: center;
+#headerCanvas {
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
 }
 
 main {
-    float: right;
-    width: 70%;
-}`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;AAC1B;;AAEA;IACI,iCAAiC;IACjC,yBAAyB;IACzB,cAAc;AAClB;;AAEA;IACI,YAAY;IACZ,cAAc;IACd,kBAAkB;IAClB,kBAAkB;AACtB;;AAEA;IACI,WAAW;IACX,UAAU;AACd;;AAEA;IACI,cAAc;IACd,kBAAkB;AACtB;;AAEA;IACI,YAAY;IACZ,UAAU;AACd","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    background-color: #000103;\r\n    color: #fffffa;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 5vh;\r\n    text-align: center;\r\n    margin-bottom: 2vh;\r\n}\r\n\r\naside {\r\n    float: left;\r\n    width: 30%;\r\n}\r\n\r\naside > header, main > header {\r\n    font-size: 3vh;\r\n    text-align: center;\r\n}\r\n\r\nmain {\r\n    float: right;\r\n    width: 70%;\r\n}"],"sourceRoot":""}]);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+#mainCanvas {
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.project {
+    border: 5px solid black;
+    padding: 1vw;
+    font-size: 1.5vw;
+    transition: background-color 0.5s;
+    cursor: default;
+    width: 1000px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+}
+
+.project:hover {
+    background-color: rgba(174, 174, 178, 0.227);
+}
+
+`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,iCAAiC;IACjC,YAAY;IACZ,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;IACI,kBAAkB;IAClB,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,sBAAsB;IACtB,2BAA2B;IAC3B,4BAA4B;IAC5B,WAAW;AACf;;AAEA;IACI,YAAY;IACZ,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,2CAA2C;AAC/C;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,WAAW;AACf;;AAEA;IACI,aAAa;IACb,2BAA2B;IAC3B,mBAAmB;IACnB,kBAAkB;IAClB,aAAa;IACb,YAAY;IACZ,eAAe;IACf,kBAAkB;AACtB;;AAEA;IACI,8BAA8B;IAC9B,kBAAkB;IAClB,WAAW;IACX,YAAY;IACZ,WAAW;AACf;;AAEA;IACI,uBAAuB;IACvB,YAAY;IACZ,gBAAgB;IAChB,iCAAiC;IACjC,eAAe;IACf,aAAa;IACb,aAAa;IACb,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,YAAY;AAChB;;AAEA;IACI,4CAA4C;AAChD","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: black;\r\n    overflow: hidden;\r\n    scroll-behavior: smooth;\r\n}\r\n\r\n#background {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    z-index: -1;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 2.5vw;\r\n    height: 100vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-bottom: 1vh solid rgb(255, 255, 255);\r\n}\r\n\r\n#headerCanvas {\r\n    background-color: black;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    z-index: -1;\r\n}\r\n\r\nmain {\r\n    display: flex;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n    position: absolute;\r\n    height: 100vh;\r\n    width: 100vw;\r\n    flex-wrap: wrap;\r\n    overflow-y: scroll;\r\n}\r\n\r\n#mainCanvas {\r\n    background-color: rgb(0, 0, 0);\r\n    position: absolute;\r\n    width: 100%;\r\n    height: 100%;\r\n    z-index: -1;\r\n}\r\n\r\n.project {\r\n    border: 5px solid black;\r\n    padding: 1vw;\r\n    font-size: 1.5vw;\r\n    transition: background-color 0.5s;\r\n    cursor: default;\r\n    width: 1000px;\r\n    height: 100vh;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    color: black;\r\n}\r\n\r\n.project:hover {\r\n    background-color: rgba(174, 174, 178, 0.227);\r\n}\r\n\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -176,6 +227,20 @@ module.exports = function (item) {
   }
   return [content].join("\n");
 };
+
+/***/ }),
+
+/***/ "./src/assets/headerBg.svg":
+/*!*********************************!*\
+  !*** ./src/assets/headerBg.svg ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "assets/headerBgab3c50040210aab5cfa26688d247bb79.svg");
 
 /***/ }),
 
@@ -549,6 +614,18 @@ module.exports = styleTagTransform;
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -565,6 +642,29 @@ module.exports = styleTagTransform;
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/nonce */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nc = undefined;
@@ -579,12 +679,72 @@ var __webpack_exports__ = {};
   \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/index.css */ "./src/styles/index.css");
+/* harmony import */ var _assets_headerBg_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/headerBg.svg */ "./src/assets/headerBg.svg");
+// Imports
 
 
-console.log('sdf');
 
+// HTML element
+const backgroundElement = document.getElementById('background');
+const main = document.getElementById('main');
+
+// Set background image using style.backgroundImage
+backgroundElement.style.backgroundImage = `url(${_assets_headerBg_svg__WEBPACK_IMPORTED_MODULE_1__["default"]})`;
+
+// // Project list
+// const projects = [
+//     { title: 'BouncingCircles' },
+//     { title: 'CircularMotion' },
+//     { title: 'DynamicCollision' },
+//     { title: 'GalacticLight' },
+//     { title: 'GravityCircles' },
+//     { title: 'InteractiveBouncingCircles' },
+//     { title: 'RealisticFireworks' },
+//     { title: 'SineWaves' },
+//     { title: 'StaticCollision' },
+// ];
+
+// // Create element for each project
+// projects.forEach(project => {
+//     const projectElement = document.createElement('div');
+//     projectElement.classList.add('project');
+//     projectElement.innerHTML = project.title;
+//     main.appendChild(projectElement);
+// });
+
+// // Event listeners for each project
+// const projectElements = document.querySelectorAll('.project');
+// projectElements.forEach((projectElement, index) => {
+//     projectElement.addEventListener('click', () => {
+//         switch (index) {
+//             case 0:
+//                 console.log('yes')
+//                 break;
+//             case 1:
+//                 // Code for handling the second project
+//                 break;
+//             case 2:
+//                 // Code for handling the third project
+//                 break;
+//             // Add more cases for handling other projects
+//             default:
+//                 alert('Project not found!');
+//         };
+//     });
+// });
+
+// Event listener for arrow keys
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+        const mainSection = document.getElementById('main');
+        mainSection.scrollIntoView({ behavior: 'smooth' });
+    } else if (e.key === 'ArrowUp') {
+        const headerSection = document.getElementById('header');
+        headerSection.scrollIntoView({ behavior: 'smooth' });
+    }
+});
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle7d012eebb2867110863f.js.map
+//# sourceMappingURL=bundle0de56edd3915bbd8460b.js.map
