@@ -64,8 +64,9 @@ main {
     background-color: rgba(25, 25, 25, 0.50);
     backdrop-filter: blur(10px);
     color: white;
-    font-size: 2vh;
-    padding: 1vh 10vw;
+    font-size: 1.5vw;
+    padding: 1.5vw 5vw;
+    border: 0.3vw solid white;
 }
 
 #mainCanvas {
