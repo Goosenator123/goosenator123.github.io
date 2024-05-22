@@ -567,7 +567,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   bouncingCircles: () => (/* binding */ bouncingCircles),
 /* harmony export */   circularMotion: () => (/* binding */ circularMotion),
 /* harmony export */   clearObjectArray: () => (/* binding */ clearObjectArray),
-/* harmony export */   dynamicCollision: () => (/* binding */ dynamicCollision),
+/* harmony export */   collision: () => (/* binding */ collision),
 /* harmony export */   galacticLight: () => (/* binding */ galacticLight),
 /* harmony export */   gravityCircles: () => (/* binding */ gravityCircles),
 /* harmony export */   interactiveBouncingCircles: () => (/* binding */ interactiveBouncingCircles),
@@ -651,7 +651,7 @@ function circularMotion(version) {
 }
 
 // Function for dynamic collision
-function dynamicCollision() {
+function collision() {
     let spawnCount = canvas.width * canvas.height / ((canvas.width + canvas.height) * 20);
     if (objectArray.length === 0) {
         // Create and insert particle into array
@@ -662,8 +662,8 @@ function dynamicCollision() {
             let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
             let x = randomIntFromRange(radius, canvas.width - radius);
             let y = randomIntFromRange(radius, canvas.height - radius);
-            let dx = randomIntFromRange(-3, 3);
-            let dy = randomIntFromRange(-3, 3);
+            let dx = randomIntFromRange(-5, 5);
+            let dy = randomIntFromRange(-5, 5);
 
             // Make sure it's not the first particle
             if (i !== 0) {
@@ -694,8 +694,57 @@ function dynamicCollision() {
 }
 
 // Function for galactic light
+let opacity = 1; // Set opacity
+let radians = 0 // Set radian value
 function galacticLight() {
+    let spawnCount = canvas.width * canvas.height / 500;
+    let margin = canvas.width * canvas.height / canvas.width;
 
+    if (objectArray.length === 0) {
+        for (let i = 0; i < spawnCount; i++) {
+            const canvasWidth = canvas.width + margin;
+            const canvasHeight = canvas.height + margin;
+            const x = Math.random() * canvasWidth - canvasWidth / 2;
+            const y = Math.random() * canvasHeight - canvasHeight / 2;
+            const color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+            const radius = 2 * Math.random();
+    
+            objectArray.push(new _classes_js__WEBPACK_IMPORTED_MODULE_0__.GalacticLight(x, y, radius, color));
+        }
+    }
+
+    // Clear the canvas
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(10, 10, 10, ${opacity}`;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.closePath
+
+    // Save the current transformation state
+    ctx.save();
+
+    // Translate the canvas origin to the center of the canvas
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+
+    // Rotate the canvas by the specified radians
+    ctx.rotate(radians);
+
+    // Iterate over each light and update its position or properties
+    objectArray.forEach(light => {
+        light.update(); // Update each light after each loop
+    });
+
+    // Restore the previously saved transformation state
+    ctx.restore();
+
+    // Increment the radians value to rotate the canvas gradually
+    radians += 0.003;
+
+    // Change bg color opacity depending on mouseDown
+    if (mouseDown && opacity >= 0.03) {
+        opacity -= 0.01;
+    } else if (!mouseDown && opacity < 1) {
+        opacity += 0.005;
+    }
 }
 
 // Function for gravity circles
@@ -723,6 +772,15 @@ function staticCollision() {
 
 }
 
+let mouseDown = false;
+window.addEventListener('mousedown', () => {
+    mouseDown = true;
+})
+
+window.addEventListener('mouseup', () => {
+    mouseDown = false;
+})
+
 // Export functions
 
 
@@ -739,6 +797,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   BouncingCircles: () => (/* binding */ BouncingCircles),
 /* harmony export */   CircularMotion: () => (/* binding */ CircularMotion),
 /* harmony export */   Collision: () => (/* binding */ Collision),
+/* harmony export */   GalacticLight: () => (/* binding */ GalacticLight),
 /* harmony export */   getDistance: () => (/* binding */ getDistance),
 /* harmony export */   updateMouseCoordinates: () => (/* binding */ updateMouseCoordinates)
 /* harmony export */ });
@@ -942,6 +1001,30 @@ class Collision {
         // Move Particle based on velocity
         this.x += this.velocity.x;
         this.y += this.velocity.y;
+    }
+}
+
+// GalacticLight class
+class GalacticLight {
+    constructor(x, y, radius, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.color = color;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 15;
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    update() {
+        this.draw();
     }
 }
 
@@ -1170,7 +1253,7 @@ const projects = [
     { title: 'BouncingCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.bouncingCircles },
     { title: 'CircularMotion Version 1', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.circularMotion, version: 1 },
     { title: 'CircularMotion Version 2', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.circularMotion, version: 2 },
-    { title: 'DynamicCollision', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.dynamicCollision },
+    { title: 'DynamicCollision', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.collision },
     { title: 'GalacticLight', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.galacticLight },
     { title: 'GravityCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.gravityCircles },
     { title: 'InteractiveBouncingCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.interactiveBouncingCircles },
@@ -1270,4 +1353,4 @@ window.addEventListener('mousemove', (e) => {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundlee2800ad74507761bdb5c.js.map
+//# sourceMappingURL=bundle8429f0b7dc2e77b69301.js.map
