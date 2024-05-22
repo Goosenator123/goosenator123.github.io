@@ -1,5 +1,5 @@
 // Get canvas context and element
-import { BouncingCircles, CircularMotion }  from './classes.js';
+import { BouncingCircles, CircularMotion, Collision, getDistance }  from './classes.js';
 
 // Get canvas context and element
 const canvas = document.querySelector('canvas');
@@ -11,6 +11,11 @@ let objectArray = [];
 // Function that updateObjectArray
 function clearObjectArray() {
     objectArray = [];
+}
+
+// Get random integer from a min and max value
+function randomIntFromRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 // Function that clear screen
@@ -68,8 +73,46 @@ function circularMotion(version) {
 }
 
 // Function for dynamic collision
-function dynamicCollision() {
+function collision() {
+    let spawnCount = canvas.width * canvas.height / ((canvas.width + canvas.height) * 20);
+    if (objectArray.length === 0) {
+        // Create and insert particle into array
+        for (let i = 0; i < spawnCount; i++) {
 
+            // Set random variables
+            let radius = 50;
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+            let x = randomIntFromRange(radius, canvas.width - radius);
+            let y = randomIntFromRange(radius, canvas.height - radius);
+            let dx = randomIntFromRange(-5, 5);
+            let dy = randomIntFromRange(-5, 5);
+
+            // Make sure it's not the first particle
+            if (i !== 0) {
+                // Check for collisions with existing particle
+                for (let j = 0; j < objectArray.length; j++) {
+                    // Execute if (x, y) coordinates are too close 
+                    if (getDistance(x, y, objectArray[j].x, objectArray[j].y) < (radius + objectArray[j].radius + 2)) {
+                        // Reassign x, y coordinates
+                        x = randomIntFromRange(radius, canvas.width - radius);
+                        y = randomIntFromRange(radius, canvas.height - radius);
+
+                        // Reset for loop to recheck if new coordinates are far enough
+                        j = -1;
+                    }
+                }
+            }
+
+            // Insert particle object into array if no collision
+            objectArray.push(new Collision(x, y, radius, color, dx, dy));
+        }
+    }
+
+    // Animate the collision
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    objectArray.forEach(particle => {
+        particle.update(objectArray);
+    })
 }
 
 // Function for galactic light
@@ -107,7 +150,7 @@ export {
     clearObjectArray,
     bouncingCircles,
     circularMotion,
-    dynamicCollision,
+    collision,
     galacticLight,
     gravityCircles,
     interactiveBouncingCircles,

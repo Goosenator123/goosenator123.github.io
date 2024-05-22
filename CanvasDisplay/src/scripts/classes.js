@@ -1,3 +1,6 @@
+// Import
+import { resolveCollision } from "./resolveCollision";
+
 // Get canvas context and element
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
@@ -19,6 +22,15 @@ function randomIntFromRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// Get the distance between 2 objects
+function getDistance(x1, y1, x2, y2) {
+    let xDistance = x2 - x1;
+    let yDistance = y2 - y1;
+
+    // Return the distance between the 2 objects using Pythagorean Formula
+    return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+}
+
 // BouncingCircles class
 class BouncingCircles {
     constructor(x, y, dx, dy, radius, color) {
@@ -34,10 +46,9 @@ class BouncingCircles {
         // Drawing a circle
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-        ctx.strokeStyle = this.color;
         ctx.fillStyle = this.color;
-        ctx.stroke();
         ctx.fill();
+        ctx.closePath();
     }
 
     update() {
@@ -96,8 +107,8 @@ class CircularMotion { // Particle Class
         this.radians += this.velocity; // Increase radians value over time
 
         // Gradually 
-        this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.1;
-        this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.1;
+        this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.05;
+        this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.05;
 
         // Circular Motion
         if (this.version === 1) {
@@ -124,15 +135,75 @@ class CircularMotion { // Particle Class
         ctx.closePath();
 
         //! Trail with circles
+        ctx.beginPath();
         ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2, false);
         ctx.fillStyle = this.color;
         ctx.fill();
+        ctx.closePath();
+    }
+}
 
+// Collision class
+class Collision {
+    constructor(x, y, radius, color, dx, dy) {
+        this.x = x;
+        this.y = y;
+        this.velocity = {
+            x: dx,
+            y: dy
+        }
+        this.radius = radius;
+        this.color = color;
+        this.mass = this.radius ** 2 * Math.PI; // Mass proportional to Particle area
+        this.opacity = 1;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.restore();
+        ctx.closePath();
+    }
+
+    update(particleArray) {
+        this.draw();
+
+        // Cycle through every particle
+        for (let i = 0; i < particleArray.length; i++) {
+            // Do not detect collision with itself
+            if (this === particleArray[i]) continue;
+
+            // Check collision
+            if (getDistance(this.x, this.y, particleArray[i].x, particleArray[i].y) < (this.radius + particleArray[i].radius)) {
+                // Resolve collision
+                resolveCollision(this, particleArray[i]);
+            }
+        }
+
+        // Reset x velocity if touching border
+        if ((this.x + this.radius) > canvas.width || (this.x - this.radius) < 0) {
+            this.velocity.x = -this.velocity.x;
+        }
+
+        // Reset y velocity if touching border
+        if ((this.y + this.radius) > canvas.height || (this.y - this.radius) < 0) {
+            this.velocity.y = -this.velocity.y;
+        }
+
+        // Move Particle based on velocity
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
     }
 }
 
 export {
     BouncingCircles,
     CircularMotion,
+    Collision,
     updateMouseCoordinates,
+    getDistance,
 } // Export classes

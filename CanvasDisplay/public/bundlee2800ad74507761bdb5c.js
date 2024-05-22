@@ -87,8 +87,9 @@ main {
     background-color: rgba(25, 25, 25, 0.50);
     backdrop-filter: blur(10px);
     color: white;
-    font-size: 2vh;
-    padding: 1vh 10vw;
+    font-size: 1.5vw;
+    padding: 1.5vw 5vw;
+    border: 0.3vw solid white;
 }
 
 #mainCanvas {
@@ -96,7 +97,7 @@ main {
     position: relative;
     z-index: -1;
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,iCAAiC;IACjC,YAAY;IACZ,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;IACI,kBAAkB;IAClB,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,sBAAsB;IACtB,2BAA2B;IAC3B,4BAA4B;IAC5B,WAAW;AACf;;AAEA;IACI,YAAY;IACZ,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,2CAA2C;AAC/C;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,aAAa;IACb,YAAY;AAChB;;AAEA;IACI,kBAAkB;IAClB,OAAO;IACP,QAAQ;IACR,WAAW;IACX,WAAW;IACX,sBAAsB;IACtB,uBAAuB;IACvB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,wCAAwC;IACxC,2BAA2B;IAC3B,YAAY;IACZ,cAAc;IACd,iBAAiB;AACrB;;AAEA;IACI,8BAA8B;IAC9B,kBAAkB;IAClB,WAAW;AACf","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: black;\r\n    overflow: hidden;\r\n    scroll-behavior: smooth;\r\n}\r\n\r\n#background {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    z-index: -1;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 2.5vw;\r\n    height: 100vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-bottom: 1vh solid rgb(255, 255, 255);\r\n}\r\n\r\n#headerCanvas {\r\n    background-color: black;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    z-index: -1;\r\n}\r\n\r\nmain {\r\n    position: relative;\r\n    height: 100vh;\r\n    width: 100vw;\r\n}\r\n\r\n#displayTitle {\r\n    position: absolute;\r\n    top: 3%;\r\n    left: 1%;\r\n    width: 20vw;\r\n    height: 5vh;\r\n    min-width: fit-content;\r\n    min-height: fit-content;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    background-color: rgba(25, 25, 25, 0.50);\r\n    backdrop-filter: blur(10px);\r\n    color: white;\r\n    font-size: 2vh;\r\n    padding: 1vh 10vw;\r\n}\r\n\r\n#mainCanvas {\r\n    background-color: rgb(0, 0, 0);\r\n    position: relative;\r\n    z-index: -1;\r\n}\r\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,iCAAiC;IACjC,YAAY;IACZ,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;IACI,kBAAkB;IAClB,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,sBAAsB;IACtB,2BAA2B;IAC3B,4BAA4B;IAC5B,WAAW;AACf;;AAEA;IACI,YAAY;IACZ,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,2CAA2C;AAC/C;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,aAAa;IACb,YAAY;AAChB;;AAEA;IACI,kBAAkB;IAClB,OAAO;IACP,QAAQ;IACR,WAAW;IACX,WAAW;IACX,sBAAsB;IACtB,uBAAuB;IACvB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,wCAAwC;IACxC,2BAA2B;IAC3B,YAAY;IACZ,gBAAgB;IAChB,kBAAkB;IAClB,yBAAyB;AAC7B;;AAEA;IACI,8BAA8B;IAC9B,kBAAkB;IAClB,WAAW;AACf","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: black;\r\n    overflow: hidden;\r\n    scroll-behavior: smooth;\r\n}\r\n\r\n#background {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    z-index: -1;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 2.5vw;\r\n    height: 100vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-bottom: 1vh solid rgb(255, 255, 255);\r\n}\r\n\r\n#headerCanvas {\r\n    background-color: black;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    z-index: -1;\r\n}\r\n\r\nmain {\r\n    position: relative;\r\n    height: 100vh;\r\n    width: 100vw;\r\n}\r\n\r\n#displayTitle {\r\n    position: absolute;\r\n    top: 3%;\r\n    left: 1%;\r\n    width: 20vw;\r\n    height: 5vh;\r\n    min-width: fit-content;\r\n    min-height: fit-content;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    background-color: rgba(25, 25, 25, 0.50);\r\n    backdrop-filter: blur(10px);\r\n    color: white;\r\n    font-size: 1.5vw;\r\n    padding: 1.5vw 5vw;\r\n    border: 0.3vw solid white;\r\n}\r\n\r\n#mainCanvas {\r\n    background-color: rgb(0, 0, 0);\r\n    position: relative;\r\n    z-index: -1;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -565,14 +566,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   bouncingCircles: () => (/* binding */ bouncingCircles),
 /* harmony export */   circularMotion: () => (/* binding */ circularMotion),
+/* harmony export */   clearObjectArray: () => (/* binding */ clearObjectArray),
 /* harmony export */   dynamicCollision: () => (/* binding */ dynamicCollision),
 /* harmony export */   galacticLight: () => (/* binding */ galacticLight),
 /* harmony export */   gravityCircles: () => (/* binding */ gravityCircles),
 /* harmony export */   interactiveBouncingCircles: () => (/* binding */ interactiveBouncingCircles),
 /* harmony export */   realisticFireworks: () => (/* binding */ realisticFireworks),
 /* harmony export */   sineWaves: () => (/* binding */ sineWaves),
-/* harmony export */   staticCollision: () => (/* binding */ staticCollision),
-/* harmony export */   updateObjectArray: () => (/* binding */ updateObjectArray)
+/* harmony export */   staticCollision: () => (/* binding */ staticCollision)
 /* harmony export */ });
 /* harmony import */ var _classes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes.js */ "./src/scripts/classes.js");
 // Get canvas context and element
@@ -586,8 +587,22 @@ const ctx = canvas.getContext('2d');
 let objectArray = [];
 
 // Function that updateObjectArray
-function updateObjectArray() {
+function clearObjectArray() {
     objectArray = [];
+}
+
+// Get random integer from a min and max value
+function randomIntFromRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+// Function that clear screen
+function clearScreen() {
+    ctx.beginPath();
+    ctx.rect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fill();
+    ctx.closePath();
 }
 
 // Function for bouncing circles
@@ -603,9 +618,9 @@ function bouncingCircles() {
             let y = Math.random() * (canvas.height - radius * 2) + radius; // Set y coordinate
             let dx = Math.floor((Math.random() - 0.5) * 100) / 10; // Set x velocity
             let dy = Math.floor((Math.random() - 0.5) * 100) / 10; // Set y velocity
-            let color = `hsl(${Math.random() * 360}, 50%, 50%)`
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`; // Set color
 
-            objectArray.push(new _classes_js__WEBPACK_IMPORTED_MODULE_0__["default"](x, y, dx, dy, radius, color));
+            objectArray.push(new _classes_js__WEBPACK_IMPORTED_MODULE_0__.BouncingCircles(x, y, dx, dy, radius, color));
         }
     }
 
@@ -616,14 +631,66 @@ function bouncingCircles() {
     }
 }
 
-// Function for circular motion
-function circularMotion() {
+// Function for circular motion version 1
+function circularMotion(version) {
+    if (objectArray.length === 0) {
+        // Create particle
+        for (let i = 0; i < 200; i ++) {
+            let size = (Math.random() * 10) + 5; // Set size
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`; // Set color
 
+            objectArray.push(new _classes_js__WEBPACK_IMPORTED_MODULE_0__.CircularMotion(canvas.width / 2, canvas.height / 2, size, color, version));
+        }
+    }
+
+    // Animate the circular motion
+    clearScreen();
+    objectArray.forEach(particle => {
+        particle.update();
+    });
 }
 
 // Function for dynamic collision
 function dynamicCollision() {
+    let spawnCount = canvas.width * canvas.height / ((canvas.width + canvas.height) * 20);
+    if (objectArray.length === 0) {
+        // Create and insert particle into array
+        for (let i = 0; i < spawnCount; i++) {
 
+            // Set random variables
+            let radius = 50;
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+            let x = randomIntFromRange(radius, canvas.width - radius);
+            let y = randomIntFromRange(radius, canvas.height - radius);
+            let dx = randomIntFromRange(-3, 3);
+            let dy = randomIntFromRange(-3, 3);
+
+            // Make sure it's not the first particle
+            if (i !== 0) {
+                // Check for collisions with existing particle
+                for (let j = 0; j < objectArray.length; j++) {
+                    // Execute if (x, y) coordinates are too close 
+                    if ((0,_classes_js__WEBPACK_IMPORTED_MODULE_0__.getDistance)(x, y, objectArray[j].x, objectArray[j].y) < (radius + objectArray[j].radius + 2)) {
+                        // Reassign x, y coordinates
+                        x = randomIntFromRange(radius, canvas.width - radius);
+                        y = randomIntFromRange(radius, canvas.height - radius);
+
+                        // Reset for loop to recheck if new coordinates are far enough
+                        j = -1;
+                    }
+                }
+            }
+
+            // Insert particle object into array if no collision
+            objectArray.push(new _classes_js__WEBPACK_IMPORTED_MODULE_0__.Collision(x, y, radius, color, dx, dy));
+        }
+    }
+
+    // Animate the collision
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    objectArray.forEach(particle => {
+        particle.update(objectArray);
+    })
 }
 
 // Function for galactic light
@@ -669,11 +736,45 @@ function staticCollision() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   BouncingCircles: () => (/* binding */ BouncingCircles),
+/* harmony export */   CircularMotion: () => (/* binding */ CircularMotion),
+/* harmony export */   Collision: () => (/* binding */ Collision),
+/* harmony export */   getDistance: () => (/* binding */ getDistance),
+/* harmony export */   updateMouseCoordinates: () => (/* binding */ updateMouseCoordinates)
 /* harmony export */ });
+/* harmony import */ var _resolveCollision__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resolveCollision */ "./src/scripts/resolveCollision.js");
+// Import
+
+
 // Get canvas context and element
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
+
+// Mouse coordinates
+let mouse = {
+    x: canvas.width / 2,
+    y: canvas.height / 2
+};
+
+// Function that updateObjectArray
+function updateMouseCoordinates(x, y) {
+    mouse.x = x;
+    mouse.y = y;
+}
+
+// Random interger generating function
+function randomIntFromRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// Get the distance between 2 objects
+function getDistance(x1, y1, x2, y2) {
+    let xDistance = x2 - x1;
+    let yDistance = y2 - y1;
+
+    // Return the distance between the 2 objects using Pythagorean Formula
+    return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+}
 
 // BouncingCircles class
 class BouncingCircles {
@@ -690,10 +791,9 @@ class BouncingCircles {
         // Drawing a circle
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-        ctx.strokeStyle = this.color;
         ctx.fillStyle = this.color;
-        ctx.stroke();
         ctx.fill();
+        ctx.closePath();
     }
 
     update() {
@@ -715,7 +815,205 @@ class BouncingCircles {
     }
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BouncingCircles);
+// CircularMotion class with different versions
+class CircularMotion { // Particle Class
+    constructor(x, y, size, color, version) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.color = color;
+        this.radians = Math.random() * Math.PI * 2; // Set random radians (starting point)
+        this.velocity = 0.03; // Rate of change for the radians
+        this.lastMouse = {
+            x: x,
+            y: y
+        };
+        this.version = version;
+
+        if (version === 1) {
+            //! Version 1
+            this.distanceFromCenter = randomIntFromRange(100, 400); // Set random distance from center
+        } else if (this.version === 2) {
+            //! Version 2
+            this.distanceFromCenter = {
+                x: randomIntFromRange(100, 400),
+                y: randomIntFromRange(100, 400)
+            }
+        }
+    }
+
+    update() {
+        const lastPoint = {
+            x: this.x,
+            y: this.y
+        };
+
+        // Move points over time
+        this.radians += this.velocity; // Increase radians value over time
+
+        // Gradually 
+        this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.05;
+        this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.05;
+
+        // Circular Motion
+        if (this.version === 1) {
+            //! Version 1
+            this.x = this.lastMouse.x + Math.cos(this.radians) * this.distanceFromCenter;
+            this.y = this.lastMouse.y + Math.sin(this.radians) * this.distanceFromCenter;
+            this.draw(lastPoint);
+        } else if (this.version === 2) {
+            //! Version 2
+            this.x = this.lastMouse.x + Math.cos(this.radians) * this.distanceFromCenter.x;
+            this.y = this.lastMouse.y + Math.sin(this.radians) * this.distanceFromCenter.y;
+            this.draw(lastPoint);
+        }
+    }
+
+    draw(lastPoint) {
+        //! Trail with lines
+        ctx.beginPath();
+        ctx.moveTo(lastPoint.x, lastPoint.y);
+        ctx.lineWidth = this.size;
+        ctx.lineTo(this.x, this.y);
+        ctx.strokeStyle = this.color;
+        ctx.stroke();
+        ctx.closePath();
+
+        //! Trail with circles
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
+}
+
+// Collision class
+class Collision {
+    constructor(x, y, radius, color, dx, dy) {
+        this.x = x;
+        this.y = y;
+        this.velocity = {
+            x: dx,
+            y: dy
+        }
+        this.radius = radius;
+        this.color = color;
+        this.mass = this.radius ** 2 * Math.PI; // Mass proportional to Particle area
+        this.opacity = 1;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.restore();
+        ctx.closePath();
+    }
+
+    update(particleArray) {
+        this.draw();
+
+        // Cycle through every particle
+        for (let i = 0; i < particleArray.length; i++) {
+            // Do not detect collision with itself
+            if (this === particleArray[i]) continue;
+
+            // Check collision
+            if (getDistance(this.x, this.y, particleArray[i].x, particleArray[i].y) < (this.radius + particleArray[i].radius)) {
+                // Resolve collision
+                (0,_resolveCollision__WEBPACK_IMPORTED_MODULE_0__.resolveCollision)(this, particleArray[i]);
+            }
+        }
+
+        // Reset x velocity if touching border
+        if ((this.x + this.radius) > canvas.width || (this.x - this.radius) < 0) {
+            this.velocity.x = -this.velocity.x;
+        }
+
+        // Reset y velocity if touching border
+        if ((this.y + this.radius) > canvas.height || (this.y - this.radius) < 0) {
+            this.velocity.y = -this.velocity.y;
+        }
+
+        // Move Particle based on velocity
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+    }
+}
+
+ // Export classes
+
+/***/ }),
+
+/***/ "./src/scripts/resolveCollision.js":
+/*!*****************************************!*\
+  !*** ./src/scripts/resolveCollision.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   resolveCollision: () => (/* binding */ resolveCollision)
+/* harmony export */ });
+// Rotate function to rotate velocities so its 1D
+function rotate(velocity, angle) {
+    const rotatedVelocity = {
+        x: (Math.cos(angle) * velocity.x) - (Math.sin(angle) * velocity.y),
+        y: (Math.sin(angle) * velocity.x) + (Math.cos(angle) * velocity.y)
+    }
+
+    // Return rotated velocity
+    return rotatedVelocity;
+}
+
+// Redirect direction upon collision
+function resolveCollision(particle, otherParticle) {
+    // Get the difference in velocities of both particles
+    const xVelocityDiff = particle.velocity.x - otherParticle.velocity.x;
+    const yVelocityDiff = particle.velocity.y - otherParticle.velocity.y;
+
+    // Get distance of x and y of both particles
+    const xDistance = otherParticle.x - particle.x;
+    const yDistance = otherParticle.y - particle.y;
+    
+    // Check if clipping / overlap
+    if (xVelocityDiff * xDistance + yVelocityDiff * yDistance >= 0) {
+        // Get angle of the triangle formed by the two colliding particles
+        const angle = -Math.atan2((otherParticle.y - particle.y), (otherParticle.x - particle.x))
+    
+        // Set mass of both first and second particle
+        const m1 = particle.mass;
+        const m2 = otherParticle.mass;
+    
+        // Velocity before collision
+        const u1 = rotate(particle.velocity, angle);
+        const u2 = rotate(otherParticle.velocity, angle);
+    
+        // Velocity after the 1D collision (Using One-dimensional Newtonian equasion)
+        const v1 = {
+            x: (u1.x * (m1 - m2) + 2 * m2 * u2.x) / (m1 + m2),
+            y: u1.y
+        }
+        const v2 = {
+            x: (u2.x * (m2 - m1) + 2 * m1 * u1.x) / (m1 + m2),
+            y: u2.y
+        }
+    
+        // Velocity after rotation axis back to original location
+        const finalV1 = rotate(v1, -angle);
+        const finalV2 = rotate(v2, -angle);
+    
+        // Reassigning particle volacity to simulate bounce effect
+        particle.velocity = finalV1;
+        otherParticle.velocity = finalV2;
+    }
+}
+
+
 
 /***/ })
 
@@ -837,7 +1135,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../styles/index.css */ "./src/styles/index.css");
 /* harmony import */ var _assets_headerBg_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../assets/headerBg.svg */ "./src/assets/headerBg.svg");
 /* harmony import */ var _animations_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./animations.js */ "./src/scripts/animations.js");
+/* harmony import */ var _classes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./classes.js */ "./src/scripts/classes.js");
 // Imports
+
 
 
 
@@ -853,6 +1153,8 @@ const ctx = canvas.getContext('2d');
 function setCanvasSize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    (0,_classes_js__WEBPACK_IMPORTED_MODULE_3__.updateMouseCoordinates)(canvas.width / 2, canvas.height / 2); // Set mouse coordinates to the center of the canvas
+    (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.clearObjectArray)(); // Clear updateObjectArray function
 }
 setCanvasSize(); // Call the function to set the initial canvas size
 
@@ -866,7 +1168,8 @@ let index = 0;
 // Project list
 const projects = [
     { title: 'BouncingCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.bouncingCircles },
-    { title: 'CircularMotion', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.circularMotion },
+    { title: 'CircularMotion Version 1', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.circularMotion, version: 1 },
+    { title: 'CircularMotion Version 2', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.circularMotion, version: 2 },
     { title: 'DynamicCollision', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.dynamicCollision },
     { title: 'GalacticLight', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.galacticLight },
     { title: 'GravityCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.gravityCircles },
@@ -880,19 +1183,21 @@ const projects = [
 function animate() {
     // Make a loop
     requestAnimationFrame(animate);
-
-    if (!atMain) {
-        // Clear canvas
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
-        return;
-    }
     
     // Check if at project index for each project in projects array
     projects.forEach((project, projectIndex) => {
         if (index === projectIndex) {
             const displayTitle = document.getElementById('displayTitle');
             displayTitle.textContent = project.title;
-            project.function();
+            const projectVersion = project.version ? project.version : 0;
+
+            // Check if project doesnt have a version
+            if (projectVersion === 0) {
+                project.function(); // Call project function without version
+                return;
+            }
+
+            project.function(project.version); // Call project function with their version
         }
     });
 }
@@ -907,6 +1212,9 @@ window.addEventListener('keydown', (e) => {
 
     // Execute code based on key pressed
     switch (e.key) {
+        default: // Default case (always update mouse coordinates to the center of the canvas)
+            (0,_classes_js__WEBPACK_IMPORTED_MODULE_3__.updateMouseCoordinates)(canvas.width / 2, canvas.height / 2);
+
         case 'ArrowDown':
             const mainSection = document.getElementById('main');
             mainSection.scrollIntoView({ behavior: 'smooth' });
@@ -916,6 +1224,7 @@ window.addEventListener('keydown', (e) => {
                 atMain = true;
             }, 1000);
             break;
+
         case 'ArrowUp':
             const headerSection = document.getElementById('header');
             headerSection.scrollIntoView({ behavior: 'smooth' });
@@ -925,17 +1234,20 @@ window.addEventListener('keydown', (e) => {
                 atMain = false;
             }, 1000);
             break;
+
         case 'ArrowRight':
             if (atMain && index < projects.length - 1) {
                 ctx.clearRect(0, 0, innerWidth, innerHeight);
-                (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.updateObjectArray)();
+                (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.clearObjectArray)();
                 index++;
             }
+            (0,_classes_js__WEBPACK_IMPORTED_MODULE_3__.updateMouseCoordinates)(canvas.width / 2, canvas.height / 2);
             break;
+
         case 'ArrowLeft':
             if (atMain && index > 0) {
                 ctx.clearRect(0, 0, innerWidth, innerHeight);
-                (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.updateObjectArray)();
+                (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.clearObjectArray)();
                 index--;
             }
             break;
@@ -949,8 +1261,13 @@ window.addEventListener('resize', () => {
     setCanvasSize();
     atMain = false;
 });
+
+// Event lsiterner for mouse movement
+window.addEventListener('mousemove', (e) => {
+    (0,_classes_js__WEBPACK_IMPORTED_MODULE_3__.updateMouseCoordinates)(e.x, e.y);
+});
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundlec46f344c9ad3b19bda92.js.map
+//# sourceMappingURL=bundlee2800ad74507761bdb5c.js.map
