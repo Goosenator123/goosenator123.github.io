@@ -155,16 +155,18 @@ class Collision {
         this.radius = radius;
         this.color = color;
         this.mass = this.radius ** 2 * Math.PI; // Mass proportional to Particle area
+        this.opacity = 0.2;
     }
 
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
         ctx.save();
+        ctx.globalAlpha = this.opacity;
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.restore();
-        ctx.closePath();
+        ctx.closePath()
     }
 
     update(objectArray) {
@@ -180,6 +182,14 @@ class Collision {
                 // Resolve collision
                 resolveCollision(this, objectArray[i]);
             }
+        }
+
+        // Check for mouse collision
+        if (getDistance(this.x, this.y, mouse.x, mouse.y) < 120 && this.opacity <= 0.7) {
+            this.opacity += 0.05;
+        } else if (this.opacity > 0.2) {
+            this.opacity -= 0.05;
+            this.opacity = Math.max(0.2, this.opacity); // Make sure this.opacity doesnt go below 0.2
         }
 
         // Reset x velocity if touching border

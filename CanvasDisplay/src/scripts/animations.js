@@ -72,20 +72,20 @@ function circularMotion(version) {
     });
 }
 
-// Function for dynamic collision
+// Function for collision
 function collision() {
-    let spawnCount = canvas.width * canvas.height / ((canvas.width + canvas.height) * 20);
+    let spawnCount = canvas.width * canvas.height / ((canvas.width + canvas.height * 2));
     if (objectArray.length === 0) {
         // Create and insert particle into array
         for (let i = 0; i < spawnCount; i++) {
 
             // Set random variables
-            let radius = 50;
+            let radius = 15;
             let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
             let x = randomIntFromRange(radius, canvas.width - radius);
             let y = randomIntFromRange(radius, canvas.height - radius);
-            let dx = randomIntFromRange(-5, 5);
-            let dy = randomIntFromRange(-5, 5);
+            let dx = randomIntFromRange(-3, 3);
+            let dy = randomIntFromRange(-3, 3);
 
             // Make sure it's not the first particle
             if (i !== 0) {

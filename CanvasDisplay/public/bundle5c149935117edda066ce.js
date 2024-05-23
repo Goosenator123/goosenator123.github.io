@@ -650,20 +650,20 @@ function circularMotion(version) {
     });
 }
 
-// Function for dynamic collision
+// Function for collision
 function collision() {
-    let spawnCount = canvas.width * canvas.height / ((canvas.width + canvas.height) * 20);
+    let spawnCount = canvas.width * canvas.height / ((canvas.width + canvas.height * 2));
     if (objectArray.length === 0) {
         // Create and insert particle into array
         for (let i = 0; i < spawnCount; i++) {
 
             // Set random variables
-            let radius = 50;
+            let radius = 15;
             let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
             let x = randomIntFromRange(radius, canvas.width - radius);
             let y = randomIntFromRange(radius, canvas.height - radius);
-            let dx = randomIntFromRange(-5, 5);
-            let dy = randomIntFromRange(-5, 5);
+            let dx = randomIntFromRange(-3, 3);
+            let dy = randomIntFromRange(-3, 3);
 
             // Make sure it's not the first particle
             if (i !== 0) {
@@ -749,7 +749,29 @@ function galacticLight() {
 
 // Function for gravity circles
 function gravityCircles() {
+    if (objectArray.length === 0) {
+        // Create and insert ball in array
+        for (let i = 0; i < 200; i++) {
+            // Setting random variables
+            let radius = randomIntFromRange(8, 30);
+            let x = randomIntFromRange(radius, (canvas.width - radius))
+            let y = randomIntFromRange(radius, ((canvas.height - radius) + 1))
+            let dx = randomIntFromRange(-2, 2);
+            let dy = randomIntFromRange(3, 5);
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
 
+            // Inserting gravityCircle Objects
+            objectArray.push(new _classes_js__WEBPACK_IMPORTED_MODULE_0__.GravityCircle(x, y, dx, dy, radius, color));
+        }
+    }
+
+    // Clear canvas
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+    // Move the ball Objects in ballArray
+    for (let i = 0; i < objectArray.length; i++) {
+        objectArray[i].update();
+    }
 }
 
 // Function for interactive bouncing circles
@@ -798,6 +820,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   CircularMotion: () => (/* binding */ CircularMotion),
 /* harmony export */   Collision: () => (/* binding */ Collision),
 /* harmony export */   GalacticLight: () => (/* binding */ GalacticLight),
+/* harmony export */   GravityCircle: () => (/* binding */ GravityCircle),
 /* harmony export */   getDistance: () => (/* binding */ getDistance),
 /* harmony export */   updateMouseCoordinates: () => (/* binding */ updateMouseCoordinates)
 /* harmony export */ });
@@ -959,7 +982,7 @@ class Collision {
         this.radius = radius;
         this.color = color;
         this.mass = this.radius ** 2 * Math.PI; // Mass proportional to Particle area
-        this.opacity = 1;
+        this.opacity = 0.2;
     }
 
     draw() {
@@ -970,22 +993,30 @@ class Collision {
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.restore();
-        ctx.closePath();
+        ctx.closePath()
     }
 
-    update(particleArray) {
+    update(objectArray) {
         this.draw();
 
         // Cycle through every particle
-        for (let i = 0; i < particleArray.length; i++) {
+        for (let i = 0; i < objectArray.length; i++) {
             // Do not detect collision with itself
-            if (this === particleArray[i]) continue;
+            if (this === objectArray[i]) continue;
 
             // Check collision
-            if (getDistance(this.x, this.y, particleArray[i].x, particleArray[i].y) < (this.radius + particleArray[i].radius)) {
+            if (getDistance(this.x, this.y, objectArray[i].x, objectArray[i].y) < (this.radius + objectArray[i].radius)) {
                 // Resolve collision
-                (0,_resolveCollision__WEBPACK_IMPORTED_MODULE_0__.resolveCollision)(this, particleArray[i]);
+                (0,_resolveCollision__WEBPACK_IMPORTED_MODULE_0__.resolveCollision)(this, objectArray[i]);
             }
+        }
+
+        // Check for mouse collision
+        if (getDistance(this.x, this.y, mouse.x, mouse.y) < 120 && this.opacity <= 0.7) {
+            this.opacity += 0.05;
+        } else if (this.opacity > 0.2) {
+            this.opacity -= 0.05;
+            this.opacity = Math.max(0.2, this.opacity); // Make sure this.opacity doesnt go below 0.2
         }
 
         // Reset x velocity if touching border
@@ -1024,6 +1055,44 @@ class GalacticLight {
     }
 
     update() {
+        this.draw();
+    }
+}
+
+// GravityCircle Object
+let gravity = 0.8;
+let friction = 0.99;
+class GravityCircle {
+    constructor(x, y, dx, dy, radius, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.color = color;
+        this.dx = dx;
+        this.dy = dy;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    update() {
+        if ((this.y + this.radius + this.dy) > canvas.height) {
+            this.dy = -this.dy * friction;
+        } else {
+            this.dy += gravity;
+        }
+
+        if ((this.x + this.radius) > canvas.width || (this.x - this.radius) < 0) {
+            this.dx = -this.dx;
+        }
+
+        this.x += this.dx;
+        this.y += this.dy;
         this.draw();
     }
 }
@@ -1339,10 +1408,7 @@ window.addEventListener('keydown', (e) => {
 
 // Event listener for resize
 window.addEventListener('resize', () => {
-    const headerSection = document.getElementById('header');
-    headerSection.scrollIntoView({ behavior: 'smooth' });
     setCanvasSize();
-    atMain = false;
 });
 
 // Event lsiterner for mouse movement
@@ -1353,4 +1419,4 @@ window.addEventListener('mousemove', (e) => {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle8429f0b7dc2e77b69301.js.map
+//# sourceMappingURL=bundle5c149935117edda066ce.js.map
