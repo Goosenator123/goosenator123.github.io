@@ -155,32 +155,30 @@ class Collision {
         this.radius = radius;
         this.color = color;
         this.mass = this.radius ** 2 * Math.PI; // Mass proportional to Particle area
-        this.opacity = 1;
     }
 
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
         ctx.save();
-        ctx.globalAlpha = this.opacity;
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.restore();
         ctx.closePath();
     }
 
-    update(particleArray) {
+    update(objectArray) {
         this.draw();
 
         // Cycle through every particle
-        for (let i = 0; i < particleArray.length; i++) {
+        for (let i = 0; i < objectArray.length; i++) {
             // Do not detect collision with itself
-            if (this === particleArray[i]) continue;
+            if (this === objectArray[i]) continue;
 
             // Check collision
-            if (getDistance(this.x, this.y, particleArray[i].x, particleArray[i].y) < (this.radius + particleArray[i].radius)) {
+            if (getDistance(this.x, this.y, objectArray[i].x, objectArray[i].y) < (this.radius + objectArray[i].radius)) {
                 // Resolve collision
-                resolveCollision(this, particleArray[i]);
+                resolveCollision(this, objectArray[i]);
             }
         }
 
@@ -224,11 +222,50 @@ class GalacticLight {
     }
 }
 
+// GravityCircle Object
+let gravity = 0.8;
+let friction = 0.99;
+class GravityCircle {
+    constructor(x, y, dx, dy, radius, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.color = color;
+        this.dx = dx;
+        this.dy = dy;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    update() {
+        if ((this.y + this.radius + this.dy) > canvas.height) {
+            this.dy = -this.dy * friction;
+        } else {
+            this.dy += gravity;
+        }
+
+        if ((this.x + this.radius) > canvas.width || (this.x - this.radius) < 0) {
+            this.dx = -this.dx;
+        }
+
+        this.x += this.dx;
+        this.y += this.dy;
+        this.draw();
+    }
+}
+
 export {
     BouncingCircles,
     CircularMotion,
     Collision,
     GalacticLight,
+    GravityCircle,
     updateMouseCoordinates,
     getDistance,
 } // Export classes

@@ -1,5 +1,5 @@
 // Get canvas context and element
-import { BouncingCircles, CircularMotion, Collision, GalacticLight, getDistance }  from './classes.js';
+import { BouncingCircles, CircularMotion, Collision, GalacticLight, GravityCircle, getDistance }  from './classes.js';
 
 // Get canvas context and element
 const canvas = document.querySelector('canvas');
@@ -171,7 +171,29 @@ function galacticLight() {
 
 // Function for gravity circles
 function gravityCircles() {
+    if (objectArray.length === 0) {
+        // Create and insert ball in array
+        for (let i = 0; i < 200; i++) {
+            // Setting random variables
+            let radius = randomIntFromRange(8, 30);
+            let x = randomIntFromRange(radius, (canvas.width - radius))
+            let y = randomIntFromRange(radius, ((canvas.height - radius) + 1))
+            let dx = randomIntFromRange(-2, 2);
+            let dy = randomIntFromRange(3, 5);
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
 
+            // Inserting gravityCircle Objects
+            objectArray.push(new GravityCircle(x, y, dx, dy, radius, color));
+        }
+    }
+
+    // Clear canvas
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+    // Move the ball Objects in ballArray
+    for (let i = 0; i < objectArray.length; i++) {
+        objectArray[i].update();
+    }
 }
 
 // Function for interactive bouncing circles

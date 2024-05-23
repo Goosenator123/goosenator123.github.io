@@ -118,10 +118,7 @@ window.addEventListener('keydown', (e) => {
 
 // Event listener for resize
 window.addEventListener('resize', () => {
-    const headerSection = document.getElementById('header');
-    headerSection.scrollIntoView({ behavior: 'smooth' });
     setCanvasSize();
-    atMain = false;
 });
 
 // Event lsiterner for mouse movement
