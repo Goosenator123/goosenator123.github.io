@@ -31,7 +31,7 @@ function getDistance(x1, y1, x2, y2) {
     return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
 }
 
-// BouncingCircles class
+// BouncingCircles Object
 class BouncingCircles {
     constructor(x, y, dx, dy, radius, color) {
         this.x = x;
@@ -64,6 +64,55 @@ class BouncingCircles {
         // Modify x coordinate
         this.x += this.dx;
         this.y += this.dy;
+
+        // Call Circle.draw() function;
+        this.draw();
+    }
+}
+
+// InteractiveBouncingCircle Object
+function InteractiveBouncingCircles(x, y, dx, dy, radius, color) {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.radius = radius;
+    this.color = color;
+    
+    this.draw = function() {
+        // Drawing a circle
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        ctx.fillStyle = this.color;
+        ctx.fill()
+        ctx.closePath();
+    }
+
+    this.update = function() {
+        // Check if circle hit the side of the screen
+        if (this.x > (innerWidth - this.radius) || this.x < (0 + this.radius)) {
+            this.dx = -this.dx;
+        }
+    
+        if (this.y > (innerHeight - this.radius) || this.y < (0 + this.radius)) {
+            this.dy = -this.dy;
+        }
+
+        // Modify x coordinate
+        this.x += this.dx;
+        this.y += this.dy;
+
+        // Interaction with the position of users mouse
+        let distance = 40; // Set distance
+        let maxRadius = radius * 5 + 10;
+
+        if (mouse.x - this.x < distance && mouse.x - this.x > -distance && mouse.y - this.y < distance && mouse.y - this.y > -distance) {
+            if (this.radius < maxRadius) {
+                this.radius += 3;
+            }
+        } else if (this.radius > radius) {
+            this.radius -= 3;
+        }
 
         // Call Circle.draw() function;
         this.draw();
@@ -272,6 +321,7 @@ class GravityCircle {
 
 export {
     BouncingCircles,
+    InteractiveBouncingCircles,
     CircularMotion,
     Collision,
     GalacticLight,

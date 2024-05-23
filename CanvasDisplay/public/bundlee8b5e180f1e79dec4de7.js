@@ -631,6 +631,32 @@ function bouncingCircles() {
     }
 }
 
+// Function for interactive bouncing circles
+function interactiveBouncingCircles() {
+    if (objectArray.length === 0) {
+        let spawnCount = canvas.width * 2;
+        // Create circles
+        for (let i = 0; i < spawnCount; i++) {
+            // Declaring variable
+            let radius = Math.random() * 4 + 3; // Set radius
+            let x = Math.random() * (innerWidth - radius * 2) + radius;
+            let y = Math.random() * (innerHeight - radius * 2) + radius;
+            let dx = Math.floor((Math.random() - 0.5) * 100) / 20;
+            let dy = Math.floor((Math.random() - 0.5) * 100) / 20;
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+    
+            objectArray.push(new _classes_js__WEBPACK_IMPORTED_MODULE_0__.InteractiveBouncingCircles(x, y, dx, dy, radius, color));
+        }
+    }
+
+    // Clear canvas
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+    for (let i = 0; i < objectArray.length; i++) {
+        objectArray[i].update();
+    }
+}
+
 // Function for circular motion version 1
 function circularMotion(version) {
     if (objectArray.length === 0) {
@@ -774,11 +800,6 @@ function gravityCircles() {
     }
 }
 
-// Function for interactive bouncing circles
-function interactiveBouncingCircles() {
-
-}
-
 // Function for realistic fireworks
 function realisticFireworks() {
 
@@ -821,6 +842,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Collision: () => (/* binding */ Collision),
 /* harmony export */   GalacticLight: () => (/* binding */ GalacticLight),
 /* harmony export */   GravityCircle: () => (/* binding */ GravityCircle),
+/* harmony export */   InteractiveBouncingCircles: () => (/* binding */ InteractiveBouncingCircles),
 /* harmony export */   getDistance: () => (/* binding */ getDistance),
 /* harmony export */   updateMouseCoordinates: () => (/* binding */ updateMouseCoordinates)
 /* harmony export */ });
@@ -858,7 +880,7 @@ function getDistance(x1, y1, x2, y2) {
     return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
 }
 
-// BouncingCircles class
+// BouncingCircles Object
 class BouncingCircles {
     constructor(x, y, dx, dy, radius, color) {
         this.x = x;
@@ -891,6 +913,55 @@ class BouncingCircles {
         // Modify x coordinate
         this.x += this.dx;
         this.y += this.dy;
+
+        // Call Circle.draw() function;
+        this.draw();
+    }
+}
+
+// InteractiveBouncingCircle Object
+function InteractiveBouncingCircles(x, y, dx, dy, radius, color) {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
+    this.radius = radius;
+    this.color = color;
+    
+    this.draw = function() {
+        // Drawing a circle
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+        ctx.fillStyle = this.color;
+        ctx.fill()
+        ctx.closePath();
+    }
+
+    this.update = function() {
+        // Check if circle hit the side of the screen
+        if (this.x > (innerWidth - this.radius) || this.x < (0 + this.radius)) {
+            this.dx = -this.dx;
+        }
+    
+        if (this.y > (innerHeight - this.radius) || this.y < (0 + this.radius)) {
+            this.dy = -this.dy;
+        }
+
+        // Modify x coordinate
+        this.x += this.dx;
+        this.y += this.dy;
+
+        // Interaction with the position of users mouse
+        let distance = 40; // Set distance
+        let maxRadius = radius * 5 + 10;
+
+        if (mouse.x - this.x < distance && mouse.x - this.x > -distance && mouse.y - this.y < distance && mouse.y - this.y > -distance) {
+            if (this.radius < maxRadius) {
+                this.radius += 3;
+            }
+        } else if (this.radius > radius) {
+            this.radius -= 3;
+        }
 
         // Call Circle.draw() function;
         this.draw();
@@ -1320,12 +1391,12 @@ let index = 0;
 // Project list
 const projects = [
     { title: 'BouncingCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.bouncingCircles },
+    { title: 'InteractiveBouncingCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.interactiveBouncingCircles },
     { title: 'CircularMotion Version 1', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.circularMotion, version: 1 },
     { title: 'CircularMotion Version 2', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.circularMotion, version: 2 },
     { title: 'DynamicCollision', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.collision },
     { title: 'GalacticLight', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.galacticLight },
     { title: 'GravityCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.gravityCircles },
-    { title: 'InteractiveBouncingCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.interactiveBouncingCircles },
     { title: 'RealisticFireworks', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.realisticFireworks },
     { title: 'SineWaves', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.sineWaves },
     { title: 'StaticCollision', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.staticCollision },
@@ -1419,4 +1490,4 @@ window.addEventListener('mousemove', (e) => {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle5c149935117edda066ce.js.map
+//# sourceMappingURL=bundlee8b5e180f1e79dec4de7.js.map

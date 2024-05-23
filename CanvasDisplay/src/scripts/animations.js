@@ -1,5 +1,5 @@
 // Get canvas context and element
-import { BouncingCircles, CircularMotion, Collision, GalacticLight, GravityCircle, getDistance }  from './classes.js';
+import { BouncingCircles, InteractiveBouncingCircles, CircularMotion, Collision, GalacticLight, GravityCircle, getDistance }  from './classes.js';
 
 // Get canvas context and element
 const canvas = document.querySelector('canvas');
@@ -48,6 +48,32 @@ function bouncingCircles() {
 
     // Animates the circles
     ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (let i = 0; i < objectArray.length; i++) {
+        objectArray[i].update();
+    }
+}
+
+// Function for interactive bouncing circles
+function interactiveBouncingCircles() {
+    if (objectArray.length === 0) {
+        let spawnCount = canvas.width * 2;
+        // Create circles
+        for (let i = 0; i < spawnCount; i++) {
+            // Declaring variable
+            let radius = Math.random() * 4 + 3; // Set radius
+            let x = Math.random() * (innerWidth - radius * 2) + radius;
+            let y = Math.random() * (innerHeight - radius * 2) + radius;
+            let dx = Math.floor((Math.random() - 0.5) * 100) / 20;
+            let dy = Math.floor((Math.random() - 0.5) * 100) / 20;
+            let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+    
+            objectArray.push(new InteractiveBouncingCircles(x, y, dx, dy, radius, color));
+        }
+    }
+
+    // Clear canvas
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+
     for (let i = 0; i < objectArray.length; i++) {
         objectArray[i].update();
     }
@@ -194,11 +220,6 @@ function gravityCircles() {
     for (let i = 0; i < objectArray.length; i++) {
         objectArray[i].update();
     }
-}
-
-// Function for interactive bouncing circles
-function interactiveBouncingCircles() {
-
 }
 
 // Function for realistic fireworks
