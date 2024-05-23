@@ -573,7 +573,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   interactiveBouncingCircles: () => (/* binding */ interactiveBouncingCircles),
 /* harmony export */   realisticFireworks: () => (/* binding */ realisticFireworks),
 /* harmony export */   sineWaves: () => (/* binding */ sineWaves),
-/* harmony export */   staticCollision: () => (/* binding */ staticCollision)
+/* harmony export */   staticCollision: () => (/* binding */ staticCollision),
+/* harmony export */   updateObjectArray: () => (/* binding */ updateObjectArray)
 /* harmony export */ });
 /* harmony import */ var _classes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes.js */ "./src/scripts/classes.js");
 // Get canvas context and element
@@ -589,6 +590,11 @@ let objectArray = [];
 // Function that updateObjectArray
 function clearObjectArray() {
     objectArray = [];
+}
+
+// Function that updateObjectArray
+function updateObjectArray(updatedArray) {
+    objectArray = updatedArray;
 }
 
 // Get random integer from a min and max value
@@ -802,7 +808,23 @@ function gravityCircles() {
 
 // Function for realistic fireworks
 function realisticFireworks() {
+    // Clear canvas
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(0, 0, 0, 0.05)`;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.closePath
 
+    console.log(objectArray)
+
+    // Update particles
+    objectArray.forEach((particle, index) => {
+        // Check if particle is no longer visible
+        if (particle.opacity > 0) {
+            particle.update(); // Update
+        } else {
+            objectArray.splice(index, 1); // Erase particle from array
+        }
+    });
 }
 
 // Function for sine waves
@@ -840,6 +862,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   BouncingCircles: () => (/* binding */ BouncingCircles),
 /* harmony export */   CircularMotion: () => (/* binding */ CircularMotion),
 /* harmony export */   Collision: () => (/* binding */ Collision),
+/* harmony export */   Firework: () => (/* binding */ Firework),
 /* harmony export */   GalacticLight: () => (/* binding */ GalacticLight),
 /* harmony export */   GravityCircle: () => (/* binding */ GravityCircle),
 /* harmony export */   InteractiveBouncingCircles: () => (/* binding */ InteractiveBouncingCircles),
@@ -920,29 +943,31 @@ class BouncingCircles {
 }
 
 // InteractiveBouncingCircle Object
-function InteractiveBouncingCircles(x, y, dx, dy, radius, color) {
-    this.x = x;
-    this.y = y;
-    this.dx = dx;
-    this.dy = dy;
-    this.radius = radius;
-    this.color = color;
-    
-    this.draw = function() {
+class InteractiveBouncingCircles {
+    constructor(x, y, dx, dy, radius, color) {
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.radius = radius;
+        this.color = color;
+    }
+
+    draw() {
         // Drawing a circle
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
         ctx.fillStyle = this.color;
-        ctx.fill()
+        ctx.fill();
         ctx.closePath();
     }
 
-    this.update = function() {
+    update() {
         // Check if circle hit the side of the screen
         if (this.x > (innerWidth - this.radius) || this.x < (0 + this.radius)) {
             this.dx = -this.dx;
         }
-    
+
         if (this.y > (innerHeight - this.radius) || this.y < (0 + this.radius)) {
             this.dy = -this.dy;
         }
@@ -953,13 +978,13 @@ function InteractiveBouncingCircles(x, y, dx, dy, radius, color) {
 
         // Interaction with the position of users mouse
         let distance = 40; // Set distance
-        let maxRadius = radius * 5 + 10;
+        let maxRadius = this.radius * 5 + 10;
 
         if (mouse.x - this.x < distance && mouse.x - this.x > -distance && mouse.y - this.y < distance && mouse.y - this.y > -distance) {
             if (this.radius < maxRadius) {
                 this.radius += 3;
             }
-        } else if (this.radius > radius) {
+        } else if (this.radius > this.radius) {
             this.radius -= 3;
         }
 
@@ -1131,8 +1156,8 @@ class GalacticLight {
 }
 
 // GravityCircle Object
-let gravity = 0.8;
-let friction = 0.99;
+const circleGravity = 0.8;
+const circleFriction = 0.99;
 class GravityCircle {
     constructor(x, y, dx, dy, radius, color) {
         this.x = x;
@@ -1153,9 +1178,9 @@ class GravityCircle {
 
     update() {
         if ((this.y + this.radius + this.dy) > canvas.height) {
-            this.dy = -this.dy * friction;
+            this.dy = -this.dy * circleFriction;
         } else {
-            this.dy += gravity;
+            this.dy += circleGravity;
         }
 
         if ((this.x + this.radius) > canvas.width || (this.x - this.radius) < 0) {
@@ -1165,6 +1190,40 @@ class GravityCircle {
         this.x += this.dx;
         this.y += this.dy;
         this.draw();
+    }
+}
+
+// Firework Class
+const fireworkGravity = 0.03;
+const fireworkFriction = 0.99;
+class Firework {
+    constructor(x, y, radius, color, velocity, opacity) {
+        this.x = x,
+        this.y = y,
+        this.radius = radius,
+        this.color = color,
+        this.velocity = velocity,
+        this.opacity = opacity
+    }
+
+    draw() {
+        ctx.save();
+        ctx.globalAlpha = this.opacity;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+        ctx.restore();
+    }
+
+    update() {
+        this.draw();
+        this.velocity.x *= fireworkFriction;
+        this.velocity.y += fireworkGravity;
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+        this.opacity -= 0.005; // Fade out effect
     }
 }
 
@@ -1387,6 +1446,7 @@ backgroundElement.style.backgroundImage = `url(${_assets_headerBg_svg__WEBPACK_I
 // Variables
 let atMain = false;
 let index = 0;
+let clickCooldown = 0;
 
 // Project list
 const projects = [
@@ -1406,6 +1466,7 @@ const projects = [
 function animate() {
     // Make a loop
     requestAnimationFrame(animate);
+    if (clickCooldown > 0) clickCooldown--;
     
     // Check if at project index for each project in projects array
     projects.forEach((project, projectIndex) => {
@@ -1462,6 +1523,7 @@ window.addEventListener('keydown', (e) => {
             if (atMain && index < projects.length - 1) {
                 ctx.clearRect(0, 0, innerWidth, innerHeight);
                 (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.clearObjectArray)();
+                fireworkArray = [];
                 index++;
             }
             (0,_classes_js__WEBPACK_IMPORTED_MODULE_3__.updateMouseCoordinates)(canvas.width / 2, canvas.height / 2);
@@ -1471,6 +1533,7 @@ window.addEventListener('keydown', (e) => {
             if (atMain && index > 0) {
                 ctx.clearRect(0, 0, innerWidth, innerHeight);
                 (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.clearObjectArray)();
+                fireworkArray = [];
                 index--;
             }
             break;
@@ -1482,12 +1545,42 @@ window.addEventListener('resize', () => {
     setCanvasSize();
 });
 
-// Event lsiterner for mouse movement
-window.addEventListener('mousemove', (e) => {
-    (0,_classes_js__WEBPACK_IMPORTED_MODULE_3__.updateMouseCoordinates)(e.x, e.y);
+// Event listener for mouse movement
+window.addEventListener('mousemove', (event) => {
+    (0,_classes_js__WEBPACK_IMPORTED_MODULE_3__.updateMouseCoordinates)(event.x, event.y);
+});
+
+// Event listener for mouse click
+let fireworkArray = [];
+window.addEventListener('click', (event) => {
+    if (projects[index].title !== 'RealisticFireworks' || clickCooldown > 0) return;
+
+    // Update mouse coordinates
+    (0,_classes_js__WEBPACK_IMPORTED_MODULE_3__.updateMouseCoordinates)(event.x, event.y);
+
+    // Set variables
+    const particleCount = 2000;
+    const angleIncrement = (Math.PI * 2) / particleCount;
+    const power = 15;
+
+    // Generate particles
+    for (let i = 0; i < particleCount; i++) {
+        // Set random color
+        let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+
+        // Assign particle properties
+        fireworkArray.push(new _classes_js__WEBPACK_IMPORTED_MODULE_3__.Firework(event.x, event.y, 5, color, { 
+            x: Math.cos(angleIncrement * i) * Math.random() * power, 
+            y: Math.sin(angleIncrement * i) * Math.random() * power
+        }, Math.random()));
+    }
+
+    // Update objectArray
+    (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.updateObjectArray)(fireworkArray);
+    clickCooldown = 50;
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundlee8b5e180f1e79dec4de7.js.map
+//# sourceMappingURL=bundlecde0bf6936bcbfe623dd.js.map

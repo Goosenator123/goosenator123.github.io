@@ -13,6 +13,11 @@ function clearObjectArray() {
     objectArray = [];
 }
 
+// Function that updateObjectArray
+function updateObjectArray(updatedArray) {
+    objectArray = updatedArray;
+}
+
 // Get random integer from a min and max value
 function randomIntFromRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -224,7 +229,23 @@ function gravityCircles() {
 
 // Function for realistic fireworks
 function realisticFireworks() {
+    // Clear canvas
+    ctx.beginPath();
+    ctx.fillStyle = `rgba(0, 0, 0, 0.05)`;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.closePath
 
+    console.log(objectArray)
+
+    // Update particles
+    objectArray.forEach((particle, index) => {
+        // Check if particle is no longer visible
+        if (particle.opacity > 0) {
+            particle.update(); // Update
+        } else {
+            objectArray.splice(index, 1); // Erase particle from array
+        }
+    });
 }
 
 // Function for sine waves
@@ -249,6 +270,7 @@ window.addEventListener('mouseup', () => {
 // Export functions
 export {
     clearObjectArray,
+    updateObjectArray,
     bouncingCircles,
     circularMotion,
     collision,

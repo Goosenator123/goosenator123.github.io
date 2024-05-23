@@ -1,8 +1,8 @@
 // Imports
 import '../styles/index.css';
 import background from '../assets/headerBg.svg';
-import { clearObjectArray, bouncingCircles, circularMotion, collision, galacticLight, interactiveBouncingCircles, gravityCircles, realisticFireworks, sineWaves, staticCollision } from './animations.js';
-import { updateMouseCoordinates } from './classes.js';
+import { clearObjectArray, updateObjectArray, bouncingCircles, circularMotion, collision, galacticLight, interactiveBouncingCircles, gravityCircles, realisticFireworks, sineWaves, staticCollision } from './animations.js';
+import { updateMouseCoordinates, Firework } from './classes.js';
 
 // HTML element
 const backgroundElement = document.getElementById('background');
@@ -26,6 +26,7 @@ backgroundElement.style.backgroundImage = `url(${background})`;
 // Variables
 let atMain = false;
 let index = 0;
+let clickCooldown = 0;
 
 // Project list
 const projects = [
@@ -45,6 +46,7 @@ const projects = [
 function animate() {
     // Make a loop
     requestAnimationFrame(animate);
+    if (clickCooldown > 0) clickCooldown--;
     
     // Check if at project index for each project in projects array
     projects.forEach((project, projectIndex) => {
@@ -101,6 +103,7 @@ window.addEventListener('keydown', (e) => {
             if (atMain && index < projects.length - 1) {
                 ctx.clearRect(0, 0, innerWidth, innerHeight);
                 clearObjectArray();
+                fireworkArray = [];
                 index++;
             }
             updateMouseCoordinates(canvas.width / 2, canvas.height / 2);
@@ -110,6 +113,7 @@ window.addEventListener('keydown', (e) => {
             if (atMain && index > 0) {
                 ctx.clearRect(0, 0, innerWidth, innerHeight);
                 clearObjectArray();
+                fireworkArray = [];
                 index--;
             }
             break;
@@ -121,7 +125,37 @@ window.addEventListener('resize', () => {
     setCanvasSize();
 });
 
-// Event lsiterner for mouse movement
-window.addEventListener('mousemove', (e) => {
-    updateMouseCoordinates(e.x, e.y);
+// Event listener for mouse movement
+window.addEventListener('mousemove', (event) => {
+    updateMouseCoordinates(event.x, event.y);
+});
+
+// Event listener for mouse click
+let fireworkArray = [];
+window.addEventListener('click', (event) => {
+    if (projects[index].title !== 'RealisticFireworks' || clickCooldown > 0) return;
+
+    // Update mouse coordinates
+    updateMouseCoordinates(event.x, event.y);
+
+    // Set variables
+    const particleCount = 2000;
+    const angleIncrement = (Math.PI * 2) / particleCount;
+    const power = 15;
+
+    // Generate particles
+    for (let i = 0; i < particleCount; i++) {
+        // Set random color
+        let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+
+        // Assign particle properties
+        fireworkArray.push(new Firework(event.x, event.y, 5, color, { 
+            x: Math.cos(angleIncrement * i) * Math.random() * power, 
+            y: Math.sin(angleIncrement * i) * Math.random() * power
+        }, Math.random()));
+    }
+
+    // Update objectArray
+    updateObjectArray(fireworkArray);
+    clickCooldown = 50;
 });
