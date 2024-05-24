@@ -24,10 +24,10 @@ function randomIntFromRange(min, max) {
 }
 
 // Function that clear screen
-function clearScreen() {
+function clearScreen(opacity) {
     ctx.beginPath();
     ctx.rect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
     ctx.fill();
     ctx.closePath();
 }
@@ -52,7 +52,7 @@ function bouncingCircles() {
     }
 
     // Animates the circles
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    clearScreen(1);
     for (let i = 0; i < objectArray.length; i++) {
         objectArray[i].update();
     }
@@ -77,8 +77,7 @@ function interactiveBouncingCircles() {
     }
 
     // Clear canvas
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
-
+    clearScreen(1);
     for (let i = 0; i < objectArray.length; i++) {
         objectArray[i].update();
     }
@@ -97,7 +96,7 @@ function circularMotion(version) {
     }
 
     // Animate the circular motion
-    clearScreen();
+    clearScreen(0.05);
     objectArray.forEach(particle => {
         particle.update();
     });
@@ -140,7 +139,7 @@ function collision() {
     }
 
     // Animate the collision
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    clearScreen(1);
     objectArray.forEach(particle => {
         particle.update(objectArray);
     })
@@ -167,10 +166,7 @@ function galacticLight() {
     }
 
     // Clear the canvas
-    ctx.beginPath();
-    ctx.fillStyle = `rgba(10, 10, 10, ${opacity}`;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.closePath
+    clearScreen(opacity);
 
     // Save the current transformation state
     ctx.save();
@@ -219,7 +215,7 @@ function gravityCircles() {
     }
 
     // Clear canvas
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    clearScreen(1);
 
     // Move the ball Objects in ballArray
     for (let i = 0; i < objectArray.length; i++) {
@@ -230,12 +226,7 @@ function gravityCircles() {
 // Function for realistic fireworks
 function realisticFireworks() {
     // Clear canvas
-    ctx.beginPath();
-    ctx.fillStyle = `rgba(0, 0, 0, 0.05)`;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.closePath
-
-    console.log(objectArray)
+    clearScreen(0.05);
 
     // Update particles
     objectArray.forEach((particle, index) => {
@@ -248,14 +239,41 @@ function realisticFireworks() {
     });
 }
 
+// Define properties of the wave
+const wave = {
+    length: 0.005, // Length of each wave cycle
+    amplitude: 150, // Amplitude of the wave
+    frequency: 0.015, // Frequency of the wave (speed of oscillation)
+};
+
 // Function for sine waves
+let increment = wave.frequency; // Initialize the increment for the wa
 function sineWaves() {
+    // Clear the canvas
+    clearScreen(0.05);
 
-}
+    // Begin drawing the wave
+    ctx.beginPath();
+    // Move the drawing cursor to the starting point of the wave (slightly off-screen to hide initial line)
+    ctx.moveTo(-20, canvas.height / 2);
 
-// Function for static collision
-function staticCollision() {
+    // Draw the wave using a loop across the width of the canvas
+    for (let i = 0; i < canvas.width; i += 0.1) {
+        // Calculate the vertical position of each point on the wave using sine and cosine functions
+        const waveHeight = canvas.height / 2 + Math.sin(i * wave.length + increment) * wave.amplitude * Math.cos((increment * 2) / 1.5);
+        // Draw a line segment to the calculated point
+        ctx.lineTo(i, waveHeight);
+    }
 
+    // Set the stroke color of the wave based on the current increment value
+    const hue = Math.abs(360 * Math.sin(increment/10)); // Calculate hue for color variation
+    ctx.strokeStyle = `hsl(${hue}, 50%, 50%)`; // Set stroke color
+    ctx.lineWidth = 5; // Set the thickness of the lines
+    ctx.stroke(); // Render the wave on the canvas
+    ctx.closePath(); // Close the path to prepare for next drawing
+
+    // Increase the increment value to animate the wave
+    increment += wave.frequency; // Increment controls the speed of the wave animation
 }
 
 let mouseDown = false;
@@ -279,5 +297,4 @@ export {
     interactiveBouncingCircles,
     realisticFireworks,
     sineWaves,
-    staticCollision,
 }

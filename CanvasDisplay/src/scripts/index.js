@@ -1,7 +1,7 @@
 // Imports
 import '../styles/index.css';
 import background from '../assets/headerBg.svg';
-import { clearObjectArray, updateObjectArray, bouncingCircles, circularMotion, collision, galacticLight, interactiveBouncingCircles, gravityCircles, realisticFireworks, sineWaves, staticCollision } from './animations.js';
+import { clearObjectArray, updateObjectArray, bouncingCircles, circularMotion, collision, galacticLight, interactiveBouncingCircles, gravityCircles, realisticFireworks, sineWaves } from './animations.js';
 import { updateMouseCoordinates, Firework } from './classes.js';
 
 // HTML element
@@ -39,7 +39,6 @@ const projects = [
     { title: 'GravityCircles', function: gravityCircles },
     { title: 'RealisticFireworks', function: realisticFireworks },
     { title: 'SineWaves', function: sineWaves },
-    { title: 'StaticCollision', function: staticCollision },
 ];
 
 // Animate function

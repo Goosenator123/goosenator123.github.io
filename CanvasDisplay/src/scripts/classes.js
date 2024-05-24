@@ -78,6 +78,7 @@ class InteractiveBouncingCircles {
         this.dx = dx;
         this.dy = dy;
         this.radius = radius;
+        this.initialRadius = radius;
         this.color = color;
     }
 
@@ -106,13 +107,13 @@ class InteractiveBouncingCircles {
 
         // Interaction with the position of users mouse
         let distance = 40; // Set distance
-        let maxRadius = this.radius * 5 + 10;
+        let maxRadius = this.initialRadius * 5 + 10;
 
         if (mouse.x - this.x < distance && mouse.x - this.x > -distance && mouse.y - this.y < distance && mouse.y - this.y > -distance) {
             if (this.radius < maxRadius) {
                 this.radius += 3;
             }
-        } else if (this.radius > this.radius) {
+        } else if (this.radius > this.initialRadius) {
             this.radius -= 3;
         }
 
@@ -158,8 +159,8 @@ class CircularMotion { // Particle Class
         this.radians += this.velocity; // Increase radians value over time
 
         // Gradually 
-        this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.05;
-        this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.05;
+        this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.03;
+        this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.03;
 
         // Circular Motion
         if (this.version === 1) {

@@ -54,7 +54,6 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1vh solid rgb(255, 255, 255);
 }
 
 #headerCanvas {
@@ -93,11 +92,11 @@ main {
 }
 
 #mainCanvas {
-    background-color: rgb(0, 0, 0);
+    background-color: white;
     position: relative;
     z-index: -1;
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,iCAAiC;IACjC,YAAY;IACZ,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;IACI,kBAAkB;IAClB,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,sBAAsB;IACtB,2BAA2B;IAC3B,4BAA4B;IAC5B,WAAW;AACf;;AAEA;IACI,YAAY;IACZ,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,2CAA2C;AAC/C;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,aAAa;IACb,YAAY;AAChB;;AAEA;IACI,kBAAkB;IAClB,OAAO;IACP,QAAQ;IACR,WAAW;IACX,WAAW;IACX,sBAAsB;IACtB,uBAAuB;IACvB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,wCAAwC;IACxC,2BAA2B;IAC3B,YAAY;IACZ,gBAAgB;IAChB,kBAAkB;IAClB,yBAAyB;AAC7B;;AAEA;IACI,8BAA8B;IAC9B,kBAAkB;IAClB,WAAW;AACf","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: black;\r\n    overflow: hidden;\r\n    scroll-behavior: smooth;\r\n}\r\n\r\n#background {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    z-index: -1;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 2.5vw;\r\n    height: 100vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-bottom: 1vh solid rgb(255, 255, 255);\r\n}\r\n\r\n#headerCanvas {\r\n    background-color: black;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    z-index: -1;\r\n}\r\n\r\nmain {\r\n    position: relative;\r\n    height: 100vh;\r\n    width: 100vw;\r\n}\r\n\r\n#displayTitle {\r\n    position: absolute;\r\n    top: 3%;\r\n    left: 1%;\r\n    width: 20vw;\r\n    height: 5vh;\r\n    min-width: fit-content;\r\n    min-height: fit-content;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    background-color: rgba(25, 25, 25, 0.50);\r\n    backdrop-filter: blur(10px);\r\n    color: white;\r\n    font-size: 1.5vw;\r\n    padding: 1.5vw 5vw;\r\n    border: 0.3vw solid white;\r\n}\r\n\r\n#mainCanvas {\r\n    background-color: rgb(0, 0, 0);\r\n    position: relative;\r\n    z-index: -1;\r\n}\r\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,iCAAiC;IACjC,YAAY;IACZ,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;IACI,kBAAkB;IAClB,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,sBAAsB;IACtB,2BAA2B;IAC3B,4BAA4B;IAC5B,WAAW;AACf;;AAEA;IACI,YAAY;IACZ,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,aAAa;IACb,YAAY;AAChB;;AAEA;IACI,kBAAkB;IAClB,OAAO;IACP,QAAQ;IACR,WAAW;IACX,WAAW;IACX,sBAAsB;IACtB,uBAAuB;IACvB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,wCAAwC;IACxC,2BAA2B;IAC3B,YAAY;IACZ,gBAAgB;IAChB,kBAAkB;IAClB,yBAAyB;AAC7B;;AAEA;IACI,uBAAuB;IACvB,kBAAkB;IAClB,WAAW;AACf","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: black;\r\n    overflow: hidden;\r\n    scroll-behavior: smooth;\r\n}\r\n\r\n#background {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    z-index: -1;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 2.5vw;\r\n    height: 100vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n#headerCanvas {\r\n    background-color: black;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    z-index: -1;\r\n}\r\n\r\nmain {\r\n    position: relative;\r\n    height: 100vh;\r\n    width: 100vw;\r\n}\r\n\r\n#displayTitle {\r\n    position: absolute;\r\n    top: 3%;\r\n    left: 1%;\r\n    width: 20vw;\r\n    height: 5vh;\r\n    min-width: fit-content;\r\n    min-height: fit-content;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    background-color: rgba(25, 25, 25, 0.50);\r\n    backdrop-filter: blur(10px);\r\n    color: white;\r\n    font-size: 1.5vw;\r\n    padding: 1.5vw 5vw;\r\n    border: 0.3vw solid white;\r\n}\r\n\r\n#mainCanvas {\r\n    background-color: white;\r\n    position: relative;\r\n    z-index: -1;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -573,7 +572,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   interactiveBouncingCircles: () => (/* binding */ interactiveBouncingCircles),
 /* harmony export */   realisticFireworks: () => (/* binding */ realisticFireworks),
 /* harmony export */   sineWaves: () => (/* binding */ sineWaves),
-/* harmony export */   staticCollision: () => (/* binding */ staticCollision),
 /* harmony export */   updateObjectArray: () => (/* binding */ updateObjectArray)
 /* harmony export */ });
 /* harmony import */ var _classes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes.js */ "./src/scripts/classes.js");
@@ -603,10 +601,10 @@ function randomIntFromRange(min, max) {
 }
 
 // Function that clear screen
-function clearScreen() {
+function clearScreen(opacity) {
     ctx.beginPath();
     ctx.rect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
     ctx.fill();
     ctx.closePath();
 }
@@ -631,7 +629,7 @@ function bouncingCircles() {
     }
 
     // Animates the circles
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    clearScreen(1);
     for (let i = 0; i < objectArray.length; i++) {
         objectArray[i].update();
     }
@@ -656,8 +654,7 @@ function interactiveBouncingCircles() {
     }
 
     // Clear canvas
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
-
+    clearScreen(1);
     for (let i = 0; i < objectArray.length; i++) {
         objectArray[i].update();
     }
@@ -676,7 +673,7 @@ function circularMotion(version) {
     }
 
     // Animate the circular motion
-    clearScreen();
+    clearScreen(0.05);
     objectArray.forEach(particle => {
         particle.update();
     });
@@ -719,7 +716,7 @@ function collision() {
     }
 
     // Animate the collision
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    clearScreen(1);
     objectArray.forEach(particle => {
         particle.update(objectArray);
     })
@@ -746,10 +743,7 @@ function galacticLight() {
     }
 
     // Clear the canvas
-    ctx.beginPath();
-    ctx.fillStyle = `rgba(10, 10, 10, ${opacity}`;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.closePath
+    clearScreen(opacity);
 
     // Save the current transformation state
     ctx.save();
@@ -798,7 +792,7 @@ function gravityCircles() {
     }
 
     // Clear canvas
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    clearScreen(1);
 
     // Move the ball Objects in ballArray
     for (let i = 0; i < objectArray.length; i++) {
@@ -809,12 +803,7 @@ function gravityCircles() {
 // Function for realistic fireworks
 function realisticFireworks() {
     // Clear canvas
-    ctx.beginPath();
-    ctx.fillStyle = `rgba(0, 0, 0, 0.05)`;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.closePath
-
-    console.log(objectArray)
+    clearScreen(0.05);
 
     // Update particles
     objectArray.forEach((particle, index) => {
@@ -827,14 +816,41 @@ function realisticFireworks() {
     });
 }
 
+// Define properties of the wave
+const wave = {
+    length: 0.005, // Length of each wave cycle
+    amplitude: 150, // Amplitude of the wave
+    frequency: 0.015, // Frequency of the wave (speed of oscillation)
+};
+
 // Function for sine waves
+let increment = wave.frequency; // Initialize the increment for the wa
 function sineWaves() {
+    // Clear the canvas
+    clearScreen(0.05);
 
-}
+    // Begin drawing the wave
+    ctx.beginPath();
+    // Move the drawing cursor to the starting point of the wave (slightly off-screen to hide initial line)
+    ctx.moveTo(-20, canvas.height / 2);
 
-// Function for static collision
-function staticCollision() {
+    // Draw the wave using a loop across the width of the canvas
+    for (let i = 0; i < canvas.width; i += 0.1) {
+        // Calculate the vertical position of each point on the wave using sine and cosine functions
+        const waveHeight = canvas.height / 2 + Math.sin(i * wave.length + increment) * wave.amplitude * Math.cos((increment * 2) / 1.5);
+        // Draw a line segment to the calculated point
+        ctx.lineTo(i, waveHeight);
+    }
 
+    // Set the stroke color of the wave based on the current increment value
+    const hue = Math.abs(360 * Math.sin(increment/10)); // Calculate hue for color variation
+    ctx.strokeStyle = `hsl(${hue}, 50%, 50%)`; // Set stroke color
+    ctx.lineWidth = 5; // Set the thickness of the lines
+    ctx.stroke(); // Render the wave on the canvas
+    ctx.closePath(); // Close the path to prepare for next drawing
+
+    // Increase the increment value to animate the wave
+    increment += wave.frequency; // Increment controls the speed of the wave animation
 }
 
 let mouseDown = false;
@@ -950,6 +966,7 @@ class InteractiveBouncingCircles {
         this.dx = dx;
         this.dy = dy;
         this.radius = radius;
+        this.initialRadius = radius;
         this.color = color;
     }
 
@@ -978,13 +995,13 @@ class InteractiveBouncingCircles {
 
         // Interaction with the position of users mouse
         let distance = 40; // Set distance
-        let maxRadius = this.radius * 5 + 10;
+        let maxRadius = this.initialRadius * 5 + 10;
 
         if (mouse.x - this.x < distance && mouse.x - this.x > -distance && mouse.y - this.y < distance && mouse.y - this.y > -distance) {
             if (this.radius < maxRadius) {
                 this.radius += 3;
             }
-        } else if (this.radius > this.radius) {
+        } else if (this.radius > this.initialRadius) {
             this.radius -= 3;
         }
 
@@ -1030,8 +1047,8 @@ class CircularMotion { // Particle Class
         this.radians += this.velocity; // Increase radians value over time
 
         // Gradually 
-        this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.05;
-        this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.05;
+        this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.03;
+        this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.03;
 
         // Circular Motion
         if (this.version === 1) {
@@ -1459,7 +1476,6 @@ const projects = [
     { title: 'GravityCircles', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.gravityCircles },
     { title: 'RealisticFireworks', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.realisticFireworks },
     { title: 'SineWaves', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.sineWaves },
-    { title: 'StaticCollision', function: _animations_js__WEBPACK_IMPORTED_MODULE_2__.staticCollision },
 ];
 
 // Animate function
@@ -1583,4 +1599,4 @@ window.addEventListener('click', (event) => {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundlecde0bf6936bcbfe623dd.js.map
+//# sourceMappingURL=bundle73de1f41b57a49057068.js.map
