@@ -12,6 +12,7 @@
   - [Tuskify](#Tuskify)
   - [GravityWords](#GravityWords)
   - [EscapeTheLab](#EscapeTheLab)
+  - [CanvasDisplay](#CanvasDisplay)
 
 ## Introduction
 
@@ -66,3 +67,7 @@ GravityWords presents a captivating word-typing experience, leveraging elastic c
 ### [EscapeTheLab](./EscapeTheLab/)
 
 EscapeTheLab is a classic escape room game set in an abandoned laboratory. Players use the WASD or arrow keys to navigate the environment and hover over objects to discover clues. These clues help uncover the four-digit code necessary for escape. The game extensively utilizes the HTML canvas element to render the immersive background images and to animate the firework effect once the user escapes.
+
+### [CanvasDisplay](./CanvasDisplay/)
+
+CanvasDisplay is a dynamic webpage showcasing a collection of canvas animations I've created. This project leverages Webpack to bundle the code, enhancing performance by optimizing code execution and significantly reducing file load times.
