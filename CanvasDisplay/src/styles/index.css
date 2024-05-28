@@ -43,6 +43,15 @@ header {
     z-index: -1;
 }
 
+#headerButton {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 1%;
+    width: 90%;
+    height: 5%;
+}
+
 main {
     position: relative;
     height: 100vh;
@@ -69,7 +78,54 @@ main {
 }
 
 #mainCanvas {
+    position: relative;
     background-color: white;
     position: relative;
     z-index: -1;
+}
+
+#mainButton {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 1%;
+    width: 90%;
+    height: 5%;
+}
+
+#leftButton, #rightButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3%;
+    height: 50%;
+}
+
+#leftButton {
+    left: 1%;
+}
+
+#rightButton {
+    right: 1%;
+}
+
+button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.material-symbols-outlined {
+    font-size: 2vw;
+    color: rgba(255, 255, 255, 0.5);
 }

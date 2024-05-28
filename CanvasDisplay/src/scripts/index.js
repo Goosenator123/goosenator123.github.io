@@ -7,6 +7,9 @@ import { updateMouseCoordinates, Firework } from './classes.js';
 // HTML element
 const backgroundElement = document.getElementById('background');
 const canvas = document.getElementById('mainCanvas');
+const headerButton = document.getElementById('headerButton');
+const mainButton = document.getElementById('mainButton');
+const leftRighButton = ['leftButton', 'rightButton'];
 
 // Get canvas context
 const ctx = canvas.getContext('2d');
@@ -156,5 +159,37 @@ window.addEventListener('click', (event) => {
 
     // Update objectArray
     updateObjectArray(fireworkArray);
-    clickCooldown = 50;
+    clickCooldown = 30;
+});
+
+// Event listener for header button click
+headerButton.addEventListener('click', () => {
+    const mainSection = document.getElementById('main');
+    mainSection.scrollIntoView({ behavior: 'smooth' });
+    atMain = true;
+});
+
+// Event listener for main button click
+mainButton.addEventListener('click', () => {
+    const headerSection = document.getElementById('header');
+    headerSection.scrollIntoView({ behavior: 'smooth' });
+    atMain = false;
+});
+
+// Event listener for left and right button click
+leftRighButton.forEach((button) => {
+    const element = document.getElementById(button);
+    element.addEventListener('click', () => {
+        if (button === 'rightButton' && index < projects.length - 1) {
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            clearObjectArray();
+            fireworkArray = [];
+            index++;
+        } else if (button === 'leftButton' && index > 0) {
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            clearObjectArray();
+            fireworkArray = [];
+            index--;
+        }
+    });
 });

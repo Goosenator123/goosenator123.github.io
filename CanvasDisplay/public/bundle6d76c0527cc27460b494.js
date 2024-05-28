@@ -66,6 +66,15 @@ header {
     z-index: -1;
 }
 
+#headerButton {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 1%;
+    width: 90%;
+    height: 5%;
+}
+
 main {
     position: relative;
     height: 100vh;
@@ -92,11 +101,57 @@ main {
 }
 
 #mainCanvas {
+    position: relative;
     background-color: white;
     position: relative;
     z-index: -1;
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,iCAAiC;IACjC,YAAY;IACZ,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;IACI,kBAAkB;IAClB,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,sBAAsB;IACtB,2BAA2B;IAC3B,4BAA4B;IAC5B,WAAW;AACf;;AAEA;IACI,YAAY;IACZ,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,aAAa;IACb,YAAY;AAChB;;AAEA;IACI,kBAAkB;IAClB,OAAO;IACP,QAAQ;IACR,WAAW;IACX,WAAW;IACX,sBAAsB;IACtB,uBAAuB;IACvB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,wCAAwC;IACxC,2BAA2B;IAC3B,YAAY;IACZ,gBAAgB;IAChB,kBAAkB;IAClB,yBAAyB;AAC7B;;AAEA;IACI,uBAAuB;IACvB,kBAAkB;IAClB,WAAW;AACf","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: black;\r\n    overflow: hidden;\r\n    scroll-behavior: smooth;\r\n}\r\n\r\n#background {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    z-index: -1;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 2.5vw;\r\n    height: 100vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n#headerCanvas {\r\n    background-color: black;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    z-index: -1;\r\n}\r\n\r\nmain {\r\n    position: relative;\r\n    height: 100vh;\r\n    width: 100vw;\r\n}\r\n\r\n#displayTitle {\r\n    position: absolute;\r\n    top: 3%;\r\n    left: 1%;\r\n    width: 20vw;\r\n    height: 5vh;\r\n    min-width: fit-content;\r\n    min-height: fit-content;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    background-color: rgba(25, 25, 25, 0.50);\r\n    backdrop-filter: blur(10px);\r\n    color: white;\r\n    font-size: 1.5vw;\r\n    padding: 1.5vw 5vw;\r\n    border: 0.3vw solid white;\r\n}\r\n\r\n#mainCanvas {\r\n    background-color: white;\r\n    position: relative;\r\n    z-index: -1;\r\n}\r\n"],"sourceRoot":""}]);
+
+#mainButton {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 1%;
+    width: 90%;
+    height: 5%;
+}
+
+#leftButton, #rightButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3%;
+    height: 50%;
+}
+
+#leftButton {
+    left: 1%;
+}
+
+#rightButton {
+    right: 1%;
+}
+
+button {
+    border: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.material-symbols-outlined {
+    font-size: 2vw;
+    color: rgba(255, 255, 255, 0.5);
+}`, "",{"version":3,"sources":["webpack://./src/styles/index.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,iCAAiC;IACjC,YAAY;IACZ,gBAAgB;IAChB,uBAAuB;AAC3B;;AAEA;IACI,kBAAkB;IAClB,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,sBAAsB;IACtB,2BAA2B;IAC3B,4BAA4B;IAC5B,WAAW;AACf;;AAEA;IACI,YAAY;IACZ,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;IACI,uBAAuB;IACvB,eAAe;IACf,MAAM;IACN,OAAO;IACP,YAAY;IACZ,aAAa;IACb,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,SAAS;IACT,0BAA0B;IAC1B,UAAU;IACV,UAAU;IACV,UAAU;AACd;;AAEA;IACI,kBAAkB;IAClB,aAAa;IACb,YAAY;AAChB;;AAEA;IACI,kBAAkB;IAClB,OAAO;IACP,QAAQ;IACR,WAAW;IACX,WAAW;IACX,sBAAsB;IACtB,uBAAuB;IACvB,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,wCAAwC;IACxC,2BAA2B;IAC3B,YAAY;IACZ,gBAAgB;IAChB,kBAAkB;IAClB,yBAAyB;AAC7B;;AAEA;IACI,kBAAkB;IAClB,uBAAuB;IACvB,kBAAkB;IAClB,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,SAAS;IACT,0BAA0B;IAC1B,UAAU;IACV,UAAU;IACV,UAAU;AACd;;AAEA;IACI,kBAAkB;IAClB,QAAQ;IACR,2BAA2B;IAC3B,SAAS;IACT,WAAW;AACf;;AAEA;IACI,QAAQ;AACZ;;AAEA;IACI,SAAS;AACb;;AAEA;IACI,YAAY;IACZ,2CAA2C;IAC3C,YAAY;IACZ,iCAAiC;IACjC,eAAe;IACf,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,2BAA2B;AAC/B;;AAEA;IACI,0CAA0C;AAC9C;;AAEA;IACI,cAAc;IACd,+BAA+B;AACnC","sourcesContent":["* {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n    user-select: none;\r\n}\r\n\r\nbody {\r\n    font-family: 'Roboto', sans-serif;\r\n    color: black;\r\n    overflow: hidden;\r\n    scroll-behavior: smooth;\r\n}\r\n\r\n#background {\r\n    position: absolute;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    background-size: cover;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    z-index: -1;\r\n}\r\n\r\nheader {\r\n    margin: auto;\r\n    font-size: 2.5vw;\r\n    height: 100vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n#headerCanvas {\r\n    background-color: black;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n    z-index: -1;\r\n}\r\n\r\n#headerButton {\r\n    position: absolute;\r\n    left: 50%;\r\n    transform: translate(-50%);\r\n    bottom: 1%;\r\n    width: 90%;\r\n    height: 5%;\r\n}\r\n\r\nmain {\r\n    position: relative;\r\n    height: 100vh;\r\n    width: 100vw;\r\n}\r\n\r\n#displayTitle {\r\n    position: absolute;\r\n    top: 3%;\r\n    left: 1%;\r\n    width: 20vw;\r\n    height: 5vh;\r\n    min-width: fit-content;\r\n    min-height: fit-content;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    background-color: rgba(25, 25, 25, 0.50);\r\n    backdrop-filter: blur(10px);\r\n    color: white;\r\n    font-size: 1.5vw;\r\n    padding: 1.5vw 5vw;\r\n    border: 0.3vw solid white;\r\n}\r\n\r\n#mainCanvas {\r\n    position: relative;\r\n    background-color: white;\r\n    position: relative;\r\n    z-index: -1;\r\n}\r\n\r\n#mainButton {\r\n    position: absolute;\r\n    left: 50%;\r\n    transform: translate(-50%);\r\n    bottom: 1%;\r\n    width: 90%;\r\n    height: 5%;\r\n}\r\n\r\n#leftButton, #rightButton {\r\n    position: absolute;\r\n    top: 50%;\r\n    transform: translateY(-50%);\r\n    width: 3%;\r\n    height: 50%;\r\n}\r\n\r\n#leftButton {\r\n    left: 1%;\r\n}\r\n\r\n#rightButton {\r\n    right: 1%;\r\n}\r\n\r\nbutton {\r\n    border: none;\r\n    background-color: rgba(255, 255, 255, 0.05);\r\n    color: white;\r\n    transition: background-color 0.3s;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    backdrop-filter: blur(10px);\r\n}\r\n\r\nbutton:hover {\r\n    background-color: rgba(255, 255, 255, 0.1);\r\n}\r\n\r\n.material-symbols-outlined {\r\n    font-size: 2vw;\r\n    color: rgba(255, 255, 255, 0.5);\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1444,6 +1499,9 @@ __webpack_require__.r(__webpack_exports__);
 // HTML element
 const backgroundElement = document.getElementById('background');
 const canvas = document.getElementById('mainCanvas');
+const headerButton = document.getElementById('headerButton');
+const mainButton = document.getElementById('mainButton');
+const leftRighButton = ['leftButton', 'rightButton'];
 
 // Get canvas context
 const ctx = canvas.getContext('2d');
@@ -1593,10 +1651,42 @@ window.addEventListener('click', (event) => {
 
     // Update objectArray
     (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.updateObjectArray)(fireworkArray);
-    clickCooldown = 50;
+    clickCooldown = 30;
+});
+
+// Event listener for header button click
+headerButton.addEventListener('click', () => {
+    const mainSection = document.getElementById('main');
+    mainSection.scrollIntoView({ behavior: 'smooth' });
+    atMain = true;
+});
+
+// Event listener for main button click
+mainButton.addEventListener('click', () => {
+    const headerSection = document.getElementById('header');
+    headerSection.scrollIntoView({ behavior: 'smooth' });
+    atMain = false;
+});
+
+// Event listener for left and right button click
+leftRighButton.forEach((button) => {
+    const element = document.getElementById(button);
+    element.addEventListener('click', () => {
+        if (button === 'rightButton' && index < projects.length - 1) {
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.clearObjectArray)();
+            fireworkArray = [];
+            index++;
+        } else if (button === 'leftButton' && index > 0) {
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.clearObjectArray)();
+            fireworkArray = [];
+            index--;
+        }
+    });
 });
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle73de1f41b57a49057068.js.map
+//# sourceMappingURL=bundle6d76c0527cc27460b494.js.map
