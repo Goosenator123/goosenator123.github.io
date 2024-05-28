@@ -220,7 +220,6 @@ function moveBackground(targetImage) {
     // Move
     x += dx;
     y += dy;
-    console.log(dx, dy )
 }
 
 // Function to toggle display of interactive boxes
