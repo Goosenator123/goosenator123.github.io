@@ -23,7 +23,7 @@ const gameOverScreen = document.getElementById('game-over-screen')
 const images = {
     menu: { src: './assets/images/menu.png', width: 1590 * 2.5, height: 580 * 2.5, boxes: [] },
     lab1: { src: './assets/images/lab1.png', width: 1900 * 2, height: 800 * 2, boxes: ['lab1-box1', 'lab1-box2'] },
-    lab2: { src: './assets/images/lab2.png', width: 1600 * 2.5, height: 627 * 2.5, boxes: ['lab2-box1', 'lab2-box2', 'lab2-box3'] },
+    lab2: { src: './assets/images/lab2.png', width: 1603 * 2.5, height: 629 * 2.5, boxes: ['lab2-box1', 'lab2-box2', 'lab2-box3'] },
     lab3: { src: './assets/images/lab3.png', width: 1600 * 2.5, height: 675 * 2.5, boxes: ['lab3-box1', 'lab3-box2'] },
     exit: { src: './assets/images/exit.png', width: 1790 * 2.5, height: 635 * 2.5, boxes: ['exit-box1', 'exit-box2', 'exit-box3'] }
 };
@@ -191,10 +191,10 @@ function moveBackground(targetImage) {
     let borderY = (canvas.height - targetImage.height);
 
     // Add direction if respective keys are pressed
-    if (leftArrowPressed && x < 0) dx += 20;
-    if (rightArrowPressed && x > borderX) dx -= 20;
-    if (upArrowPressed && y < 0) dy += 20;
-    if (downArrowPressed && y > borderY) dy -= 20;
+    if (leftArrowPressed && x < 0 - 20) dx += 20;
+    if (rightArrowPressed && x > borderX + 20) dx -= 20;
+    if (upArrowPressed && y < 0 - 20) dy += 20;
+    if (downArrowPressed && y > borderY + 20) dy -= 20;
 
     // Move interactive boxes along with the background
     const boxElement = targetImage.boxes;
@@ -220,6 +220,7 @@ function moveBackground(targetImage) {
     // Move
     x += dx;
     y += dy;
+    console.log(dx, dy )
 }
 
 // Function to toggle display of interactive boxes
@@ -396,7 +397,6 @@ function gameEndFunction(deltaTime) {
 function init() {
     particles = []; // Clear particles
     setCanvasSize();
-    animate(1); // Start animation loop
 }
 
 function animate(timestamp) {
@@ -420,3 +420,4 @@ function animate(timestamp) {
     }
     updateTime();
 }
+animate(1); // Start animation loop
