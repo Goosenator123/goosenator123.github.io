@@ -99,7 +99,7 @@ function checkLock() {
         setTimeout(() => {
             // Update game status flags
             atEnd = true;
-        }, 1000);
+        }, 500);
     } else { // If the lock is still locked
         // Reset lock elements to their original position
         lockElement.forEach(element => {

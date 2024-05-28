@@ -30,10 +30,10 @@ const images = {
 
 // Introduction text
 const introTexts = [
-    'Awakening within the eerie confines of an abandoned laboratory, your memory blanketed in uncertainty.',
-    'Your mission: unravel the enigma shrouding your predicament and unearth the code essential for your liberation.',
-    'Tread cautiously, for a lethal gas leak inches closer, threatening to ensnare you within its toxic embrace.',
-    'Time ticks away as you delve into the mysteries lurking within these forsaken walls, your very survival hanging in the balance.'
+    'You awaken in the eerie confines of an abandoned laboratory, surrounded by the remnants of forgotten experiments.',
+    'Your mission: decipher the enigma of your predicament and uncover the hidden code for your escape.',
+    'To succeed, you must scour the dimly lit labs for hidden clues, each one a breadcrumb leading you closer to freedom.',
+    'Be swift and pay attention to the time, it will be important.',
 ];
 
 // Initial coordinates of interactive boxes
@@ -137,7 +137,7 @@ function loadIntroTextSequentially(currentIndex) {
             atInstruction = true;
             atIntro = false;
             startBtn.disabled = true;
-        }, 5000);
+        }, 2000);
 
         // If currentIndex is greater than or equal to the length, stop recursion
         return;
