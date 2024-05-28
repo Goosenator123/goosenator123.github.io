@@ -18,6 +18,12 @@ function updateObjectArray(updatedArray) {
     objectArray = updatedArray;
 }
 
+// Function that update deltaTime for animations
+let deltaTime = 0;
+function updateDeltaTimeForAnimations(time) {
+    deltaTime = time;
+}
+
 // Get random integer from a min and max value
 function randomIntFromRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -36,11 +42,11 @@ function clearScreen(opacity) {
 function bouncingCircles() {
     // Check if initialGeneration is true
     if (objectArray.length === 0) {
-
+        let spawnCount = Math.min(canvas.width, canvas.height) / 10;
         // Create circles
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < spawnCount; i++) {
             // Declaring variable
-            let radius = 50; // Set radius
+            let radius = Math.min(canvas.width, canvas.height) * 0.05; // Set radius
             let x = Math.random() * (canvas.width - radius * 2) + radius; // Set x coordinate
             let y = Math.random() * (canvas.height - radius * 2) + radius; // Set y coordinate
             let dx = Math.floor((Math.random() - 0.5) * 100) / 10; // Set x velocity
@@ -61,11 +67,11 @@ function bouncingCircles() {
 // Function for interactive bouncing circles
 function interactiveBouncingCircles() {
     if (objectArray.length === 0) {
-        let spawnCount = canvas.width * 2;
+        let spawnCount = Math.max(canvas.width, canvas.height);
         // Create circles
         for (let i = 0; i < spawnCount; i++) {
             // Declaring variable
-            let radius = Math.random() * 4 + 3; // Set radius
+            let radius = Math.random() * 5 + 4; // Set radius
             let x = Math.random() * (innerWidth - radius * 2) + radius;
             let y = Math.random() * (innerHeight - radius * 2) + radius;
             let dx = Math.floor((Math.random() - 0.5) * 100) / 20;
@@ -104,13 +110,13 @@ function circularMotion(version) {
 
 // Function for collision
 function collision() {
-    let spawnCount = canvas.width * canvas.height / ((canvas.width + canvas.height * 2));
+    let spawnCount = Math.min(canvas.width, canvas.height) * 0.5;
     if (objectArray.length === 0) {
         // Create and insert particle into array
         for (let i = 0; i < spawnCount; i++) {
 
             // Set random variables
-            let radius = 15;
+            let radius = Math.min(canvas.width, canvas.height) * 0.02;
             let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
             let x = randomIntFromRange(radius, canvas.width - radius);
             let y = randomIntFromRange(radius, canvas.height - radius);
@@ -186,21 +192,22 @@ function galacticLight() {
     ctx.restore();
 
     // Increment the radians value to rotate the canvas gradually
-    radians += 0.003;
+    radians += 0.003 * deltaTime;
 
     // Change bg color opacity depending on mouseDown
     if (mouseDown && opacity >= 0.03) {
-        opacity -= 0.01;
+        opacity -= 0.01 * deltaTime;
     } else if (!mouseDown && opacity < 1) {
-        opacity += 0.005;
+        opacity += 0.005 * deltaTime;
     }
 }
 
 // Function for gravity circles
 function gravityCircles() {
     if (objectArray.length === 0) {
+        let spawnCount = Math.min(canvas.width, canvas.height) / 2.5;
         // Create and insert ball in array
-        for (let i = 0; i < 200; i++) {
+        for (let i = 0; i < spawnCount; i++) {
             // Setting random variables
             let radius = randomIntFromRange(8, 30);
             let x = randomIntFromRange(radius, (canvas.width - radius))
@@ -273,7 +280,7 @@ function sineWaves() {
     ctx.closePath(); // Close the path to prepare for next drawing
 
     // Increase the increment value to animate the wave
-    increment += wave.frequency; // Increment controls the speed of the wave animation
+    increment += wave.frequency * deltaTime; // Increment controls the speed of the wave animation
 }
 
 let mouseDown = false;
@@ -297,4 +304,5 @@ export {
     interactiveBouncingCircles,
     realisticFireworks,
     sineWaves,
+    updateDeltaTimeForAnimations
 }

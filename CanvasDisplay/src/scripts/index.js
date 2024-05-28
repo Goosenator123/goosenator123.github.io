@@ -1,8 +1,8 @@
 // Imports
 import '../styles/index.css';
 import background from '../assets/headerBg.svg';
-import { clearObjectArray, updateObjectArray, bouncingCircles, circularMotion, collision, galacticLight, interactiveBouncingCircles, gravityCircles, realisticFireworks, sineWaves } from './animations.js';
-import { updateMouseCoordinates, Firework } from './classes.js';
+import { clearObjectArray, updateObjectArray, bouncingCircles, circularMotion, collision, galacticLight, interactiveBouncingCircles, gravityCircles, realisticFireworks, sineWaves, updateDeltaTimeForAnimations } from './animations.js';
+import { updateMouseCoordinates, Firework, updateDeltaTimeForClasses } from './classes.js';
 
 // HTML element
 const backgroundElement = document.getElementById('background');
@@ -45,11 +45,18 @@ const projects = [
 ];
 
 // Animate function
-function animate() {
+let lastTime = 0;
+function animate(timestamp) {
     // Make a loop
     requestAnimationFrame(animate);
     if (clickCooldown > 0) clickCooldown--;
-    
+
+    // Calculate deltaTime
+    const deltaTime = (timestamp - lastTime) / 16;
+    updateDeltaTimeForClasses(deltaTime);
+    updateDeltaTimeForAnimations(deltaTime);
+    lastTime = timestamp;
+
     // Check if at project index for each project in projects array
     projects.forEach((project, projectIndex) => {
         if (index === projectIndex) {
@@ -67,7 +74,7 @@ function animate() {
         }
     });
 }
-animate(); // Call animate function
+animate(1); // Call animate function
 
 // Event listener for arrow keys
 let isScrolling = false; // Flag to prevent multiple key presses

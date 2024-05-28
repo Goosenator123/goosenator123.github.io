@@ -11,10 +11,18 @@ let mouse = {
     y: canvas.height / 2
 };
 
+// Set deltaTime
+let deltaTime = 1;
+
 // Function that updateObjectArray
 function updateMouseCoordinates(x, y) {
     mouse.x = x;
     mouse.y = y;
+}
+
+// Function that update deltaTime
+function updateDeltaTimeForClasses(time) {
+    deltaTime = time;
 }
 
 // Random interger generating function
@@ -62,8 +70,8 @@ class BouncingCircles {
         }
 
         // Modify x coordinate
-        this.x += this.dx;
-        this.y += this.dy;
+        this.x += this.dx * deltaTime;
+        this.y += this.dy * deltaTime;
 
         // Call Circle.draw() function;
         this.draw();
@@ -102,8 +110,8 @@ class InteractiveBouncingCircles {
         }
 
         // Modify x coordinate
-        this.x += this.dx;
-        this.y += this.dy;
+        this.x += this.dx * deltaTime;
+        this.y += this.dy * deltaTime;
 
         // Interaction with the position of users mouse
         let distance = 40; // Set distance
@@ -156,7 +164,7 @@ class CircularMotion { // Particle Class
         };
 
         // Move points over time
-        this.radians += this.velocity; // Increase radians value over time
+        this.radians += this.velocity * deltaTime; // Increase radians value over time
 
         // Gradually 
         this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.03;
@@ -255,8 +263,8 @@ class Collision {
         }
 
         // Move Particle based on velocity
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
+        this.x += this.velocity.x * deltaTime;
+        this.y += this.velocity.y * deltaTime;
     }
 }
 
@@ -316,8 +324,8 @@ class GravityCircle {
             this.dx = -this.dx;
         }
 
-        this.x += this.dx;
-        this.y += this.dy;
+        this.x += this.dx * deltaTime;
+        this.y += this.dy * deltaTime;
         this.draw();
     }
 }
@@ -350,8 +358,8 @@ class Firework {
         this.draw();
         this.velocity.x *= fireworkFriction;
         this.velocity.y += fireworkGravity;
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
+        this.x += this.velocity.x * deltaTime;
+        this.y += this.velocity.y * deltaTime;
         this.opacity -= 0.005; // Fade out effect
     }
 }
@@ -366,4 +374,5 @@ export {
     Firework,
     updateMouseCoordinates,
     getDistance,
+    updateDeltaTimeForClasses,
 } // Export classes

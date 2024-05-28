@@ -627,6 +627,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   interactiveBouncingCircles: () => (/* binding */ interactiveBouncingCircles),
 /* harmony export */   realisticFireworks: () => (/* binding */ realisticFireworks),
 /* harmony export */   sineWaves: () => (/* binding */ sineWaves),
+/* harmony export */   updateDeltaTimeForAnimations: () => (/* binding */ updateDeltaTimeForAnimations),
 /* harmony export */   updateObjectArray: () => (/* binding */ updateObjectArray)
 /* harmony export */ });
 /* harmony import */ var _classes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes.js */ "./src/scripts/classes.js");
@@ -650,6 +651,12 @@ function updateObjectArray(updatedArray) {
     objectArray = updatedArray;
 }
 
+// Function that update deltaTime for animations
+let deltaTime = 0;
+function updateDeltaTimeForAnimations(time) {
+    deltaTime = time;
+}
+
 // Get random integer from a min and max value
 function randomIntFromRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -668,11 +675,11 @@ function clearScreen(opacity) {
 function bouncingCircles() {
     // Check if initialGeneration is true
     if (objectArray.length === 0) {
-
+        let spawnCount = Math.min(canvas.width, canvas.height) / 10;
         // Create circles
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < spawnCount; i++) {
             // Declaring variable
-            let radius = 50; // Set radius
+            let radius = Math.min(canvas.width, canvas.height) * 0.05; // Set radius
             let x = Math.random() * (canvas.width - radius * 2) + radius; // Set x coordinate
             let y = Math.random() * (canvas.height - radius * 2) + radius; // Set y coordinate
             let dx = Math.floor((Math.random() - 0.5) * 100) / 10; // Set x velocity
@@ -693,11 +700,11 @@ function bouncingCircles() {
 // Function for interactive bouncing circles
 function interactiveBouncingCircles() {
     if (objectArray.length === 0) {
-        let spawnCount = canvas.width * 2;
+        let spawnCount = Math.max(canvas.width, canvas.height);
         // Create circles
         for (let i = 0; i < spawnCount; i++) {
             // Declaring variable
-            let radius = Math.random() * 4 + 3; // Set radius
+            let radius = Math.random() * 5 + 4; // Set radius
             let x = Math.random() * (innerWidth - radius * 2) + radius;
             let y = Math.random() * (innerHeight - radius * 2) + radius;
             let dx = Math.floor((Math.random() - 0.5) * 100) / 20;
@@ -736,13 +743,13 @@ function circularMotion(version) {
 
 // Function for collision
 function collision() {
-    let spawnCount = canvas.width * canvas.height / ((canvas.width + canvas.height * 2));
+    let spawnCount = Math.min(canvas.width, canvas.height) * 0.5;
     if (objectArray.length === 0) {
         // Create and insert particle into array
         for (let i = 0; i < spawnCount; i++) {
 
             // Set random variables
-            let radius = 15;
+            let radius = Math.min(canvas.width, canvas.height) * 0.02;
             let color = `hsl(${Math.random() * 360}, 50%, 50%)`;
             let x = randomIntFromRange(radius, canvas.width - radius);
             let y = randomIntFromRange(radius, canvas.height - radius);
@@ -818,21 +825,22 @@ function galacticLight() {
     ctx.restore();
 
     // Increment the radians value to rotate the canvas gradually
-    radians += 0.003;
+    radians += 0.003 * deltaTime;
 
     // Change bg color opacity depending on mouseDown
     if (mouseDown && opacity >= 0.03) {
-        opacity -= 0.01;
+        opacity -= 0.01 * deltaTime;
     } else if (!mouseDown && opacity < 1) {
-        opacity += 0.005;
+        opacity += 0.005 * deltaTime;
     }
 }
 
 // Function for gravity circles
 function gravityCircles() {
     if (objectArray.length === 0) {
+        let spawnCount = Math.min(canvas.width, canvas.height) / 2.5;
         // Create and insert ball in array
-        for (let i = 0; i < 200; i++) {
+        for (let i = 0; i < spawnCount; i++) {
             // Setting random variables
             let radius = randomIntFromRange(8, 30);
             let x = randomIntFromRange(radius, (canvas.width - radius))
@@ -905,7 +913,7 @@ function sineWaves() {
     ctx.closePath(); // Close the path to prepare for next drawing
 
     // Increase the increment value to animate the wave
-    increment += wave.frequency; // Increment controls the speed of the wave animation
+    increment += wave.frequency * deltaTime; // Increment controls the speed of the wave animation
 }
 
 let mouseDown = false;
@@ -938,6 +946,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   GravityCircle: () => (/* binding */ GravityCircle),
 /* harmony export */   InteractiveBouncingCircles: () => (/* binding */ InteractiveBouncingCircles),
 /* harmony export */   getDistance: () => (/* binding */ getDistance),
+/* harmony export */   updateDeltaTimeForClasses: () => (/* binding */ updateDeltaTimeForClasses),
 /* harmony export */   updateMouseCoordinates: () => (/* binding */ updateMouseCoordinates)
 /* harmony export */ });
 /* harmony import */ var _resolveCollision__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resolveCollision */ "./src/scripts/resolveCollision.js");
@@ -954,10 +963,18 @@ let mouse = {
     y: canvas.height / 2
 };
 
+// Set deltaTime
+let deltaTime = 1;
+
 // Function that updateObjectArray
 function updateMouseCoordinates(x, y) {
     mouse.x = x;
     mouse.y = y;
+}
+
+// Function that update deltaTime
+function updateDeltaTimeForClasses(time) {
+    deltaTime = time;
 }
 
 // Random interger generating function
@@ -1005,8 +1022,8 @@ class BouncingCircles {
         }
 
         // Modify x coordinate
-        this.x += this.dx;
-        this.y += this.dy;
+        this.x += this.dx * deltaTime;
+        this.y += this.dy * deltaTime;
 
         // Call Circle.draw() function;
         this.draw();
@@ -1045,8 +1062,8 @@ class InteractiveBouncingCircles {
         }
 
         // Modify x coordinate
-        this.x += this.dx;
-        this.y += this.dy;
+        this.x += this.dx * deltaTime;
+        this.y += this.dy * deltaTime;
 
         // Interaction with the position of users mouse
         let distance = 40; // Set distance
@@ -1099,7 +1116,7 @@ class CircularMotion { // Particle Class
         };
 
         // Move points over time
-        this.radians += this.velocity; // Increase radians value over time
+        this.radians += this.velocity * deltaTime; // Increase radians value over time
 
         // Gradually 
         this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.03;
@@ -1198,8 +1215,8 @@ class Collision {
         }
 
         // Move Particle based on velocity
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
+        this.x += this.velocity.x * deltaTime;
+        this.y += this.velocity.y * deltaTime;
     }
 }
 
@@ -1259,8 +1276,8 @@ class GravityCircle {
             this.dx = -this.dx;
         }
 
-        this.x += this.dx;
-        this.y += this.dy;
+        this.x += this.dx * deltaTime;
+        this.y += this.dy * deltaTime;
         this.draw();
     }
 }
@@ -1293,8 +1310,8 @@ class Firework {
         this.draw();
         this.velocity.x *= fireworkFriction;
         this.velocity.y += fireworkGravity;
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
+        this.x += this.velocity.x * deltaTime;
+        this.y += this.velocity.y * deltaTime;
         this.opacity -= 0.005; // Fade out effect
     }
 }
@@ -1537,11 +1554,18 @@ const projects = [
 ];
 
 // Animate function
-function animate() {
+let lastTime = 0;
+function animate(timestamp) {
     // Make a loop
     requestAnimationFrame(animate);
     if (clickCooldown > 0) clickCooldown--;
-    
+
+    // Calculate deltaTime
+    const deltaTime = (timestamp - lastTime) / 16;
+    (0,_classes_js__WEBPACK_IMPORTED_MODULE_3__.updateDeltaTimeForClasses)(deltaTime);
+    (0,_animations_js__WEBPACK_IMPORTED_MODULE_2__.updateDeltaTimeForAnimations)(deltaTime);
+    lastTime = timestamp;
+
     // Check if at project index for each project in projects array
     projects.forEach((project, projectIndex) => {
         if (index === projectIndex) {
@@ -1559,7 +1583,7 @@ function animate() {
         }
     });
 }
-animate(); // Call animate function
+animate(1); // Call animate function
 
 // Event listener for arrow keys
 let isScrolling = false; // Flag to prevent multiple key presses
@@ -1689,4 +1713,4 @@ leftRighButton.forEach((button) => {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle6d76c0527cc27460b494.js.map
+//# sourceMappingURL=bundlec78e9b0d1ea33ae24fe3.js.map
