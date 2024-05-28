@@ -122,7 +122,6 @@ Object.keys(images).slice(1).forEach(key => {
 
 // Execute when viewport is resized
 window.addEventListener('resize', () => {
-    setCanvasSize(); // Resize
     init(); // Re-initiate
 
     // Reset coordinates

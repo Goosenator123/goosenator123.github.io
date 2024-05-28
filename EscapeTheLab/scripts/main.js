@@ -292,8 +292,8 @@ function mainPageFunction(deltaTime) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Change direction if coordinates touch the border
-    if (x > 0 || x < (canvas.width - currentImg.width)) menuDeltaX = -menuDeltaX;
-    if (y > 0 || y < (canvas.height - currentImg.height)) menuDeltaY = -menuDeltaY;
+    if (x > 0 || x <= (canvas.width - currentImg.width)) menuDeltaX = -menuDeltaX;
+    if (y > 0 || y <= (canvas.height - currentImg.height)) menuDeltaY = -menuDeltaY;
     x += menuDeltaX * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
     y += menuDeltaY * (deltaTime / 16); // Scale speed by deltaTime for smooth animation
 }
@@ -392,7 +392,6 @@ function gameEndFunction(deltaTime) {
     }
 }
 
-
 // Implementation
 function init() {
     particles = []; // Clear particles
@@ -420,5 +419,4 @@ function animate(timestamp) {
         renderImage(currentImg);
     }
     updateTime();
-    console.log(particles.length)
 }
