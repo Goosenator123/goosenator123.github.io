@@ -1,0 +1,115 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 10px;
+    color: white;
+    font-family: 'Press Start 2P', system-ui;
+    font-weight: 400;
+    font-style: normal;  
+    user-select: none;
+    outline: none;
+}
+
+body {
+    overflow: hidden;
+    background-color: black;
+}
+
+/* FPS Display */
+#fps {
+    position: fixed;
+    top: 0;
+    right: 0;
+    color: white;
+    z-index: 1000;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+/* Canvas Container */
+#canvas-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+
+#game-canvas {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    border: 5px solid white;
+}
+
+/* Score Text */
+#score-text {
+    font-size: 5rem;
+    width: 100vw;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#canvas-container span {
+    font-size: 5rem;
+}
+
+/* Main Overlay */
+main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+/* Main Section */
+#main-section {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 5fr 20fr 1fr;
+}
+
+#main-section header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 10rem;
+    transition: color 1.5s;
+}
+
+/* Button Section */
+#button-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80%;
+}
+
+#button-section button {
+    top: -100px;
+    background-color: transparent;
+    border: 5px solid white;
+    padding: 30px 20px;
+    color: white;
+    font-size: 3rem;
+    transition: background-color 0.3s, color 0.3s, border-color 1.5s;
+}
+
+#button-section button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    cursor: pointer;
+}

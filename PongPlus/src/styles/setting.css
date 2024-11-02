@@ -1,0 +1,334 @@
+/* Setting Button */
+#setting-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    z-index: 1000;
+    background-color: transparent;
+    border: none;
+    transition: transform 0.3s;
+    box-sizing: border-box;
+}
+
+#setting-button:hover {
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#footer-text {
+    font-size: 1rem;
+    transition: color 1.5s;
+}
+
+/* Setting Icon */
+#setting-icon {
+    font-size: 4rem;
+    transition: color 1.5s;
+}
+
+/* Setting Section */
+#setting-section {
+    width: 80%;
+    height: 80%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    z-index: -1000;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border: 5px solid white;
+    transition: border-color 1.5s;
+}
+
+/* Setting Header */
+#setting-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid white;
+    margin: 0 20px;
+    transition: border-color 1.5s;
+}
+
+#setting-title {
+    font-size: 4rem;
+}
+
+/* Difficulty, Color, Obstacle Titles */
+#difficulty-title,
+#color-title,
+#obstacle-title {
+    font-size: 3rem;
+    transition: color 1.5s;
+}
+
+/* Setting Content */
+#setting-content {
+    display: grid;
+    grid-template-rows: 2fr 3fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Difficulty Section */
+#difficulty-section {
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    border-bottom: 3px solid white;
+    transition: border-color 1.5s;
+}
+
+#difficulty-section header {
+    display: flex;
+    align-items: center;
+}
+
+#difficulty-option {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* Difficulty Buttons */
+.difficulty-button {
+    width: 20%;
+    min-width: fit-content;
+    background-color: transparent;
+    border: 5px solid white;
+    padding: 20px 10px;
+    color: white;
+    font-size: 2rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#easy-button:hover, .easy-enabled {
+    background-color: rgba(0, 255, 72, 0.8);
+    color: black;
+    cursor: pointer;
+}
+
+#medium-button:hover, .medium-enabled {
+    background-color: rgba(255, 255, 0, 0.8);
+    color: black;
+    cursor: pointer;
+}
+
+#hard-button:hover, .hard-enabled {
+    background-color: rgba(255, 0, 0, 0.8);
+    color: black;
+    cursor: pointer;
+}
+
+/* Other Sections */
+#other-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#color-section,
+#obstacle-section {
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+}
+
+#color-section {
+    border-right: 3px solid white;
+    transition: border-color 1.5s;
+}
+
+#color-section header,
+#obstacle-section header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Color Options */
+#color-option-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.color-button {
+    width: 50%;
+    background-color: transparent;
+    border: 5px solid white;
+    padding: 20px 10px;
+    color: white;
+    font-size: 2rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#color-option-container #red-option:hover, .red-enabled {
+    background-color: #9d0208;
+    color: black;
+    cursor: pointer;
+}
+
+#color-option-container #green-option:hover, .green-enabled {
+    background-color: #008000;
+    color: black;
+    cursor: pointer;
+}
+
+#color-option-container #blue-option:hover, .blue-enabled {
+    background-color: #0077b6;
+    color: black;
+    cursor: pointer;
+}
+
+/* Obstacle Options */
+#obstacle-option-container {
+    display: grid;
+    grid-template-rows: 3fr 2fr;
+}
+
+#obstacle-presence-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.obstacle-button {
+    width: 30%;
+    background-color: transparent;
+    border: 5px solid white;
+    padding: 20px 10px;
+    color: white;
+    font-size: 2rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#obstacle-presence-section #on-button:hover, .on-enabled {
+    background-color: rgba(0, 255, 72, 0.8);
+    color: black;
+    cursor: pointer;
+}
+
+#obstacle-presence-section #off-button:hover, .off-enabled {
+    background-color: rgba(255, 0, 0, 0.8);
+    color: black;
+    cursor: pointer;
+}
+
+/* Obstacle Quantity Section */
+#obstacle-quantity-section {
+    position: relative;
+    width: 80%;
+    margin: auto;
+}
+
+#obstacle-quantity-section div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#obstacle-quantity-section label,
+#obstacle-quantity-section span {
+    font-size: 2rem;
+    padding-bottom: 10px;
+}
+
+#obstacle-quantity-input {
+    width: 100%;
+}
+
+/* Active State */
+.active {
+    background-color: white;
+    color: black;
+}
+
+/* Instructions Section */
+#instructions-section {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(50px);
+    z-index: -1;
+}
+
+#instructions-container {
+    border: 5px solid white;
+    padding: 20px 10px;
+}
+
+#instructions-section header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid white;
+    margin: 0 20px;
+}
+
+#instructions-title {
+    font-size: 4rem;
+    padding-bottom: 10px;
+}
+
+#instructions-content p {
+    font-size: 2rem;
+    padding: 20px;
+}
+
+/* Game Over Section */
+#game-over-section {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: black;
+    z-index: -1;
+}
+
+#game-over-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#winner-text {
+    font-size: 4rem;
+    padding: 20px;
+}
+
+/* Restart Button */
+#restart-button {
+    width: fit-content;
+    background-color: transparent;
+    border: 5px solid white;
+    padding: 20px 10px;
+    color: white;
+    font-size: 2rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#restart-button:hover {
+    background-color: rgba(189, 189, 189, 0.8);
+    color: black;
+    cursor: pointer;
+}
