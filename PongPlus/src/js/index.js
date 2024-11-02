@@ -345,10 +345,12 @@ function startGame() {
 }
 
 function main() {
-    getStoredSettings();
-    startGame();
-    requestAnimationFrame(animate);
-    localStorage.setItem('isGameOn', isGameOn);
+    setTimeout(() => {
+        getStoredSettings();
+        startGame();
+        requestAnimationFrame(animate);
+        localStorage.setItem('isGameOn', isGameOn);
+    }, 100);
 }
 
 //! ====== Initialization ======

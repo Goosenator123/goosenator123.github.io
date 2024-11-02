@@ -1,3 +1,7 @@
+/******/ (() => { // webpackBootstrap
+/*!***************************!*\
+  !*** ./src/js/setting.js ***!
+  \***************************/
 //! ====== Default Settings and Initial Variables ======
 const defaultSettings = {
     difficulty: 'medium',
@@ -130,3 +134,6 @@ function initializeSettings() {
 window.onload = () => {
     initializeSettings();
 }
+/******/ })()
+;
+//# sourceMappingURL=setting3cd7be32fa1cfbee08d0.js.map
