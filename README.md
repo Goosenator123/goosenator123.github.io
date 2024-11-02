@@ -2,9 +2,9 @@
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Websites](#websites)
+- [Introduction](#Introduction)
+- [Getting Started](#Getting_Started)
+- [Websites](#Websites)
   - [PixelGuess](#PixelGuess)
   - [QuackIn](#QuackIn)
   - [CodeGuide](#CodeGuide)
@@ -13,12 +13,13 @@
   - [GravityWords](#GravityWords)
   - [EscapeTheLab](#EscapeTheLab)
   - [CanvasDisplay](#CanvasDisplay)
+  - [PongPlus](#PongPlus)
 
-## Introduction
+## [Introduction]
 
 This repository is designed to host multiple websites using GitHub Pages. It is used for me to display my school projects or personal ones.
 
-## Getting Started
+## [Getting Started]
 
 To get started, follow these steps:
 
@@ -31,14 +32,14 @@ To get started, follow these steps:
 2. Navigate to the project directory:
 
     ```bash
-    cd multi-website-repo
+    cd <path_to_repository>
     ```
 
 3. Explore the subdirectories to understand the structure of each website.
 
 If you wish to view the project online, you can type goosenator123.github.io/(folder name). Replace "(folder name)" with the actual name of the folder you want to view.
 
-## Websites
+## [Websites]
 
 ### [PixelGuess](./PixelGuess/)
 
@@ -68,6 +69,10 @@ GravityWords presents a captivating word-typing experience, leveraging elastic c
 
 EscapeTheLab is a classic escape room game set in an abandoned laboratory. Players use the WASD or arrow keys to navigate the environment and hover over objects to discover clues. These clues help uncover the four-digit code necessary for escape. The game extensively utilizes the HTML canvas element to render the immersive background images and to animate the firework effect once the user escapes.
 
-### [CanvasDisplay](./CanvasDisplay/)
+### [CanvasDisplay](./CanvasDisplay/public)
 
 CanvasDisplay is a dynamic webpage showcasing a collection of canvas animations I've created. This project leverages Webpack to bundle the code, enhancing performance by optimizing code execution and significantly reducing file load times.
+
+### [PongPlus](./PongPlus/public/)
+
+PongPlus is a recreation of the classic Pong game from 1972, featuring customizable colors and adjustable difficulty levels for an engaging gameplay experience. The game includes moving obstacles, adding an exciting layer of complexity to the traditional gameplay.
