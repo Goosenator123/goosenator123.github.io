@@ -396,10 +396,12 @@ function displayUpgrades() {
         ctx.strokeRect(x, startY, boxWidth, boxHeight);
 
         ctx.fillStyle = '#00d4ff';
-        ctx.font = '24px Arial';
         ctx.textAlign = 'center';
-
+        
+        ctx.font = 'bold 24px Arial';
         ctx.fillText(upgrade.description, x + boxWidth / 2, startY + boxHeight / 2 - 20);
+        
+        ctx.font = '24px Arial';
         ctx.fillText(`Press ${index + 1}`, x + boxWidth / 2, startY + boxHeight / 2 + 20);
     });
 
