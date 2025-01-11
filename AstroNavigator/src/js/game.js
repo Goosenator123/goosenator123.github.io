@@ -42,11 +42,11 @@ const directionPressed = {
 };
 
 const upgrades = [
-    { description: '+10% Attack Speed', apply: (rect) => (rect.atkSpeed = Math.max(50, rect.atkSpeed * 0.9)) },
-    { description: '+10% Attack Power', apply: (rect) => (rect.atk = Math.round(rect.atk * 1.1)) },
+    { description: '+20% Attack Speed', apply: (rect) => (rect.atkSpeed = Math.max(50, rect.atkSpeed * 0.8)) },
+    { description: '+15% Attack Power', apply: (rect) => (rect.atk = Math.round(rect.atk * 1.15)) },
     { description: '+15 HP', apply: (rect) => {rect.hp += 15; rect.maxHp += 15; drawHPBar(rectangle)} },
-    { description: '+10% Projectile Speed', apply: () => {projectileSpeed *= 1.1} },
-    { description: 'Increase Movement Speed', apply: (rect) => (rect.speed = (rect.speed || 5) + 1) },
+    { description: '+20% Projectile Speed', apply: () => {projectileSpeed *= 1.2} },
+    { description: '+1 Movement Speed', apply: (rect) => (rect.speed = (rect.speed || 5) + 1) },
 ];
 
 // =========================== Music Variables ==============================
@@ -81,7 +81,7 @@ function drawProgressBar() {
     if (gamePaused) return;
 
     const barWidth = canvas.width * 0.8;
-    const barHeight = 20;
+    const barHeight = 30;
     const x = (canvas.width - barWidth) / 2;
     const y = 20;
 
@@ -101,8 +101,8 @@ function drawProgressBar() {
 }
 
 function drawHPBar(rectangle) {
-    const barWidth = 200;
-    const barHeight = 20;
+    const barWidth = 400;
+    const barHeight = 40;
     const x = 10;
     const y = canvas.height - 10 - barHeight;
 
@@ -119,9 +119,28 @@ function drawHPBar(rectangle) {
     ctx.strokeRect(x, y, barWidth, barHeight);
 
     ctx.fillStyle = 'white';
-    ctx.font = '14px Arial';
+    ctx.font = 'bold 20px Arial';
     ctx.textAlign = 'center';
     ctx.fillText(`HP: ${rectangle.hp}`, x + barWidth / 2, y + barHeight / 1.5);
+}
+
+function drawTime() {
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 20px Arial';
+
+    // Define text and its position
+    const text = `Time: ${miliseconds}ms`;
+    const x = 100;
+    const y = 40;
+
+    // Measure the text width
+    const textWidth = ctx.measureText(text).width;
+
+    // Adjust the position if the text would go out of bounds
+    const adjustedX = Math.min(x, canvas.width - textWidth - 10); // Keep 10px padding from the right edge
+    const adjustedY = Math.min(y, canvas.height - 10); // Keep 10px padding from the bottom edge
+
+    ctx.fillText(text, adjustedX, adjustedY);
 }
 
 // ========================= Classes and Entities ===========================
@@ -306,9 +325,8 @@ function animate(timestamp) {
     drawHPBar(rectangle);
     drawProgressBar();
 
-    ctx.fillStyle = 'white';
-    ctx.font = '16px Arial';
-    ctx.fillText(`Time: ${miliseconds}ms`, 50, 40);
+    drawTime();
+
 
     animationId = requestAnimationFrame(animate);
 }
@@ -320,7 +338,7 @@ function startGame() {
     }, 10);
     setInterval(() => {
         if (!gamePaused) createObstacle();
-    }, 500);
+    }, 100);
     startUpgradeTimer();
     setRectangle();
     initParticles(100);
@@ -342,7 +360,7 @@ function createObstacle() {
 
     const baseRadius = 20;
     const maxRadius = 100;
-    const radiusGrowthFactor = 0.005;
+    const radiusGrowthFactor = 0.003;
     const radius = Math.min(baseRadius + miliseconds / 100 * radiusGrowthFactor * maxRadius, maxRadius);
 
     const x = getRandomIntFromRange(0, canvas.width);
