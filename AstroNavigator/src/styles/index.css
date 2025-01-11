@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle, #1a1a2e, #16213e, #0f3460);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+canvas {
+    position: fixed;
+    background-color: black;
+    z-index: -10;
+}
+
+#instruction-section {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: -100;
+}
+
+#instruction-container {
+    background: #1a1a2e;
+    padding: 50px;
+    border: #00d4ff 2px solid;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#instruction-container h2 {
+    color: #00d4ff;
+    text-shadow: 0 0 10px #00d4ff, 0 0 20px #0074ff;
+    margin-bottom: 1rem;
+    font-size: 3rem;
+}
+
+#instruction-container * {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.menu-container {
+    text-align: center;
+}
+
+.game-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00d4ff;
+    text-shadow: 0 0 20px #00d4ff, 0 0 30px #0074ff;
+    margin-bottom: 2rem;
+}
+
+.menu-buttons {
+    margin-top: 2rem;
+}
+
+.menu-button {
+    background: linear-gradient(90deg, #0074ff, #00d4ff);
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.menu-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hidden {
+    display: none;
+}
+
+.instructions h2 {
+    color: #00d4ff;
+    text-shadow: 0 0 10px #00d4ff, 0 0 20px #0074ff;
+    margin-bottom: 1rem;
+}
+
+.instructions ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.instructions ul li {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+.instructions button {
+    margin-top: 1rem;
+    background: linear-gradient(90deg, #0074ff, #00d4ff);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.instructions button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}

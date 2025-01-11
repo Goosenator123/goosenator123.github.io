@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: radial-gradient(circle, #1a1a2e, #16213e, #0f3460);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+canvas {
+    position: fixed;
+    background-color: black;
+    z-index: -10;
+}
+
+.game-over-container {
+    text-align: center;
+    background: #1a1a2e;
+    padding: 50px;
+    border: #00d4ff 2px solid;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.game-over-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00d4ff;
+    text-shadow: 0 0 20px #00d4ff, 0 0 30px #0074ff;
+    margin-bottom: 1rem;
+}
+
+.game-over-text {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+#survival-time {
+    font-weight: bold;
+    color: #00d4ff;
+    text-shadow: 0 0 10px #00d4ff, 0 0 15px #0074ff;
+}
+
+.menu-button {
+    background: linear-gradient(90deg, #0074ff, #00d4ff);
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.menu-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
