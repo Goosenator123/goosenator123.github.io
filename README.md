@@ -15,6 +15,7 @@
   - [CanvasDisplay](#CanvasDisplay)
   - [PongPlus](#PongPlus)
   - [AstroNavigator](#astronavigator)
+  - [WaveFloat](#wavefloat)
 
 ## [Introduction]
 
@@ -81,3 +82,7 @@ PongPlus is a recreation of the classic Pong game from 1972, featuring customiza
 ### [AstroNavigator](./AstroNavigator/)
 
 AstroNavigator is a dynamic and engaging space-themed game where players navigate a spaceship using WASD controls, firing projectiles to destroy obstacles and dodging incoming asteroids. The game leverages HTML canvas for smooth gameplay and realistic collision physics.
+
+### [WaveFloat](./WaveFloat/)
+
+WaveFloat is an interactive 2D animation that features a dynamic, moving wave backdrop with floating balls. With customizable colors, adjustable physics parameters, and engaging explosion effects triggered by user interaction, it offers a modern twist on classic arcade visuals.
