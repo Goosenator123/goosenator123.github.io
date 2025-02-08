@@ -14,6 +14,7 @@
   - [EscapeTheLab](#EscapeTheLab)
   - [CanvasDisplay](#CanvasDisplay)
   - [PongPlus](#PongPlus)
+  - [AstroNavigator](#astronavigator)
 
 ## [Introduction]
 
@@ -76,3 +77,7 @@ CanvasDisplay is a dynamic webpage showcasing a collection of canvas animations 
 ### [PongPlus](./PongPlus/public/)
 
 PongPlus is a recreation of the classic Pong game from 1972, featuring customizable colors and adjustable difficulty levels for an engaging gameplay experience. The game includes moving obstacles, adding an exciting layer of complexity to the traditional gameplay.
+
+### [AstroNavigator](./AstroNavigator/)
+
+AstroNavigator is a dynamic and engaging space-themed game where players navigate a spaceship using WASD controls, firing projectiles to destroy obstacles and dodging incoming asteroids. The game leverages HTML canvas for smooth gameplay and realistic collision physics.
