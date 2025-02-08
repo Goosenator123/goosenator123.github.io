@@ -14,6 +14,7 @@
   - [EscapeTheLab](#EscapeTheLab)
   - [CanvasDisplay](#CanvasDisplay)
   - [PongPlus](#PongPlus)
+  - [WaveFloat](#WaveFloat)
 
 ## [Introduction]
 
@@ -76,3 +77,7 @@ CanvasDisplay is a dynamic webpage showcasing a collection of canvas animations 
 ### [PongPlus](./PongPlus/public/)
 
 PongPlus is a recreation of the classic Pong game from 1972, featuring customizable colors and adjustable difficulty levels for an engaging gameplay experience. The game includes moving obstacles, adding an exciting layer of complexity to the traditional gameplay.
+
+### [WaveFloat](./WaveFloat/)
+
+WaveFloat is an interactive 2D animation that features a dynamic, moving wave backdrop with floating balls. With customizable colors, adjustable physics parameters, and engaging explosion effects triggered by user interaction, it offers a modern twist on classic arcade visuals.

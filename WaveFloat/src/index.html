@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WaveFloat</title>
+    <style>
+      /* Reset and base styles */
+      * {
+        box-sizing: border-box;
+      }
+      body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background: linear-gradient(135deg, #1a1a1a, #000);
+        color: #fff;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+      }
+      /* Intro Overlay Styles */
+      #intro {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        z-index: 100;
+      }
+      #intro h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5em;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      }
+      #intro ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1em 0;
+        text-align: left;
+        max-width: 600px;
+      }
+      #intro ul li {
+        margin-bottom: 0.5em;
+        line-height: 1.5;
+      }
+      #intro ul li ul {
+        margin-top: 0.3em;
+        padding-left: 20px;
+      }
+      #intro button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        background-color: #ff5733;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        transition: background-color 0.3s, transform 0.2s;
+      }
+      #intro button:hover,
+      #intro button:focus {
+        background-color: #e14e2b;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Canvas for the animation -->
+    <canvas id="mcanvas"></canvas>
+    
+    <!-- Intro Overlay -->
+    <div id="intro">
+      <h1>Welcome to 2D Animation</h1>
+      <ul>
+        <li>
+          <strong>Dynamic Wave:</strong> Generates a moving wave using sine and cosine functions. Adjust the amplitude and frequency via dat.GUI.
+        </li>
+        <li>
+          <strong>User Interactions:</strong>
+          <ul>
+            <li>Right-click to spawn a new ball at the mouse position.</li>
+            <li>Click on a ball to trigger an explosion and remove it.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Control Panel (dat.GUI):</strong> Real-time control of parameters such as wave amplitude, frequency, gravity, wind, and ball spawning/clearing.
+        </li>
+      </ul>
+      <button id="startButton">Start</button>
+    </div>
+  </body>
+</html>
