@@ -86,3 +86,11 @@ AstroNavigator is a dynamic and engaging space-themed game where players navigat
 ### [WaveFloat](./WaveFloat/)
 
 WaveFloat is an interactive 2D animation that features a dynamic, moving wave backdrop with floating balls. With customizable colors, adjustable physics parameters, and engaging explosion effects triggered by user interaction, it offers a modern twist on classic arcade visuals.
+
+### [ZombieShooter](./ZombieShooter/)
+
+Description TBA
+
+### [Asteroids](./Asteroids/)
+
+Description TBA

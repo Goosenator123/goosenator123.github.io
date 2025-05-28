@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asteroids</title>
+  <link rel="stylesheet" href="styles/index.css">
+
+<script defer src="index8dbd68c13d966a4efa95.js"></script></head>
+<body>
+  <!-- Menu Overlay -->
+  <div id="menu">
+    <div id="header">
+      <h1>Asteroids</h1>
+    </div>
+    <div id="instructions">
+      <p>
+        <strong>Controls:</strong> Use the arrow keys to rotate and thrust, and press the spacebar to shoot.<br>
+        <strong>Buffs Available:</strong><br>
+        <strong>M</strong> (Multi) – Increases the number of bullets per shot.<br>
+        <strong>B</strong> (Bullet Speed) – Increases bullet speed.<br>
+        <strong>P</strong> (Penetration) – Increases bullet penetration.<br>
+        <strong>R</strong> (Reload Speed) – Decreases the ship's fire rate (reload time).<br>
+        <strong>Points:</strong> Each asteroid destroyed gives 10 points.
+      </p>
+    </div>
+    <button id="startButton">Start Game</button>
+  </div>
+  
+  <!-- Canvas for Game -->
+  <canvas id="gameCanvas"></canvas>
+  
+  <!-- Game Over Menu -->
+  <div id="gameOverMenu">
+    <h1>Game Over</h1>
+    <button id="restartButton">Restart Game</button>
+  </div>
+</body>
+</html>
